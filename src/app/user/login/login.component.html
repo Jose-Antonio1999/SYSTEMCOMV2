@@ -1,0 +1,55 @@
+<div class="contenedor" *ngIf="existeData">
+
+  <div class="container central">
+    <div class="form">
+      <div class="head"></div>
+      <form [formGroup]="Formulario">
+
+        <div class="text-center" style="font-size:25px;">
+          <!-- <i class="fas fa-user-tie"></i> -->
+          <p>Login</p>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="input" >
+            <mat-label>Email</mat-label>
+            <input matInput autocomplete="off" maxlength="40" formControlName="user">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field appearance="legacy" class="input">
+            <mat-label>Contraseña</mat-label>
+            <input type="password" matInput maxlength="20" autocomplete="on" formControlName="pass">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="aviso" class="alert alert-danger" role="alert">
+          {{mensaje}}
+        </div>
+
+        <div class="form-inline">
+          <button type="button" class="btn btn-dark mb-3" (click)="ingresar()" [disabled]="this.Formulario.invalid">Ingresar</button>
+          <p class="ml-5"><a href="#">Olvide mi password</a></p>
+        </div>
+
+      </form>
+    </div>
+    <!-- <div class="container imglogin">
+      <img src="../../../assets/image-login.svg" alt="" srcset="">
+    </div> -->
+  </div>
+
+
+<!--muestra de registro-->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Ingresando al sistema </p></ngx-spinner>
+
+  <!-- Footer con svg
+  <div class="fixed-top" style="height: 150px; overflow: hidden;" >
+    <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+      <path d="M-17.21,39.95 C272.85,0.50 543.16,251.14 532.44,68.58 L483.35,-53.78 L0.00,0.00 Z" style="stroke: none; fill: #004EF5;"></path>
+    </svg>
+  </div> -->
+
+
+</div>

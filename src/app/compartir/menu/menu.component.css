@@ -1,0 +1,47 @@
+.conten-menu{
+  height:100vh;
+  width: 70px;
+  z-index: 1000;
+  overflow: hidden;
+}
+.info-user{
+  height:100px;
+  width:100%;
+  padding-top: 10px;
+  background: #08324C;
+}
+.conten-icon{
+  display:flex;
+  height:60px;
+  text-decoration: none;
+  outline: none;
+}
+.conten-icon:hover{
+  background: #08324C;
+  cursor:pointer;
+}
+.letterICon{
+  height:50px;
+  width: 150px;
+}
+.letterICon p{
+  margin-top: 10%;
+  margin-left: 15px;
+}
+.icon{
+  height:50px !important;
+  width: 20px !important;
+  max-width:70px !important;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-left: 25px;
+}
+.img-user{
+  height:50px;
+  width:50px;
+}
+.content-imguser{
+  display:flex;
+  justify-content:center;
+}

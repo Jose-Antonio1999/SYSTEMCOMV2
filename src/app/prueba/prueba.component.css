@@ -1,0 +1,17 @@
+.central{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-izquierda{
+  height:100%;
+  width:70px;
+  background-color:blueviolet;
+}
+.cuerpo-derecho{
+  height:100%;
+  width:100%;
+  background-color:burlywood;
+}

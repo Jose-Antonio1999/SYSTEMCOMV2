@@ -1,0 +1,184 @@
+
+<div  class="central" *ngIf="existeData">
+
+<div class="container">
+  <form [formGroup]="crearFormulario" class="formulario">
+    <div class="row">
+
+      <div class="titleform">
+        <p class="col-md-12"><i class="fas fa-graduation-cap"></i> Registro de acceso al sistema</p>
+      </div>
+
+      <div class="col-md-6">
+
+        <mat-form-field style="width: 100%;">
+          <mat-label>Tipo de personal</mat-label>
+          <mat-select formControlName="tipoPersonal">
+            <div *ngFor="let data of listaProfile">
+              <mat-option value="{{data.id_profile_user}}">{{data.profile_user}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="modelInput">
+            <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+            <mat-label>Dni personal</mat-label>
+            <input  matInput autocomplete="off" formControlName="dni" maxlength="8" (ngModelChange)="llenarDatos()">
+        </mat-form-field>
+
+        <div class="mensajeInput" *ngIf="crearFormulario.controls['dni'].dirty && crearFormulario.controls['dni'].invalid">
+
+          <div *ngIf="crearFormulario.controls['dni'].errors.pattern">
+            <small>Por favor digite el número de DNI</small>
+          </div>
+
+          <div *ngIf="!crearFormulario.controls['dni'].errors.minLength
+                      && !crearFormulario.controls['dni'].errors.required
+                      && !crearFormulario.controls['dni'].errors.pattern">
+            <small>El DNI contiene 8 dígitos</small>
+          </div>
+
+          <div *ngIf="crearFormulario.controls['dni'].errors.required">
+            <small>Complete el campo DNI</small>
+          </div>
+
+        </div>
+
+        <mat-form-field class="modelInput">
+            <mat-label>Nombres</mat-label>
+            <input  matInput autocomplete="off" maxlength="25" matInput formControlName="nombre">
+            <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
+        </mat-form-field>
+
+        <div class="mensajeInput" *ngIf="crearFormulario.controls['nombre'].dirty && crearFormulario.controls['nombre'].invalid">
+
+          <div *ngIf="crearFormulario.controls['nombre'].errors.pattern">
+            <small>Por favor digite su nombre</small>
+          </div>
+
+          <div *ngIf="crearFormulario.controls['nombre'].errors.required">
+            <small>Complete el campo nombre</small>
+          </div>
+
+        </div>
+
+        <div class="form-inline" id="contenLastname">
+
+            <div class="lastname">
+              <mat-form-field class="inputOption">
+                <mat-label>Apellido paterno</mat-label>
+                <input  matInput autocomplete="off" maxlength="25" formControlName="apellidoP">
+              </mat-form-field>
+
+              <div class="mensajeInput" *ngIf="crearFormulario.controls['apellidoP'].dirty && crearFormulario.controls['apellidoP'].invalid">
+
+                <div *ngIf="crearFormulario.controls['apellidoP'].errors.pattern">
+                  <small>Por favor digite su apellido</small>
+                </div>
+
+                <div *ngIf="crearFormulario.controls['apellidoP'].errors.required">
+                  <small>Complete el campo apellido</small>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="lastname">
+              <mat-form-field  class="inputOption">
+                <mat-label>Apellido materno</mat-label>
+                <input  matInput autocomplete="off" maxlength="25" formControlName="apellidoM">
+              </mat-form-field>
+
+              <div class="mensajeInput" *ngIf="crearFormulario.controls['apellidoM'].dirty && crearFormulario.controls['apellidoM'].invalid">
+
+                <div *ngIf="crearFormulario.controls['apellidoM'].errors.pattern">
+                  <small>Por favor digite su apellido</small>
+                </div>
+
+                <div *ngIf="crearFormulario.controls['apellidoM'].errors.required">
+                  <small>Complete el campo apellido</small>
+                </div>
+            </div>
+
+            </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <mat-form-field class="modelInput">
+          <mat-label>Correo</mat-label>
+          <input type="email"  matInput autocomplete="off" maxlength="50" formControlName="correo">
+            <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
+
+        <div class="mensajeInput" *ngIf="crearFormulario.controls['correo'].dirty && crearFormulario.controls['correo'].invalid">
+
+          <div *ngIf="crearFormulario.controls['correo'].errors.email">
+            <small>Correo inválido hasta el momento</small>
+          </div>
+
+          <div *ngIf="crearFormulario.controls['correo'].errors.required">
+            <small>Complete el campo correo</small>
+          </div>
+
+        </div>
+
+        <mat-form-field class="modelInput">
+          <mat-label>Celular</mat-label>
+          <input type="tel" matInput formControlName="celular" maxlength="9" autocomplete="off">
+          <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
+        </mat-form-field>
+
+        <div class="mensajeInput" *ngIf="crearFormulario.controls['celular'].dirty && crearFormulario.controls['celular'].invalid">
+
+          <div *ngIf="crearFormulario.controls['celular'].errors.pattern">
+            <small>Por favor digite el número de celular</small>
+          </div>
+
+          <div *ngIf="crearFormulario.controls['celular'].errors.required">
+            <small>Complete el campo celular</small>
+          </div>
+
+          <div *ngIf="!crearFormulario.controls['celular'].errors.minLength
+                      && !crearFormulario.controls['celular'].errors.required
+                      && !crearFormulario.controls['celular'].errors.pattern">
+            <small>El número celular contiene 9 dígitos</small>
+          </div>
+
+        </div>
+
+        <div class="form-group mt-2">
+          <div class="custom-input-file">
+            <input  (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
+            <p class="letterFile">
+              <span *ngIf="barraCarga; else letra">
+                {{porcentajeSubidaFoto}}%
+              </span>
+              <ng-template #letra>Agregar foto</ng-template>
+            </p>
+          </div>
+        </div>
+
+        <div class="form-inline mt-3" id="bottonRegisters">
+          <button type="button" class="btn btn-dark m-1" [disabled]="crearFormulario.invalid || verCargaPhoto==false"  (click)="registrarData()">Guargar datos</button>
+          <button type="button" class="btn btn-danger m-1" (click)="cancelar()">Cancelar</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+<!--muestra de registro-->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Registrando Admin </p></ngx-spinner>
+
+<!--
+<div class="fixed-top" style="height: 150px; overflow: hidden;" >
+  <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+    <path d="M-17.21,39.95 C272.85,0.50 543.16,251.14 532.44,68.58 L483.35,-53.78 L0.00,0.00 Z" style="stroke: none; fill: #004EF5;"></path>
+  </svg>
+</div>
+-->

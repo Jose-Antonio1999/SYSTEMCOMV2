@@ -1,0 +1,32 @@
+<div class="central">
+  <div class="menu-izquierda">
+    <app-menu></app-menu>
+  </div>
+  <div class="cuerpo-derecho">
+    <div class="container">
+      <div class="estudianteMenu" >
+        <br>
+        <div class="row">
+          <div  class="col-md-6 mt-3" style="font-size: 19px;">
+
+          </div>
+          <div id="contenIcon" class="col-md-1" title="Lista docentes">
+              <p class="titleTeachers">Lista</p>
+          </div>
+          <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['/panel-estudiante/registro-estudiante']">
+              <p class="titleTeachers">Agregar</p>
+          </div>
+          <div id="contenIcon" class="col-md-1" >
+              <p class="titleTeachers">Comunicado</p>
+          </div>
+          <div id="contenIcon"  class="col-md-2">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

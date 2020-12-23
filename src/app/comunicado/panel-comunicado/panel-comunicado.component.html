@@ -1,0 +1,118 @@
+<div class="central">
+  <div class="menu-izquierda">
+    <app-menu></app-menu>
+  </div>
+  <div class="cuerpo-derecho">
+
+<div class="container central">
+  <div class="row contenform">
+    <div class="title">
+      <h2>Redactar comunicado</h2>
+    </div>
+    <div class="col-md-5">
+      <form class="formulario" [formGroup]="formulalrioComunicado">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Comunicado para</mat-label>
+          <mat-select>
+            <div>
+              <mat-option value="2">Padres en general</mat-option>
+              <mat-option value="3">Docentes en general</mat-option>
+              <mat-option value="3">Docentes tutores</mat-option>
+              <mat-option value="3">Para un docente</mat-option>
+              <mat-option value="3">Grado y secction</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+        <div>
+          <mat-form-field class="inputOption">
+            <mat-label>Grado </mat-label>
+            <mat-select>
+              <div>
+                <mat-option>Grado</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="inputOption">
+            <mat-label>Sección</mat-label>
+            <mat-select>
+              <div>
+                <mat-option>Hola</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group" *ngIf="false">
+          <mat-form-field class="input">
+            <mat-label>Email</mat-label>
+            <input matInput  formControlName="asunto">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="input">
+            <mat-label>Asunto</mat-label>
+            <input matInput  formControlName="asunto">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="input">
+            <mat-label>Tipo Comunicado</mat-label>
+            <input  matInput autocomplete="off"  formControlName="tipo">
+        </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="input">
+            <mat-label>Cuerpo del Comunicado</mat-label>
+            <textarea rows="4" matInput formControlName="cuerpo" maxlength="1900"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <input class="form-control inputFile" type="file" value="">
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="input">
+            <mat-label>Contraseña de su cuenta de Gmail registrada</mat-label>
+            <input  matInput autocomplete="off" type="password" formControlName="pass">
+            <mat-icon  style="cursor: pointer;"  matSuffix><span class="material-icons">visibility</span></mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="form-inline">
+          <button type="button" class="btn btn-dark mt-3 m-1"><i class="fas fa-paper-plane"></i> Enviar</button>
+          <button data-dismiss="modal" type="button" class="btn btn-dark mt-3 m-1"><i class="fas fa-save"></i> Guardar</button>
+          <button type="button" class="btn btn-danger mt-3 m-1" data-dismiss="modal">Cancelar</button>
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-7">
+      <div class="comunicado">
+        <div class="contenComunicado">
+          <div class="contenImage">
+            <img width="90%" style="margin: 1.5% auto; text-align: left" src="https://i.postimg.cc/ZKJ9xQH3/belen3.png">
+          </div>
+          <div>
+            <h2 class="text-center titleComunicado">Comunicado de Urgencia</h2>
+          </div>
+          <div class="contenMessage">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aperiam iure quasi ullam! Ullam voluptates, ea itaque quam
+          porro architecto cumque dicta dolor velit autem necessitatibus, ab non exercitationem quod.
+
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi eius repudiandae obcaecati quos cumque explicabo numquam tempore eaque quod
+          earum ipsam, ab fugit accusantium in reiciendis iure necessitatibus repellendus nemo?
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>

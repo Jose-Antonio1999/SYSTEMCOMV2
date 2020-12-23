@@ -1,0 +1,240 @@
+<div class="container">
+
+  <form [formGroup]="crearFormulario" class="formulario">
+    <div class="row">
+    <div class="col-md-6">
+      <div>
+        <h2><i class="fas fa-graduation-cap"></i> Registro del alumno</h2>
+      </div>
+
+      <div class="form-inline">
+
+        <mat-form-field class="inputOption">
+            <mat-label>Grado Estudiante </mat-label>
+            <mat-select formControlName="grado">
+              <div *ngFor="let data of listaGrado">
+                <mat-option value="{{data.id_grade}}">{{data.grade}}</mat-option>
+              </div>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="inputOption">
+          <mat-label>Sección Estudiante</mat-label>
+          <mat-select formControlName="seccion">
+            <div *ngFor="let data of listaSecciones">
+              <mat-option value="{{data.id_section}}">{{data.section}}</mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+        <mat-form-field class="modelInput">
+          <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+          <mat-label>Dni estudiante</mat-label>
+          <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8">
+        </mat-form-field>
+        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_estudiante'].dirty && crearFormulario.controls['dni_estudiante'].invalid">
+          <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.pattern">
+            <small>Por favor digite el número de dni</small>
+          </div>
+          <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.required">
+            <small>Complete el campo dni</small>
+          </div>
+          <div *ngIf="!crearFormulario.controls['dni_estudiante'].errors.minLength
+                      && !crearFormulario.controls['dni_estudiante'].errors.required
+                      && !crearFormulario.controls['dni_estudiante'].errors.pattern">
+                  <small>El DNI contiene 8 dígitos</small>
+          </div>
+          <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.maxlength">
+            <small>Cantidad de dígitos inválidos</small>
+          </div>
+        </div>
+
+        <mat-form-field class="modelInput">
+          <mat-label>Nombre estudiante</mat-label>
+          <input  matInput autocomplete="off" formControlName="nombre_estudiante">
+          <mat-icon matSuffix><i class="fas fa-user-graduate"></i></mat-icon>
+        </mat-form-field>
+        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['nombre_estudiante'].dirty && crearFormulario.controls['nombre_estudiante'].invalid">
+          <div *ngIf="crearFormulario.controls['nombre_estudiante'].errors.pattern">
+            <small>Nombres inválidos</small>
+          </div>
+          <div *ngIf="crearFormulario.controls['nombre_estudiante'].errors.required">
+            <small>Complete el campo nombres del estudiante</small>
+          </div>
+        </div>
+
+      <div class="form-inline" id="contenLastname">
+          <div style="width: 50%;">
+            <mat-form-field class="lastName">
+              <mat-label>Apellido paterno</mat-label>
+              <input  matInput autocomplete="off" formControlName="apellidoP_estudiante">
+            </mat-form-field>
+            <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoP_estudiante'].dirty && crearFormulario.controls['apellidoP_estudiante'].invalid">
+              <div *ngIf="crearFormulario.controls['apellidoP_estudiante'].errors.pattern">
+                <small>Apellidos inválidos</small>
+              </div>
+              <div *ngIf="crearFormulario.controls['apellidoP_estudiante'].errors.required">
+                <small>Complete el campo apellidos</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="width: 50%;">
+            <mat-form-field class="lastName">
+              <mat-label>Apellido materno</mat-label>
+              <input  matInput autocomplete="off" formControlName="apellidoM_estudiante">
+            </mat-form-field>
+            <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoM_estudiante'].dirty && crearFormulario.controls['apellidoM_estudiante'].invalid">
+              <div *ngIf="crearFormulario.controls['apellidoM_estudiante'].errors.pattern">
+                <small>Apellidos inválidos</small>
+              </div>
+              <div *ngIf="crearFormulario.controls['apellidoM_estudiante'].errors.required">
+                <small>Complete el campo apellidos</small>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <mat-form-field class="modelInput">
+        <mat-label>Correo</mat-label>
+        <input type="email"  matInput autocomplete="off" formControlName="correo_estudiante">
+          <mat-icon matSuffix>mail</mat-icon>
+      </mat-form-field>
+      <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['correo_estudiante'].dirty && crearFormulario.controls['correo_estudiante'].invalid">
+        <div *ngIf="crearFormulario.controls['correo_estudiante'].errors.email">
+          <small>Correo inválido hasta el momento</small>
+        </div>
+        <div *ngIf="crearFormulario.controls['correo_estudiante'].errors.required">
+          <small>Complete el campo correo</small>
+        </div>
+      </div>
+
+      <div class="form-group mt-2">
+        <div class="custom-input-file">
+          <input  (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
+          <p class="letterFile">
+            <span *ngIf="barraCarga; else letra">
+              {{porcentajeSubidaFoto}}%
+            </span>
+            <ng-template #letra>Agregar foto</ng-template>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6" id="dataStudent">
+
+      <mat-form-field class="modelInput">
+        <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
+        <mat-label>Dni Apoderado</mat-label>
+        <input  matInput autocomplete="off" formControlName="dni_apoderado" maxlength="8">
+      </mat-form-field>
+      <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_apoderado'].dirty && crearFormulario.controls['dni_apoderado'].invalid">
+        <div *ngIf="crearFormulario.controls['dni_apoderado'].errors.pattern">
+          <small>Por favor digite el número de dni</small>
+        </div>
+        <div *ngIf="!crearFormulario.controls['dni_apoderado'].errors.minLength
+                      && !crearFormulario.controls['dni_apoderado'].errors.required
+                      && !crearFormulario.controls['dni_apoderado'].errors.pattern">
+              <small>El DNI contiene 8 dígitos</small>
+        </div>
+        <div *ngIf="crearFormulario.controls['dni_apoderado'].errors.required">
+          <small>Complete el campo dni apoderado</small>
+        </div>
+      </div>
+
+      <mat-form-field class="modelInput">
+        <mat-label>Nombre apoderado</mat-label>
+        <input type="text"  matInput autocomplete="off" formControlName="nombre_apoderado">
+        <mat-icon matSuffix><i class="fas fa-user-tie"></i></mat-icon>
+      </mat-form-field>
+      <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['nombre_apoderado'].dirty && crearFormulario.controls['nombre_apoderado'].invalid">
+        <div *ngIf="crearFormulario.controls['nombre_apoderado'].errors.pattern">
+          <small>Nombres inválidos</small>
+        </div>
+        <div *ngIf="crearFormulario.controls['nombre_apoderado'].errors.required">
+          <small>Complete el campo nombres apoderado</small>
+        </div>
+      </div>
+
+      <div class="form-inline" id="contenLastname">
+
+          <div style="width: 50%;">
+            <mat-form-field class="lastName">
+              <mat-label>Apellido paterno</mat-label>
+              <input type="text"  matInput autocomplete="off" formControlName="apellidoP_apoderado">
+            </mat-form-field>
+            <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoP_apoderado'].dirty && crearFormulario.controls['apellidoP_apoderado'].invalid">
+              <div *ngIf="crearFormulario.controls['apellidoP_apoderado'].errors.pattern">
+                <small>Apellidos inválidos</small>
+              </div>
+              <div *ngIf="crearFormulario.controls['apellidoP_apoderado'].errors.required">
+                <small>Complete el campo apellidos</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="width: 50%;">
+            <mat-form-field class="lastName">
+              <mat-label>Apellido materno</mat-label>
+              <input type="text"  matInput autocomplete="off" formControlName="apellidoM_apoderado">
+            </mat-form-field>
+            <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoM_apoderado'].dirty && crearFormulario.controls['apellidoM_apoderado'].invalid">
+              <div *ngIf="crearFormulario.controls['apellidoM_apoderado'].errors.pattern">
+                <small>Apellidos inválidos</small>
+              </div>
+              <div *ngIf="crearFormulario.controls['apellidoM_apoderado'].errors.required">
+                <small>Complete el campo apellidos</small>
+              </div>
+            </div>
+          </div>
+
+      </div>
+
+        <mat-form-field class="modelInput">
+          <mat-label>Correo</mat-label>
+          <input type="email"  matInput autocomplete="off" formControlName="correo_apoderado">
+            <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
+        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['correo_apoderado'].dirty && crearFormulario.controls['correo_apoderado'].invalid">
+          <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.email">
+            <small>Correo inválido hasta el momento</small>
+          </div>
+          <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.required">
+            <small>Complete el campo correo</small>
+          </div>
+        </div>
+
+        <mat-form-field class="modelInput">
+          <mat-label>Celular</mat-label>
+          <input matInput formControlName="celular_apoderado" autocomplete="off" maxlength="9">
+          <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
+        </mat-form-field>
+        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['celular_apoderado'].dirty && crearFormulario.controls['celular_apoderado'].invalid">
+          <div *ngIf="crearFormulario.controls['celular_apoderado'].errors.pattern">
+            <small>número de celular inválido</small>
+          </div>
+          <div *ngIf="!crearFormulario.controls['celular_apoderado'].errors.minLength
+                      && !crearFormulario.controls['celular_apoderado'].errors.required
+                      && !crearFormulario.controls['celular_apoderado'].errors.pattern">
+              <small>El celular contiene 9 dígitos</small>
+        </div>
+          <div *ngIf="crearFormulario.controls['celular_apoderado'].errors.required">
+            <small>Complete el campo celular</small>
+          </div>
+        </div>
+
+
+      <div class="form-inline" id="bottonRegisters">
+        <button type="button" class="btn btn-dark" (click)="registrar()" [disabled]="crearFormulario.invalid || verCargaPhoto==false">Guargar datos</button>
+        <button type="button" class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+
+  </form>
+
+</div>

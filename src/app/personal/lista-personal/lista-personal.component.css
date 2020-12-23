@@ -1,0 +1,43 @@
+#contenIcon{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+#icono{
+  font-size: 25px;
+  margin-top: 12px;
+}
+table{
+  border-collapse:separate;
+  border-spacing: 10;
+  border-radius:10px;
+  -moz-border-radius:10px;
+  -webkit-border-radius: 10px;
+}
+#contenedorDocentes{
+  height: 85%;
+  width: 102%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#contenedorDocentes::-webkit-scrollbar{
+  height: 7px;
+  width: 7px;
+}
+#contenedorDocentes::-webkit-scrollbar-thumb{
+  background: #0B619E;
+  border-radius: 10px;
+}
+#titleP{
+  font-size:17px
+}
+
+.central{
+  height: 83%;
+  width: 100% !important;
+}
+.card{
+  margin-bottom: 2px;
+  z-index:1 !important;
+}

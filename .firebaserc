@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "comunicados-49724": {
+      "hosting": {
+        "SISTEMA-COMUNICADOS-V2": [
+          "comunicados-49724"
+        ]
+      }
+    }
+  }
+}

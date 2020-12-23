@@ -1,0 +1,59 @@
+.central{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-izquierda{
+  height:100%;
+  width:70px;
+}
+.cuerpo-derecho{
+  height:100%;
+  width:100%;
+}
+
+#contenIcon{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+#icono{
+  font-size: 25px;
+  margin-top: 12px;
+}
+#contenedorDocentes{
+  height: 75vh;
+  width: 100%;
+}
+.conten-center {
+  height: 90%;
+}
+.titleTeachers{
+  margin-top: 18px;
+  margin-left: 3px;
+}
+.lastName{
+  width: 50%;
+}
+.card{
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.menuOption{
+  display: flex;
+  justify-content: flex-end;
+}
+.iconoOption{
+  margin-top: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}

@@ -1,0 +1,60 @@
+
+.central{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-izquierda{
+  height:100%;
+  width:80px;
+}
+.cuerpo-derecho{
+  height:100%;
+  width:100%;
+  background-color:#FFF;
+}
+.input{
+  width: 100%;
+}
+.title{
+  height: 50px;
+  width: 100%;
+  padding-top: 15px;
+}
+h2{
+  font-size: 25px;
+}
+.comunicado{
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.contenform{
+  height: 88%;
+}
+.inputFile{
+  border: none;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+.contenComunicado{
+  padding: 5px;
+}
+.contenImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px;
+}
+.contenMessage{
+  padding: 10px
+}
+.titleComunicado{
+  margin-top: -15px;
+}
+.inputOption{
+  width: 50%;
+}

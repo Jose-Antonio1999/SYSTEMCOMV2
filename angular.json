@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -88,6 +89,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -117,8 +119,16 @@
               "devServerTarget": "SISTEMA-COMUNICADOS-V2:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "SISTEMA-COMUNICADOS-V2"
+    }
+  },
+  "defaultProject": "SISTEMA-COMUNICADOS-V2",
+  "cli": {
+    "analytics": "942de26d-9f7c-4a4e-b1c7-eb0761b81888"
+  }
 }
