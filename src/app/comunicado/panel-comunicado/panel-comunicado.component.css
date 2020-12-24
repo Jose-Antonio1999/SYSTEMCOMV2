@@ -4,7 +4,10 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+.row{
+  height:60px !important;
+  margin:0 auto !important;
 }
 .menu-izquierda{
   height:100%;
@@ -13,12 +16,17 @@
 .cuerpo-derecho{
   height:100%;
   width:100%;
-  background-color:#FFF;
+  background-color:#E7E6E8;
 }
 .input{
   width: 100%;
 }
 .title{
+  height: 50px;
+  width: 100%;
+  padding-top: 15px;
+}
+.titleV{
   height: 50px;
   width: 100%;
   padding-top: 15px;
@@ -29,7 +37,6 @@ h2{
 .comunicado{
   height: 100%;
   width: 100%;
-  border: 1px solid black;
   border-radius: 5px;
 }
 .contenform{
@@ -58,3 +65,36 @@ h2{
 .inputOption{
   width: 50%;
 }
+/*codigo para personalizar el choose file*/
+.letterFile{
+  background:#154360;
+  height:36px;
+  width:164px;
+  z-index: 10;
+  margin-top: -37px;
+  position: absolute;
+  border-radius: 3px 0px 0px 3px;
+}
+.btn{
+  border:none;
+  color: #FFF;
+  width: 120px;
+  margin-top:5px;
+  margin-right: 4px;
+  background-color: #154360 !important;
+}
+.custom-input-file p{
+  color:#FFF;
+  display: flex;
+  padding-top: 6px;
+  justify-content: center;
+  align-content: center;
+}
+.conteFile {
+  margin-top:15px;
+}
+.ContenComunicado{
+  background-color: #FFF;
+  height:370px;
+}
+

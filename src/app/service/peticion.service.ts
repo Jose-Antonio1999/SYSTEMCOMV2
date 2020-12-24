@@ -41,12 +41,12 @@ export class PeticionService {
   listaSecction():Observable<any>{
     return this.http.get<any>(this.URLListar+"listarSeccion.php");
   }
+  obtenerPerfilCurrent(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"currentUser.php",data);
+  }
   //funciones de subida de archivo
   verificarPhoto(data:any):Observable<any>{
     return this.http.post<any>(this.URLsubidaarchvio+"verificarPhoto.php",data);
-  }
-  subirArchivo(data:any):Observable<any>{
-    return this.http.post<any>(this.URLsubidaarchvio+"subirphotostaff.php",data);
   }
 
   //funcion de verificacion de usurios

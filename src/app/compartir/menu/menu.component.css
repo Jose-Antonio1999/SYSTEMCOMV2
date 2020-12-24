@@ -2,11 +2,13 @@
   height:100vh;
   width: 70px;
   z-index: 1000;
+  position: absolute;
   overflow: hidden;
 }
 .info-user{
   height:100px;
   width:100%;
+  font-size:16px;
   padding-top: 10px;
   background: #08324C;
 }
@@ -40,8 +42,13 @@
 .img-user{
   height:50px;
   width:50px;
+  border-radius: 50%;
 }
 .content-imguser{
   display:flex;
   justify-content:center;
+}
+.activo{
+  background: #08324C;
+  cursor:pointer;
 }

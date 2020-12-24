@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { userCurrent } from 'src/app/clases/user';
+import { Usuario } from 'src/app/clases/usuario';
+import { PeticionService } from 'src/app/service/peticion.service';
 
 
 @Component({
@@ -13,12 +16,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
     trigger('animarMenu',
     [
       state('stateOne', style({
-        backgroundColor:"#03273d"
+        backgroundColor:"#154360"
       })),
 
       state('stateTwo', style({
-        backgroundColor:"#03273d",
-        width:"185px"
+        backgroundColor:"#154360 ",
+        width:"170px",
+        borderRight:"1px solid #FFF"
       })),
 
       transition('stateOne <=> stateTwo',
@@ -70,8 +74,18 @@ export class MenuComponent implements OnInit {
   estadoMenu:String = "stateOne"
   stateIcon:string = "hiddenIcon"
   animateLetter:string  = "stateNormal"
+  dataUser:Usuario
+  usercurrent:userCurrent
+  verMenu:boolean = false
+  constructor(
+    private auth: AngularFireAuth,
+    private ruta:Router,
+    private spinner:NgxSpinnerService,
+    private peticion:PeticionService) {
 
-  constructor(private auth: AngularFireAuth, private ruta:Router, private spinner:NgxSpinnerService) { }
+    //this.sesionInciada();
+
+  }
 
   ngOnInit(): void {
   }
@@ -94,8 +108,17 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  iniciarsesion(){
-    console.log(JSON.parse(localStorage.getItem("current")))
+  sesionInciada(){
+    this.dataUser= JSON.parse(localStorage.getItem("current"))
+    this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+      (res)=>{
+        this.verMenu = true
+        this.usercurrent = res[0];
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
 
   SignOut(){
@@ -105,6 +128,10 @@ export class MenuComponent implements OnInit {
       this.spinner.hide()
       this.ruta.navigateByUrl('login');
     }, 1000);
+  }
+
+  recortarNombre(data:string):string{
+    return data.substr(0,data.search(" "));
   }
 
 }

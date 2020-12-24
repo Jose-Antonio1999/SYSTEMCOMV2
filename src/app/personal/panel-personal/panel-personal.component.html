@@ -1,6 +1,6 @@
 <div class="central">
   <div class="menu-izquierda">
-    <app-menu></app-menu>
+    <!-- <app-menu></app-menu> -->
   </div>
   <div class="cuerpo-derecho">
     <div class="container-fluid">
@@ -9,13 +9,13 @@
         <div  class="col-md-6 mt-3" style="font-size: 19px;">
 
         </div>
-        <div id="contenIcon" class="col-md-1" title="Lista docentes" [routerLink]="['/control-docente/lista-personal']">
+        <div id="contenIcon" class="col-md-1" title="Lista docentes" [routerLink]="['lista-personal']" routerLinkActive="activo">
             <p class="titleTeachers">Lista</p>
         </div>
         <div id="contenIcon" class="col-md-1" title="Lista docentes tutores">
             <p class="titleTeachers">Tutores</p>
         </div>
-        <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['/control-docente/registro-docente']">
+        <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['registro-docente']" routerLinkActive="activo">
             <p class="titleTeachers">Agregar</p>
         </div>
         <div id="contenIcon" class="col-md-1" >

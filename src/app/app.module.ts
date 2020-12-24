@@ -20,6 +20,9 @@ import { ListaEstudiantesComponent } from './estudiante/lista-estudiantes/lista-
 import { HttpClientModule } from '@angular/common/http';
 import { PortalComponent } from './Portal/portal/portal.component';
 
+//importar para el editex
+import { NgxWigModule } from 'ngx-wig';
+
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
@@ -29,6 +32,8 @@ import { PrincipalEstudianteComponent } from './panel-control/principal-estudian
 import { PrincipalDirectorComponent } from './panel-control/principal-director/principal-director.component';
 import { PrincipalDocenteComponent } from './panel-control/principal-docente/principal-docente.component';
 import { PruebaComponent } from './prueba/prueba.component';
+import { PanelDocenteComponent } from './Docente/panel-docente/panel-docente.component';
+import { MenuDocenteComponent } from './Docente/menu-docente/menu-docente.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,9 @@ import { PruebaComponent } from './prueba/prueba.component';
     PrincipalEstudianteComponent,
     PrincipalDirectorComponent,
     PrincipalDocenteComponent,
-    PruebaComponent
+    PruebaComponent,
+    PanelDocenteComponent,
+    MenuDocenteComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +66,8 @@ import { PruebaComponent } from './prueba/prueba.component';
     HttpClientModule,
     NgxSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
-    FormsModule
+    FormsModule,
+    NgxWigModule
   ],
 
   providers: [],

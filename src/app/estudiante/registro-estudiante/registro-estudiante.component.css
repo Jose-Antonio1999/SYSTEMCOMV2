@@ -15,12 +15,13 @@
 }
 /*codigo para personalizar el choose file*/
 .letterFile{
-  background:#004EF5;
-  height:38px;
+  background:#154360;
+  height:36px;
   width:164px;
   z-index: 10;
+  margin-top: -37px;
   position: absolute;
-  margin-top: -38px;
+  border-radius: 3px 0px 0px 3px;
 }
 .custom-input-file p{
   color:#FFF;
@@ -28,6 +29,12 @@
   padding-top: 6px;
   justify-content: center;
   align-content: center;
+}
+.btn{
+  border: none;
+  background-color:#154360;
+  color:#FFF;
+  margin-left:5px;
 }
 #contenLastname{
   display: flex;

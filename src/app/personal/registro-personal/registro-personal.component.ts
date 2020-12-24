@@ -164,11 +164,7 @@ export class RegistroPersonalComponent implements OnInit {
   }
 
   cancelar(){
-    this.auth.currentUser.then(
-      (res)=>{
-        console.log(res)
-      }
-    )
+    this.crearFormulario.reset();
   }
   mostrarMensaje(iconMessaje:any, titleMessaje:any){
 

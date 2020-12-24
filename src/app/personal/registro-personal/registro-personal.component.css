@@ -1,3 +1,8 @@
+.container{
+  padding:15px;
+  /* border-radius: 10px;
+  background-color: rgb(255,255,255,0.5); */
+}
 #contenIcon{
   display: flex;
   justify-content: center;
@@ -18,18 +23,34 @@
   height: 7px;
   width: 7px;
 }
+#bottonRegisters button{
+  width: 30%;
+}
 #contenedorDocentes::-webkit-scrollbar-thumb{
   background: gray;
   border-radius: 10px;
 }
+#bottonRegisters{
+  display: flex;
+}
+.letter{
+  font-size:18px;
+}
+.btn{
+  border: none;
+  background-color:#154360;
+  color:#FFF;
+  margin-right: 5px;
+}
 /*codigo para personalizar el choose file*/
 .letterFile{
-  background:#004EF5;
-  height:38px;
+  background:#154360;
+  height:36px;
   width:164px;
   z-index: 10;
+  margin-top: -37px;
   position: absolute;
-  margin-top: -38px;
+  border-radius: 3px 0px 0px 3px;
 }
 .custom-input-file p{
   color:#FFF;

@@ -1,12 +1,12 @@
 <!--Codigo para animar el menu-->
 <!--(mouseover)="animarMenu()" (mouseleave)="desanimarMenu()"-->
-<div [@animarMenu]="estadoMenu" class="conten-menu">
+<div *ngIf="true" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()">
   <div class="colunm" style="color:#FFF">
     <div class="info-user">
       <div class="container content-imguser">
         <img  src="../../../assets/userDefecto.png" alt="" class="text-center img-user">
       </div>
-      <p class="text-center">José</p>
+      <p class="text-center">Jos</p>
     </div>
 
     <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
@@ -23,11 +23,11 @@
         <i class="fas fa-mail-bulk"></i>
       </div>
       <div [@iconLetter]="stateIcon" class="letterICon">
-        <p [@animateLetter]='animateLetter'>Bandeja de salida</p>
+        <p [@animateLetter]='animateLetter'>Bandeja</p>
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['/control-docente/lista-personal']" >
+    <div class="conten-icon" [routerLink]="['control-docente']" routerLinkActive="activo" >
       <div class="col-md icon">
         <i class="fas fa-address-book"></i>
       </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['/panel-estudiante']">
+    <div class="conten-icon" [routerLink]="['estudiante']" routerLinkActive="activo">
       <div class="col-md icon">
         <i class="fas fa-user-graduate"></i>
       </div>
@@ -54,16 +54,16 @@
       </div>
     </div>
 
-    <div class="conten-icon" (click)="iniciarsesion()">
+    <div class="conten-icon" (click)="sesionInciada()">
       <div class="col-md icon">
         <i class="fas fa-save"></i>
       </div>
       <div [@iconLetter]="stateIcon" class="letterICon">
-        <p [@animateLetter]='animateLetter'>Mesajes guardados</p>
+        <p [@animateLetter]='animateLetter'>Mesajes</p>
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['/panel-comunicado']">
+    <div class="conten-icon" [routerLink]="['comunicado']" routerLinkActive="activo">
       <div class="col-md icon">
         <i class="fas fa-envelope"></i>
       </div>
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" (click)="currentUSer()">
+    <div class="conten-icon">
       <div class="col-md icon">
         <i class="fas fa-user-shield"></i>
       </div>
@@ -86,7 +86,7 @@
         <i class="fas fa-sign-in-alt"></i>
       </div>
       <div [@iconLetter]="stateIcon" class="letterICon">
-        <p [@animateLetter]='animateLetter'>Usuarios</p>
+        <p [@animateLetter]='animateLetter'>Salir</p>
       </div>
     </div>
 

@@ -18,23 +18,24 @@ const routes: Routes = [
   {path:'', component:PortalComponent},
   {path: 'login', component:LoginComponent},
   {path: 'registro-admin', component:RegistroUnicoComponent},
-  {path: 'control-docente', component:PanelPersonalComponent,
-    children:[
-      {path:'registro-docente', component:RegistroPersonalComponent},
-      {path:'lista-personal', component:ListaPersonalComponent}
-    ]
-  },
-  {path:'panel-comunicado', component:PanelComunicadoComponent},
-  {
-    path:'panel-estudiante', component:PanelEstudianteComponent,
-    children:[
-      {path:'registro-estudiante', component: RegistroEstudianteComponent}
-    ]
-  },
   //Ruta principal
   {path:"Docente",component:PrincipalDocenteComponent},
-  {path:"Admin",component:PrincipalDirectorComponent},
-  {path:"Estudiante",component:PrincipalEstudianteComponent},
+  {path:"Admin",component:PrincipalDirectorComponent,
+    children:[
+      {path: 'control-docente', component:PanelPersonalComponent,
+        children:[
+          {path:'registro-docente', component:RegistroPersonalComponent},
+          {path:'lista-personal', component:ListaPersonalComponent}
+        ]
+      },
+      {path:"estudiante",component:PanelEstudianteComponent,
+        children:[
+          {path:'registro-estudiante', component: RegistroEstudianteComponent}
+        ]
+      },
+      {path:'comunicado', component:PanelComunicadoComponent},
+    ]
+  },
   {path:"prueba",component:PruebaComponent}
 
 ];

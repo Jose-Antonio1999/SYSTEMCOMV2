@@ -15,10 +15,16 @@
 }
 
 #contenIcon{
+  box-shadow: none;
+  outline: none;
   display: flex;
   justify-content: center;
   align-content: center;
   cursor: pointer;
+}
+#contenIcon:hover{
+  height: 45px;
+  border-bottom:2px solid #08324C;
 }
 #icono{
   font-size: 25px;
@@ -57,3 +63,8 @@
 .inputOption{
   width: 50%;
 }
+.activo{
+  height: 45px;
+  border-bottom:2px solid #08324C;
+}
+
