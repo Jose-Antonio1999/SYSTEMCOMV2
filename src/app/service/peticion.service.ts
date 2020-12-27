@@ -14,6 +14,7 @@ export class PeticionService {
   URLRegistro:String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/registrar/";
   URLListar:String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/Listar/";
   URLsubidaarchvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/archivos/"
+  URLenvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/envios/"
 
   constructor(private http:HttpClient, private snackBar: MatSnackBar) { }
 
@@ -66,6 +67,11 @@ export class PeticionService {
   //funcion Login
   Login(data):Observable<any>{
     return this.http.post<any>(this.URLListar+"dataLogin.php",data);
+  }
+
+  //funciones de envio de comunicados
+  enviarComunicado(data:any):Observable<any>{
+    return this.http.post<any>(this.URLenvio+"envioComunicado.php",JSON.stringify(data));
   }
 
 }

@@ -91,23 +91,34 @@ export class RegistroPersonalComponent implements OnInit {
   }
 
   onFile(event) {
-    const file = event.target.files[0];
-    const ruta = 'staffPhotos/'+this.crearFormulario.value.dni;
-    const ref = this.storage.ref(ruta);
-    const task = ref.put(file);
 
-     //verificamos mientras se sube la foto
-    task.then((tarea)=>{
-      ref.getDownloadURL().subscribe((imgUrl)=>{
-        this.imgURL = imgUrl
-        this.verCargaPhoto = true
+    let dni = this.crearFormulario.value.dni
+    let nombre = this.crearFormulario.value.nombre
+    let correo = this.crearFormulario.value.correo
+
+    if (dni!="" || nombre!="" || correo!="") {
+
+      const file = event.target.files[0];
+      const ruta = 'staffPhotos/'+this.crearFormulario.value.dni;
+      const ref = this.storage.ref(ruta);
+      const task = ref.put(file);
+
+      //verificamos mientras se sube la foto
+      task.then((tarea)=>{
+          ref.getDownloadURL().subscribe((imgUrl)=>{
+          this.imgURL = imgUrl
+          this.verCargaPhoto = true
+          })
       })
-    })
-    //observale de la subida del archivo en %
-    task.percentageChanges().subscribe((porcentaje)=>{
-      this.barraCarga = true
-      this.porcentajeSubidaFoto = parseInt(porcentaje.toString(),10)
-    })
+       //observale de la subida del archivo en %
+      task.percentageChanges().subscribe((porcentaje)=>{
+          this.barraCarga = true
+          this.porcentajeSubidaFoto = parseInt(porcentaje.toString(),10)
+      })
+    } else {
+      this.peticion.mensaje("Complete los campos anteriores para subir la foto",3500,'center','center')
+      this.crearFormulario.controls['photo'].setValue('')
+    }
 
   }
 

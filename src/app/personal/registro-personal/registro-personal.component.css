@@ -38,13 +38,13 @@
 }
 .btn{
   border: none;
-  background-color:#154360;
+  background-color:#1B386E;
   color:#FFF;
   margin-right: 5px;
 }
 /*codigo para personalizar el choose file*/
 .letterFile{
-  background:#154360;
+  background:#1B386E;
   height:36px;
   width:164px;
   z-index: 10;

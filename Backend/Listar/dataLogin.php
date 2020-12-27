@@ -10,7 +10,6 @@ if(isset($data)) {
 
   $usuario = $data->user;
   $pass = $data->pass;
-
   //obtener los data
   $sql_consulta_user = "SELECT * FROM USERS WHERE user = '$usuario' and pass = '$pass' ";
 

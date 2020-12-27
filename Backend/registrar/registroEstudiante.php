@@ -67,8 +67,10 @@ if(isset($data)){
       } else {
         //obtener el valor del perfil
         $perfil = 50;
+        //pasw new
+        $pass_new = md5($dni_estudiante);
         //insertar a la tabla usuarios
-        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo_estudiante','$dni_estudiante','habilitado')";
+        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo_estudiante','$pass_new','habilitado')";
         $sql_insert_user = mysqli_query($conexion,$insert_user);
 
         if(!$sql_insert_user) {

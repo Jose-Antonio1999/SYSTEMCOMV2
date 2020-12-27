@@ -24,7 +24,7 @@
 }
 #contenIcon:hover{
   height: 45px;
-  border-bottom:2px solid #08324C;
+  border-bottom:2px solid #F4792C;
 }
 #icono{
   font-size: 25px;
@@ -65,6 +65,6 @@
 }
 .activo{
   height: 45px;
-  border-bottom:2px solid #08324C;
+  border-bottom:2px solid #F4792C;
 }
 

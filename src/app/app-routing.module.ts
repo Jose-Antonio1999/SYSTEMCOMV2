@@ -13,30 +13,32 @@ import { PrincipalDocenteComponent } from './panel-control/principal-docente/pri
 import { PrincipalDirectorComponent } from './panel-control/principal-director/principal-director.component';
 import { PrincipalEstudianteComponent } from './panel-control/principal-estudiante/principal-estudiante.component';
 import { PruebaComponent } from './prueba/prueba.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  {path:'', component:PortalComponent},
-  {path: 'login', component:LoginComponent},
-  {path: 'registro-admin', component:RegistroUnicoComponent},
+  {path:"", component:PortalComponent},
+  {path: "login", component:LoginComponent},
+  {path: "registro-admin", component:RegistroUnicoComponent},
   //Ruta principal
   {path:"Docente",component:PrincipalDocenteComponent},
   {path:"Admin",component:PrincipalDirectorComponent,
     children:[
-      {path: 'control-docente', component:PanelPersonalComponent,
+      {path: "control-docente", component:PanelPersonalComponent,
         children:[
-          {path:'registro-docente', component:RegistroPersonalComponent},
-          {path:'lista-personal', component:ListaPersonalComponent}
+          {path:"registro-docente", component:RegistroPersonalComponent},
+          {path:"lista-personal", component:ListaPersonalComponent}
         ]
       },
       {path:"estudiante",component:PanelEstudianteComponent,
         children:[
-          {path:'registro-estudiante', component: RegistroEstudianteComponent}
+          {path:"registro-estudiante", component: RegistroEstudianteComponent}
         ]
       },
       {path:'comunicado', component:PanelComunicadoComponent},
     ]
   },
-  {path:"prueba",component:PruebaComponent}
+  {path:"prueba",component:PruebaComponent},
+  {path:"**",component:NotFoundComponent}
 
 ];
 

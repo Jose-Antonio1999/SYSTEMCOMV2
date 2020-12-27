@@ -14,13 +14,16 @@
           <mat-form-field class="input" >
             <mat-label>Email</mat-label>
             <input matInput autocomplete="off" maxlength="40" formControlName="user">
+            <mat-icon matSuffix><i class="fas fa-user-tie icon"></i></mat-icon>
           </mat-form-field>
         </div>
 
         <div class="form-group">
           <mat-form-field appearance="legacy" class="input">
             <mat-label>Contraseña</mat-label>
-            <input type="password" matInput maxlength="20" autocomplete="on" formControlName="pass">
+            <input #passw type="password" (keydown)="ingresoEnter($event)" matInput maxlength="20" autocomplete="on" formControlName="pass">
+            <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons icon">visibility</span></mat-icon>
+            <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons icon">visibility_off</span></mat-icon>
           </mat-form-field>
         </div>
 

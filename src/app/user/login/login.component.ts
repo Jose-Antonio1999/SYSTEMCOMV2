@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,6 +6,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { PeticionService } from 'src/app/service/peticion.service';
 import { Usuario } from '../../clases/usuario'
 import { userCurrent } from '../../clases/user'
+//uso de MD5
+import {Md5} from 'ts-md5/dist/md5';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +15,14 @@ import { userCurrent } from '../../clases/user'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  @ViewChild('passw',{static:false}) passw:ElementRef
   Formulario:FormGroup
   existeData:boolean = false;
   mensaje:String
   aviso:boolean = false
   Usuario:Usuario
   usuarioActual:userCurrent
+  verPass:boolean = false
 
   constructor(
     private formbuilder:FormBuilder,
@@ -55,6 +58,11 @@ export class LoginComponent implements OnInit {
   }
 
   ingresar(){
+
+    //encryptar pass
+    const md5 = new Md5();
+    this.Formulario.value.pass = md5.appendStr(this.Formulario.value.pass).end();
+    //realizar petición
     this.petecion.Login(this.Formulario.value).subscribe(
       (res)=>{
 
@@ -81,6 +89,22 @@ export class LoginComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  //ingreso mediante enter
+  ingresoEnter(event){
+    if(event.key=="Enter") {
+      this.ingresar();
+    }
+  }
+
+  verPassw(){
+    this.passw.nativeElement.type = "text"
+    this.verPass = true
+  }
+  noPassw(){
+    this.passw.nativeElement.type = "password"
+    this.verPass = false
   }
 
   //funcion de redirección

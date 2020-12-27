@@ -22,7 +22,7 @@ import { PortalComponent } from './Portal/portal/portal.component';
 
 //importar para el editex
 import { NgxWigModule } from 'ngx-wig';
-
+//crypto
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
@@ -34,6 +34,7 @@ import { PrincipalDocenteComponent } from './panel-control/principal-docente/pri
 import { PruebaComponent } from './prueba/prueba.component';
 import { PanelDocenteComponent } from './Docente/panel-docente/panel-docente.component';
 import { MenuDocenteComponent } from './Docente/menu-docente/menu-docente.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { MenuDocenteComponent } from './Docente/menu-docente/menu-docente.compon
     PrincipalDocenteComponent,
     PruebaComponent,
     PanelDocenteComponent,
-    MenuDocenteComponent
+    MenuDocenteComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

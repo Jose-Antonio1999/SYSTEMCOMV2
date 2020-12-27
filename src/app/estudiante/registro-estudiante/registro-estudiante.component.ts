@@ -85,23 +85,34 @@ export class RegistroEstudianteComponent implements OnInit {
   }
 
   onFile(event) {
-    const file = event.target.files[0];
-    const ruta = 'studentPhotos/'+this.crearFormulario.value.dni_estudiante;
-    const ref = this.storage.ref(ruta);
-    const task = ref.put(file);
 
-     //verificamos mientras se sube la foto
-    task.then((tarea)=>{
-      ref.getDownloadURL().subscribe((imgUrl)=>{
-        this.imgURL = imgUrl
-        this.verCargaPhoto = true
-      })
-    })
-    //observale de la subida del archivo en %
-    task.percentageChanges().subscribe((porcentaje)=>{
-      this.barraCarga = true
-      this.porcentajeSubidaFoto = parseInt(porcentaje.toString(),10)
-    })
+    let dni = this.crearFormulario.value.dni_estudiante
+    let nombre = this.crearFormulario.value.nombre_estudiante
+    let email = this.crearFormulario.value.correo_estudiante
+
+    if (dni!="" || nombre!="" || email!="") {
+        const file = event.target.files[0];
+        const ruta = 'studentPhotos/'+this.crearFormulario.value.dni_estudiante;
+        const ref = this.storage.ref(ruta);
+        const task = ref.put(file);
+
+        //verificamos mientras se sube la foto
+        task.then((tarea)=>{
+          ref.getDownloadURL().subscribe((imgUrl)=>{
+            this.imgURL = imgUrl
+            this.verCargaPhoto = true
+          })
+        })
+        //observale de la subida del archivo en %
+        task.percentageChanges().subscribe((porcentaje)=>{
+            this.barraCarga = true
+            this.porcentajeSubidaFoto = parseInt(porcentaje.toString(),10)
+        })
+    } else {
+        this.peticion.mensaje("Complete los campos anteriores para subir la foto",3500,'center','center')
+        this.crearFormulario.controls['photo'].setValue('')
+    }
+
   }
 
   cerrarSesion(){
@@ -117,6 +128,7 @@ export class RegistroEstudianteComponent implements OnInit {
         this.porcentajeSubidaFoto = 0;
         this.barraCarga = false
         this.crearFormulario.reset();
+        this.peticion.mensaje("Estudiante registrado correctamente",3500,'center','center')
       },
       (error)=>{
         console.log(error)

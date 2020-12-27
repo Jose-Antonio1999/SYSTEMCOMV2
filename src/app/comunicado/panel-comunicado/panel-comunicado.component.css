@@ -34,11 +34,6 @@
 h2{
   font-size: 25px;
 }
-.comunicado{
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-}
 .contenform{
   height: 88%;
 }
@@ -67,7 +62,7 @@ h2{
 }
 /*codigo para personalizar el choose file*/
 .letterFile{
-  background:#154360;
+  background:#1B386E;
   height:36px;
   width:164px;
   z-index: 10;
@@ -81,7 +76,7 @@ h2{
   width: 120px;
   margin-top:5px;
   margin-right: 4px;
-  background-color: #154360 !important;
+  background-color: #1B386E !important;
 }
 .custom-input-file p{
   color:#FFF;
@@ -97,4 +92,22 @@ h2{
   background-color: #FFF;
   height:370px;
 }
-
+.contenImg{
+  display: flex;
+  justify-content: center;
+}
+.imgPass{
+  height: 120px;
+  width: 120px;
+}
+.btnSavePass{
+  margin-top: -4px;
+  font-size:12px;
+  width: 100px;
+}
+.nonecordar{
+  width: 140px;
+}
+.conteHelp{
+  height: 220px !important;
+}

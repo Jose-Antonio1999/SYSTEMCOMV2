@@ -16,11 +16,11 @@ import { PeticionService } from 'src/app/service/peticion.service';
     trigger('animarMenu',
     [
       state('stateOne', style({
-        backgroundColor:"#154360"
+        backgroundColor:"#2954a2"
       })),
 
       state('stateTwo', style({
-        backgroundColor:"#154360 ",
+        backgroundColor:"#2954a6 ",
         width:"170px",
         borderRight:"1px solid #FFF"
       })),
@@ -53,7 +53,7 @@ import { PeticionService } from 'src/app/service/peticion.service';
       state('stateNormal', style({
         marginTop:'20px',
         transition:'1s',
-        color:'#2E2438'
+        color:'#1B386E'
       })),
 
       state('stateColor', style({
@@ -82,9 +82,8 @@ export class MenuComponent implements OnInit {
     private ruta:Router,
     private spinner:NgxSpinnerService,
     private peticion:PeticionService) {
-
-    //this.sesionInciada();
-
+    //mostrar datos del usuario actual
+    this.sesionInciada();
   }
 
   ngOnInit(): void {
@@ -114,6 +113,9 @@ export class MenuComponent implements OnInit {
       (res)=>{
         this.verMenu = true
         this.usercurrent = res[0];
+        if (res==null || res=="") {
+          this.ruta.navigateByUrl('login');
+        }
       },
       (error)=>{
         console.log(error)

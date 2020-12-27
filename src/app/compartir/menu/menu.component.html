@@ -1,12 +1,12 @@
 <!--Codigo para animar el menu-->
 <!--(mouseover)="animarMenu()" (mouseleave)="desanimarMenu()"-->
-<div *ngIf="true" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()">
+<div *ngIf="verMenu" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()">
   <div class="colunm" style="color:#FFF">
     <div class="info-user">
       <div class="container content-imguser">
-        <img  src="../../../assets/userDefecto.png" alt="" class="text-center img-user">
+        <img [src]="this.usercurrent.path_photo_staffs" alt="" class="text-center img-user">
       </div>
-      <p class="text-center">Jos</p>
+      <p class="text-center">{{recortarNombre(this.usercurrent.name_staff)}}</p>
     </div>
 
     <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">

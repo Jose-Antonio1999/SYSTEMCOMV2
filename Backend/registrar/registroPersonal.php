@@ -46,8 +46,10 @@ if(isset($data)){
       } else {
         //obtener el valor del perfil
         $perfil = $tipoPersonal*10;
+        //encryptar password
+        $pass_new = md5($dni);
         //insertar a la tabla usuarios
-        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo','$dni','habilitado')";
+        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo','$pass_new','habilitado')";
         $sql_insert_user = mysqli_query($conexion,$insert_user);
 
         if(!$sql_insert_user) {

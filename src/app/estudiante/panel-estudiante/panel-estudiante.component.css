@@ -19,11 +19,12 @@
   outline: none;
   justify-content: center;
   align-items: center;
+  width: auto;
   height: 27px;
 }
 #contenIcon:hover{
-  border-bottom:2px solid #08324C;
+  border-bottom:2px solid #F4792C;
 }
 .activo{
-  border-bottom:2px solid #08324C;
+  border-bottom:2px solid #F4792C;
 }
