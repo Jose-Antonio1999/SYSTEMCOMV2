@@ -128,16 +128,57 @@ export class RegistroPersonalComponent implements OnInit {
         this.crearFormulario.value.photo = this.imgURL
         this.peticion.registroPersonal(this.crearFormulario.value).subscribe(
           (res)=>{
-            //cerrar sesión ni bie se crea el usuario
-            this.porcentajeSubidaFoto = 0;
-            this.barraCarga = false
-            this.crearFormulario.reset();
-          },
+          //cerrar sesión ni bie se crea el usuario
+          this.porcentajeSubidaFoto = 0;
+          this.barraCarga = false
+          this.crearFormulario.reset();
+          this.peticion.mensaje("Personal registrado correctamente",3500,'center','center')
+        },
           (error)=>{
             console.log(error)
           }
         )
     }
+  }
+
+  verificarDNIDB(){
+    let existe = false;
+    this.peticion.existeDNI(this.crearFormulario.value.dni).subscribe(
+      (res)=>{
+        if (res==null || res=="") {
+            existe = true;
+            this.crearFormulario.controls.photo.enable()
+        } else {
+          existe = false;
+          this.crearFormulario.controls.photo.disable()
+          this.peticion.mensaje(res,4500,'center','center')
+        }
+      },
+      (error)=>{
+        existe = false;
+        console.log(error)
+      }
+    )
+  }
+
+  verificarEmailBD(){
+    let existe = false;
+    this.peticion.existeEmail(this.crearFormulario.value.correo).subscribe(
+      (res)=>{
+        if (res==null || res=="") {
+            existe = true;
+            this.crearFormulario.controls.photo.enable()
+        } else {
+          existe = false;
+          this.crearFormulario.controls.photo.disable()
+          this.peticion.mensaje(res,4500,'center','center')
+        }
+      },
+      (error)=>{
+        existe = false;
+        console.log(error)
+      }
+    )
   }
 
   verificarCamposRegistrar():boolean{
@@ -181,8 +222,16 @@ export class RegistroPersonalComponent implements OnInit {
 
   }
 
-  llenarDatos(){
-
+  verificarDNI(){
+    if(this.crearFormulario.value.dni.length==8){
+      this.verificarDNIDB();
+    }
+  }
+  verificarEmail(){
+      this.verificarEmailBD()
+  }
+  esValidoEmail(mail:any) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
   }
 
 }

@@ -6,11 +6,15 @@ import { Seccion } from 'src/app/clases/seccion';
 import { userCurrent } from 'src/app/clases/user';
 import { Usuario } from 'src/app/clases/usuario';
 import { PeticionService } from 'src/app/service/peticion.service';
-
+import { environment } from 'src/environments/environment';
+import { catchError, retry } from 'rxjs/internal/operators';
+import { StorageService } from 'src/app/service/storage.service';
+import { Router } from '@angular/router';
 //interface para guardar el password
 interface savePass {
   passw:String
-  recordar:boolean
+  recordar:boolean,
+  email:String
 }
 
 @Component({
@@ -39,7 +43,7 @@ export class PanelComunicadoComponent implements OnInit {
   verPass:boolean = false
   tamanioTexto:number = 0
   usercurrent:Usuario
-  fileURL:String
+  archivoAdjuntadoURL:String = ""
   //text HTML
   text1:String
   //variables para un Ngmodel
@@ -55,6 +59,8 @@ export class PanelComunicadoComponent implements OnInit {
 
   constructor(
     private formbuilder:FormBuilder,
+    private ruta:Router,
+    private servicestorage:StorageService,
     private peticion:PeticionService,
     private storage: AngularFireStorage) {
 
@@ -63,6 +69,7 @@ export class PanelComunicadoComponent implements OnInit {
     this.Secciones();
     this.agregarListaDestinos();
     this.usuarioCurrent();
+
   }
 
   ngOnInit(): void {
@@ -74,31 +81,34 @@ export class PanelComunicadoComponent implements OnInit {
   }
 
   crearFomulario(){
-    //obtener el usuario de la persona actual
-    let emailUser:Usuario
-    emailUser = JSON.parse(localStorage.getItem('current'))
     //crea el formulario de envio
     this.formulalrioComunicado = this.formbuilder.group({
-      origen:[emailUser.user,[Validators.required,Validators.email]],
+      origen:['',[Validators.required,Validators.email]],
       destinoGrupal:['',[Validators.required]],
+      archivoAdjunto:[''],
       grado:[''],
       seccion:[''],
       emaildestino:[''],
       asunto:['',Validators.required],
       tipo:['',Validators.required],
       cuerpo:['',Validators.required],
-      pass:[''],
-      archivo:['']
+      pass:['',Validators.required],
+      rutaArchivo:['']
     })
   }
 
   usuarioCurrent() {
-    this.usercurrent = JSON.parse(localStorage.getItem('current'))
-    this.userEmail = this.usercurrent.user
+    if (localStorage.getItem('current')==null || localStorage.getItem('current')=="") {
+      this.ruta.navigateByUrl('login');
+    } else {
+      this.usercurrent = JSON.parse(this.servicestorage.decrypt(localStorage.getItem('current')))
+      this.userEmail = this.usercurrent.user
+      this.formulalrioComunicado.controls['origen'].setValue(this.userEmail)
+    }
   }
 
   agregarListaDestinos() {
-    this.listaDestinos = ['Padres en general','Docentes en general','Docentes tutores','Para una persona','Grado y secction']
+    this.listaDestinos = ['Padres en general','Docentes en general','Docentes tutores','Para una persona','Grado y sección (Apoderados)']
   }
 
   opcion(i:Number){
@@ -156,7 +166,7 @@ export class PanelComunicadoComponent implements OnInit {
         this.verCargaPhoto = true
         task.then((tarea)=>{
           ref.getDownloadURL().subscribe((imgUrl)=>{
-            this.fileURL = imgUrl
+            this.archivoAdjuntadoURL = imgUrl
             this.verCargaPhoto = false
           })
         },(error)=>{ this.peticion.mensaje(error,3500,'center','center')}
@@ -171,7 +181,7 @@ export class PanelComunicadoComponent implements OnInit {
 
       } else {
         this.peticion.mensaje("Complete los campos anteriores para adjuntar el archivo",3000,'center','center')
-        this.formulalrioComunicado.controls['archivo'].setValue('')
+        this.formulalrioComunicado.controls['archivoAdjunto'].setValue('')
       }
   }
 
@@ -185,37 +195,70 @@ export class PanelComunicadoComponent implements OnInit {
       this.peticion.mensaje("Cantidad de carácteres exedidos, es posible que no se envié el texto completo",3500,'center','center')
     }
   }
+
   cancelarEnvio() {
-    this.formulalrioComunicado.reset()
-    this.barraCarga = false
-    this.enviaIndividual  = false
-    this.enviaGradoSeccion = false
-    this.formulalrioComunicado.controls['origen'].setValue(this.userEmail)
-    this.tamanioTexto = 0
+    this.formulalrioComunicado.reset();
+    this.archivoAdjuntadoURL = "";
+    this.barraCarga = false;
+    this.enviaIndividual  = false;
+    this.enviaGradoSeccion = false;
+    this.formulalrioComunicado.controls['origen'].setValue(this.userEmail);
+    this.verEstadoModal();
+    this.tamanioTexto = 0;
+  }
+
+  CamposIndividualesvacios():boolean{
+    let verificar:boolean = false
+
+    if(this.enviaIndividual==true) {
+      if (this.formulalrioComunicado.value.emaildestino=="" ||  this.formulalrioComunicado.value.emaildestino==null){
+        this.peticion.mensaje("Complete el campo email",3500,'center','center');
+        verificar = true
+      } else if (this.enviaIndividual==true && this.esValidoEmail(this.formulalrioComunicado.value.emaildestino)==false) {
+        this.peticion.mensaje("Digite un email válido",3500,'center','center');
+        verificar = true
+      }
+    }
+
+    if(this.enviaGradoSeccion==true) {
+      if (this.formulalrioComunicado.value.grado==null ||
+          this.formulalrioComunicado.value.seccion==null ||
+          this.formulalrioComunicado.value.grado=="" ||
+          this.formulalrioComunicado.value.seccion=="") {
+            this.peticion.mensaje("Complete el campo grado y sección",3500,'center','center');
+            verificar = true
+      }
+    }
+    if(this.formulalrioComunicado.value.pass=="" || this.formulalrioComunicado.value.pass==null) {
+      this.peticion.mensaje("Complete el campo password",3500,'center','center');
+      verificar = true
+    }
+    return verificar;
   }
 
   enviar(){
 
     if (this.CamposIndividualesvacios()==false) {
-      //recuperar pass si se guardo
-      const recupe = JSON.parse(localStorage.getItem("recordarPass"))
-      if(recupe.passw!=null){
-        this.formulalrioComunicado.value.pass = recupe.passw
-      }
       //asignar a la variable espinner para ver como carga
       this.vistaSpinner = true
       //enviar comunicado
+      this.formulalrioComunicado.value.rutaArchivo = this.archivoAdjuntadoURL
       this.peticion.enviarComunicado(this.formulalrioComunicado.value).subscribe(
         (res)=>{
-          this.cancelarEnvio()
-          this.fileURL=""
-          this.peticion.mensaje(res,4000,'center','center')
-          this.vistaSpinner = false
+          //verificar el envio
+          if (res==1) {
+            this.peticion.mensaje("Mensaje enviado correctamente",4500,'center','center')
+            this.vistaSpinner = false
+            this.cancelarEnvio()
+          } else {
+            this.vistaSpinner = false
+            this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
+          }
           console.log(res)
         },
         (error)=>{
           this.vistaSpinner = false
-          this.peticion.mensaje(error,4000,'center','center')
+          this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
           console.log(error)
         }
       )
@@ -228,6 +271,7 @@ export class PanelComunicadoComponent implements OnInit {
     this.recorpassw.nativeElement.type = "text"
     this.verPass = true
   }
+
   noPassw(){
     this.passw.nativeElement.type = "password"
     this.recorpassw.nativeElement.type = "password"
@@ -236,49 +280,53 @@ export class PanelComunicadoComponent implements OnInit {
 
   verEstadoModal() {
     if (localStorage.getItem("recordarPass")!=null) {
-      const recupe = JSON.parse(localStorage.getItem("recordarPass"))
-      if (recupe.recordar == false) {
-        this.campoPass = true
-        //esperar un segundo para ejecutar el code
-        setTimeout(() => {
-          this.passw.nativeElement.dataset.bsToggle = ""
-        },2000);
+      const recupe = JSON.parse(this.servicestorage.decrypt(localStorage.getItem("recordarPass")))
+      if (recupe.email == this.userEmail) {
+        if (recupe.recordar == false) {
+          //esperar un segundo para ejecutar el code
+          setTimeout(() => {
+            this.passw.nativeElement.dataset.bsToggle = ""
+          },2000);
 
+        } else {
+          //esperar un segundo para ejecutar el code
+          this.formulalrioComunicado.controls['pass'].setValue(recupe.passw)
+          //esconder campo password
+          this.campoPass = false
+        }
       } else {
-        this.campoPass = false
+        localStorage.removeItem('recordarPass')
       }
-
     }
   }
 
   savePassw() {
-    const savep = { passw:this.formularioHelp.value.passwo, recordar:true }
-    localStorage.setItem("recordarPass",JSON.stringify(savep))
+    //crear un objeto de datos
+    const savep = { passw:this.formularioHelp.value.passwo, recordar:true, email:this.userEmail}
+    //guardar en storage la data encryptada
+    localStorage.setItem("recordarPass",this.servicestorage.encrypt(JSON.stringify(savep)))
+    //inicializar valor en el control
+    this.formulalrioComunicado.controls['pass'].setValue(this.formularioHelp.value.passwo)
+    //quitar la clase modal al input
+    this.passw.nativeElement.dataset.bsToggle = ""
+    //esconder campo
     this.campoPass = false
   }
 
   noMostrarMensaje(){
     //quitar la propiedad modad
     this.passw.nativeElement.dataset.bsToggle = ""
-    const savep = { passw:null, recordar:false }
-    localStorage.setItem("recordarPass",JSON.stringify(savep))
+    //crear un obejto array
+    const savep = { passw:"none", recordar:false, email:this.userEmail}
+    localStorage.setItem("recordarPass",this.servicestorage.encrypt(JSON.stringify(savep)))
   }
 
   bo(){
     localStorage.removeItem("recordarPass")
   }
 
-  CamposIndividualesvacios():boolean{
-    let verificar:boolean = false
-    if(this.enviaIndividual==true && this.formulalrioComunicado.value.emaildestino=="") {
-      this.peticion.mensaje("Complete el campo email",3500,'center','center');
-      verificar = true
-    }
-    if(this.enviaGradoSeccion==true && this.formulalrioComunicado.value.grado=="" && this.formulalrioComunicado.value.seccion=="") {
-      this.peticion.mensaje("Complete el campo grado y sección",3500,'center','center');
-      verificar = true
-    }
-    return verificar;
+  esValidoEmail(mail:any) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
   }
 
 }

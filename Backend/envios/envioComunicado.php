@@ -16,9 +16,9 @@ require '../PHPMailer/SMTP.php';
 $data = file_get_contents("php://input");
 
 if(isset($data)){
+
   //decodificar la data
   $data = json_decode($data);
-  $archivo = $data->archivo;
   $asunto = $data->asunto ;
   $cuerpo = $data->cuerpo;
   $destinoGrupal = $data->destinoGrupal;
@@ -28,6 +28,9 @@ if(isset($data)){
   $pass = $data->pass;
   $seccion = $data->seccion;
   $tipo = $data->tipo;
+  $rutaArchivo = $data->rutaArchivo;
+
+  $direccion_envio = "";
 
 //codigo para aceptar caracteres
 $usuario = utf8_decode('Belén de Osma y Pardo');
@@ -50,37 +53,41 @@ $mail = new PHPMailer(true);
 
       //si es cero será a padres en general
       if ($destinoGrupal==0) {
-        foreach(emailPadres() as $email) {
-          $mail->addAddress($email['email_parent'], 'Apoderado');
-        }
+          $direccion_envio = "Apoderados en general";
+          foreach(emailPadres() as $email) {
+            $mail->addAddress($email['email_parent'], 'Apoderado');
+          }
       }
       //si es 1 será a docentes en general
       if ($destinoGrupal==1) {
-        foreach(emailDocentes() as $email) {
-          $mail->addAddress($email['email_staff'], 'Docente');
-        }
+          $direccion_envio = "Docententes en general";
+          foreach(emailDocentes() as $email) {
+            $mail->addAddress($email['email_staff'], 'Docente');
+          }
       }
       //si es 2 será a docentes tutores en general
       if ($destinoGrupal==2) {
-        foreach(emailTutores() as $email) {
-          $mail->addAddress($email['email_staff'], 'Docente tutor');
-        }
+          $direccion_envio = "Tutores en general";
+          foreach(emailTutores() as $email) {
+            $mail->addAddress($email['email_staff'], 'Docente tutor');
+          }
       }
       //si es 3 el envio será para una sola persona
       if ($destinoGrupal==3) {
+        $direccion_envio = $emaildestino;
         $mail->addAddress($emaildestino, 'Usted');
       }
       //si es 4 será a sera a una sección en especifico
       if ($destinoGrupal==4) {
-        foreach(emailsGradoSeccion($grado,$seccion) as $email) {
-          $mail->addAddress($email['email_parent'], 'Apoderado');
-        }
+          $direccion_envio = $grado." ".$seccion;
+          foreach(emailsGradoSeccion($grado,$seccion) as $email) {
+            $mail->addAddress($email['email_parent'], 'Apoderado');
+          }
       }
-
       //verificar archivo
       $data_file = "";
-      if ($archivo!="") {
-          $data_file = "<p style='font-size: 15px;'>Archivo Adjuntado: <a href='$archivo' taget='_blank'>click para ver archivo</a></p>";
+      if ($rutaArchivo!="" || $rutaArchivo!=null) {
+          $data_file = "<div style='font-size: 14px;'>Archivo adjuntado: <a href='$rutaArchivo' target='_blank'>click para ver archivo</a></div>";
       }
       //Codigo html
       $htmlEnviar = "
@@ -123,7 +130,7 @@ $mail = new PHPMailer(true);
           </tr>
           <tr>
               <td>
-                    $data_file
+                $data_file
               </td>
           </tr>
 
@@ -134,8 +141,7 @@ $mail = new PHPMailer(true);
       </body>
       </html>";
 
-      // // Attachments
-      // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+       // Add attachments
       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
       // Content
@@ -146,11 +152,37 @@ $mail = new PHPMailer(true);
       $mail->Subject = $asunto;
       $mail->Body    = $htmlEnviar;
       $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
       $mail->send();
-      echo json_encode("Mensaje enviado con éxito");
+
+      echo json_encode("1");
+      //insert del mensaje a la base de datos
+      //obtener id de empleado registrado
+      $consulta_id = "SELECT id_staff FROM STAFFS WHERE email_staff = '$origen' ";
+      $sql_consulta_id = mysqli_query($conexion,$consulta_id);
+
+      while($id = mysqli_fetch_array($sql_consulta_id)) {
+        $id_staff = $id[0];
+      }
+
+      $fechaActual = date('Y-m-d');
+      $time = time();
+      $hora =  date('H:i:s', $time);
+      $sql_insert_comu = "INSERT INTO COMMUNIQUES VALUES (NULL,'$asunto','$fechaActual','$cuerpo','$hora','enviado','$tipo','$direccion_envio','$id_staff')";
+      $ejecucion_query = mysqli_query($conexion,$sql_insert_comu);
+
+      if ($rutaArchivo!="" || $rutaArchivo!=null) {
+        //obtnener el ID del
+        $rs = mysqli_query($conexion,"SELECT MAX(id_communiques) AS id FROM COMMUNIQUES");
+        if ($row = mysqli_fetch_array($rs)) {
+            $id = trim($row[0]);
+        }
+        $ql_file = "INSERT INTO FILES VALUES (NULL,'$asunto','$rutaArchivo','$id')";
+        $ejecucion_query_file = mysqli_query($conexion,$ql_file);
+      }
+
   } catch (Exception $e) {
-      echo json_encode("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+      //echo json_encode("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+      echo json_encode("0");
   }
 
 }

@@ -7,7 +7,7 @@ function emailDocentes() {
   //instanciamos la conexion de manera global
   global $conexion;
   //consulta de email de los docentes en general
-  $sql_consulta_staff = "SELECT email_staff FROM STAFFS WHERE id_profile_staff1 = 3 ";
+  $sql_consulta_staff = "SELECT email_staff FROM STAFFS WHERE id_profile_staff1 = 3 and status_staff = 1 ";
   $sql_ejecucion = mysqli_query($conexion,$sql_consulta_staff);
   //verifcar si se ejecuto la consulta de manera correcta
   if (!$sql_ejecucion) {
@@ -50,7 +50,6 @@ function emailPadres() {
   }
   return $lista_email_parent;
 }
-
 
 //consulta los emails de todos los tutores
 function emailTutores(){

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Grado } from 'src/app/clases/grado';
 import { Seccion } from 'src/app/clases/seccion';
+import { Parent } from 'src/app/clases/Parent';
 import { userCurrent } from 'src/app/clases/user';
 import { PeticionService } from 'src/app/service/peticion.service';
 
@@ -24,6 +25,7 @@ export class RegistroEstudianteComponent implements OnInit {
   verCargaPhoto:boolean = false
   porcentajeSubidaFoto:number = 0
   usuarioActual:userCurrent
+  apoderado:Parent
 
   imgURL:String
 
@@ -51,7 +53,7 @@ export class RegistroEstudianteComponent implements OnInit {
       apellidoM_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       photo:['',[Validators.required]],
       correo_estudiante:['',[Validators.required,Validators.email]],
-
+      id_apoderado:[''],
       dni_apoderado:['',[Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],
       nombre_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       apellidoP_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
@@ -127,8 +129,9 @@ export class RegistroEstudianteComponent implements OnInit {
         //cerrar sesión ni bie se crea el usuario
         this.porcentajeSubidaFoto = 0;
         this.barraCarga = false
-        this.crearFormulario.reset();
+        this.cancelar()
         this.peticion.mensaje("Estudiante registrado correctamente",3500,'center','center')
+        console.log(res)
       },
       (error)=>{
         console.log(error)
@@ -138,11 +141,59 @@ export class RegistroEstudianteComponent implements OnInit {
   }
 
   cancelar(){
+    this.crearFomularioRegistroAlumnado()
     this.crearFormulario.reset()
   }
 
   mostrarMensaje(iconMessaje:any, titleMessaje:any){
 
+  }
+
+  llenarDatosApoderadoBD(data:Parent){
+    this.crearFormulario.controls['id_apoderado'].setValue(data.id_parent)
+    this.crearFormulario.controls['nombre_apoderado'].setValue(data.name_parent)
+    this.crearFormulario.controls['apellidoP_apoderado'].setValue(data.firts_name_parent)
+    this.crearFormulario.controls['apellidoM_apoderado'].setValue(data.last_name_parent)
+    this.crearFormulario.controls['correo_apoderado'].setValue(data.email_parent)
+    this.crearFormulario.controls['celular_apoderado'].setValue(data.phone_number_parent)
+  }
+
+  verificarApoderado () {
+    if (this.crearFormulario.value.dni_apoderado.length==8) {
+      this.peticion.existeApoderado(this.crearFormulario.value.dni_apoderado).subscribe(
+        (res)=>{
+          if (res!='0'){
+            this.apoderado = res[0] as Parent
+            this.llenarDatosApoderadoBD(this.apoderado)
+          }
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    }
+  }
+
+  verificarAlumnoBD() {
+    if (this.crearFormulario.value.dni_estudiante.length==8) {
+        this.peticion.existeAlumno(this.crearFormulario.value.dni_estudiante).subscribe(
+          (res)=>{
+            if (res!='0') {
+              this.peticion.mensaje(res,4500,'center','center')
+              this.crearFormulario.controls.nombre_estudiante.disable()
+              this.crearFormulario.controls.photo.disable()
+              console.log(res)
+            } else {
+              console.log(res)
+              this.crearFormulario.controls.nombre_estudiante.enable()
+              this.crearFormulario.controls.photo.enable()
+            }
+          },
+          (error)=>{
+            console.log(error)
+          }
+        )
+    }
   }
 
 

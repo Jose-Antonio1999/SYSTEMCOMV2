@@ -55,7 +55,7 @@
             <div class="form-group" *ngIf="enviaIndividual">
               <mat-form-field class="input">
                 <mat-label>Email</mat-label>
-                <input matInput  formControlName="emaildestino">
+                <input matInput  formControlName="emaildestino" autocomplete="off">
               </mat-form-field>
             </div>
 
@@ -75,7 +75,7 @@
 
             <div class="form-group conteFile">
               <div class="custom-input-file">
-                <input  (change)="onFile($event)"  type="file" class="form-control" accept="application/pdf,image/*" formControlName="archivo">
+                <input type="file" class="form-control" accept="application/pdf,image/*" formControlName="archivoAdjunto" (change)="onFile($event)">
                 <p class="letterFile">
                   <span *ngIf="barraCarga; else letra">
                     {{porcentajeSubidaFoto}}%
@@ -85,7 +85,7 @@
               </div>
             </div>
 
-            <div class="form-group" *ngIf="campoPass">
+            <div *ngIf="campoPass" class="form-group">
               <mat-form-field class="input">
                 <mat-label>Contraseña de su cuenta de Gmail registrada</mat-label>
                 <input #passw matInput autocomplete="off" type="password" formControlName="pass" data-bs-toggle="modal" data-bs-target="#modalpass">

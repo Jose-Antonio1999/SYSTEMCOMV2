@@ -14,6 +14,7 @@ import { PrincipalDirectorComponent } from './panel-control/principal-director/p
 import { PrincipalEstudianteComponent } from './panel-control/principal-estudiante/principal-estudiante.component';
 import { PruebaComponent } from './prueba/prueba.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ListaEstudiantesComponent } from './estudiante/lista-estudiantes/lista-estudiantes.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
@@ -31,7 +32,8 @@ const routes: Routes = [
       },
       {path:"estudiante",component:PanelEstudianteComponent,
         children:[
-          {path:"registro-estudiante", component: RegistroEstudianteComponent}
+          {path:"registro-estudiante", component: RegistroEstudianteComponent},
+          {path:"lista-estudiante", component: ListaEstudiantesComponent}
         ]
       },
       {path:'comunicado', component:PanelComunicadoComponent},

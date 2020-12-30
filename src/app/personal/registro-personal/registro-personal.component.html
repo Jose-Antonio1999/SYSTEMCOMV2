@@ -51,7 +51,7 @@
           <mat-form-field class="modelInput">
             <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
             <mat-label>Dni personal</mat-label>
-            <input  matInput autocomplete="off" formControlName="dni" (ngModelChange)="llenarDatos()" maxlength="8">
+            <input  matInput autocomplete="off" formControlName="dni" (ngModelChange)="verificarDNI()" maxlength="8">
           </mat-form-field>
           <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni'].dirty && crearFormulario.controls['dni'].invalid">
             <div *ngIf="crearFormulario.controls['dni'].errors.pattern">
@@ -122,7 +122,7 @@
 
           <mat-form-field class="modelInput">
             <mat-label>Correo</mat-label>
-            <input type="email"  matInput autocomplete="off" formControlName="correo">
+            <input type="email"  matInput autocomplete="off" formControlName="correo" (ngModelChange)="verificarEmail()" >
               <mat-icon matSuffix>mail</mat-icon>
           </mat-form-field>
 
@@ -159,7 +159,7 @@
 
         <div class="form-group mt-2">
           <div class="custom-input-file">
-            <input  (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
+            <input (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
             <p class="letterFile">
               <span *ngIf="barraCarga; else letra">
                 {{porcentajeSubidaFoto}}%

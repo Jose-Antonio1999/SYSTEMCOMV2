@@ -21,7 +21,7 @@ if(isset($data)){
   $grado = $data_staff->grado;
   $seccion = $data_staff->seccion;
 
-  $insert_staff = "INSERT INTO STAFFS VALUES(null,'$dni','$nombre','$apellidoP','$apellidoM','$correo','$celular','$tipoPersonal')";
+  $insert_staff = "INSERT INTO STAFFS VALUES(null,'$dni','$nombre','$apellidoP','$apellidoM','$correo','$celular','1','$tipoPersonal')";
   $query_staff = mysqli_query($conexion,$insert_staff);
 
   if (!$query_staff) {

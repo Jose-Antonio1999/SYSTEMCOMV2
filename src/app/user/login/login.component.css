@@ -5,7 +5,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:#FBFBFE;
+  background-color: #2954A2;
+  /* background-image: url(../../../assets/fondoPrincipal.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-color: rgb(255,255,255,0.2); */
 }
 
 .central {
@@ -40,7 +44,7 @@ img{
   background-repeat: none;
   background-size:100% 100%;
   width:50%;
-  color:#2954a2;
+  color:#F4792C;
   border-radius: 5px;
   -webkit-box-shadow: 0px 4px 0px -1px rgba(8,50,76,1);
   -moz-box-shadow: 0px 4px 0px -1px rgba(8,50,76,1);
@@ -51,17 +55,18 @@ form{
   width:100% !important;
   height:100% !important ;
   padding: 10px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .input{
   width:100%;
-  color: #2954a2;
+  color: #000;
 }
 .head{
   height:8px;
   width:100%;
-  background:#2954a2;
-  border-radius: 5px;
+  background:#F4792C;
+  border-radius: 5px 5px 0px 0px;
 }
 .icon{
   font-size:20px;

@@ -1,0 +1,188 @@
+/*
+    Software Engineering-I
+    Author: Team - WireSoft
+    December, 28th 2020
+*/
+
+/*NAV*/
+.navegar{
+  background-color: #2954a2;
+}
+.beautiful a:hover{
+  background-color: #2b4b85;
+}
+
+/*PHOTOS SLIDER*/
+.welcome{
+  margin-bottom: 36vh;
+  padding-top: 2em;
+}
+.welcome h3{
+  text-align: center;
+  font-size: 3.5em;
+  color: #fff;
+  letter-spacing: 4px;
+}
+.welcome h3 span{
+  color: #ff8000;
+}
+.welcome h4{
+  text-align: center;
+  font-size: 1em;
+  color: #fff;
+  margin: 2em 0 1em;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 5px;
+}
+
+.myimg h2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ban{
+  background-size: cover;
+  position: relative;
+  display: flex;
+  background-attachment: fixed;
+}
+.ban:before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color:black;
+  opacity: 0.5;
+  position: absolute;
+}
+
+/*ABOUT US*/
+.myabout h2{
+  color: #2954A2;
+  font-size:2.5em;
+  font-weight:600;
+}
+.myabout h5{
+  font-size: 1.4em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color:#b5b5b5;
+}
+.myabout p{
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 1.8em;
+  font-style:"PT sans",sans-serif;
+  color: rgb(107, 105, 105);
+}
+
+/*SCORE*/
+.numscroller{
+  font-size: 2.5em;
+  font-weight: 600;
+  color: #f4792c;
+  margin-bottom: 0;
+  line-height: 1em;
+}
+.stat2 p{
+  color: #2954a2;
+  font-size: 1.8em;
+  text-transform: capitalize;
+}
+
+/*PORTAFOLIO*/
+.porta p{
+  font-size: 1.1em;
+  font-weight: 100;
+  line-height: 1em;
+  font-style:"PT sans",sans-serif;
+  color: rgb(107, 105, 105);
+}
+.title h4{
+  color:#2954A2;
+  font-style:"PT sans",sans-serif;
+}
+
+/*COMUNICADOS*/
+table {
+  border-collapse:separate;
+  border-spacing: 5;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius: 5px;
+}
+.file i{
+  font-size: 4em;
+  margin-left: 5px;
+}
+.alinear{
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+/*STAFF*/
+.mystaff h3{
+  color: #2954A2;
+  font-size:2.5em;
+  font-weight:600;
+}
+.cob{
+  background-color: #2954A2;
+}
+.cob h4{
+color: #fe423f;
+}
+.cob p{
+  color: aliceblue;
+}
+.img{
+  border-radius: 4%;
+}
+
+/*CONTACT*/
+.stitle{
+  background-color: #f4792c;
+  height:10%;
+  align-items: center;
+  color:white;
+  font-size: 1.1em;
+}
+.stitle i{
+  color: #2954A2;
+}
+.stitle a{
+  color: white;
+  text-decoration: none;
+}
+
+/*Footer*/
+.foot{
+  padding: 1.3em 0 1em;
+  background: #2954a2;
+}
+.agileinfo-icons ul li a {
+  color: #fff;
+}
+.agileinfo-copyright p,.agileinfo-copyright a{
+  color: #fff;
+}
+.agileinfo-copyright a:hover,.agileinfo-icons ul li a:hover{
+color:#f4792c;
+}
+.agileinfo-icons ul li {
+  display: inline-block;
+  margin-right: 1em;
+  font-size: 1.5em;
+  justify-content: space-around;
+}
+
+/*test*/
+.color2{
+  background-color: green;
+}
+
+.clearfix{
+  display: flex;
+  justify-content: center;
+}

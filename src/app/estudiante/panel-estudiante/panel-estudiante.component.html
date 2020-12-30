@@ -10,13 +10,13 @@
           <div  class="col-md-6 mt-3" style="font-size: 19px;">
 
           </div>
-          <div id="contenIcon" class="col-md-1" title="Lista docentes">
+          <div id="contenIcon" class="col-md-1" title="Lista docentes" [routerLink]="['lista-estudiante']" routerLinkActive="activo" >
               <p class="text-center titleTeachers"><i class="fas fa-clipboard-list"></i> Lista</p>
           </div>
           <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['registro-estudiante']" routerLinkActive="activo">
               <p class="text-center titleTeachers"><i class="fas fa-user-plus"></i> Agregar</p>
           </div>
-          <div id="contenIcon" class="col-md-1" >
+          <div id="contenIcon" class="col-md-1" [routerLink]="['../comunicado']" >
               <p class="text-center titleTeachers"><i class="fas fa-envelope"></i> mensaje</p>
           </div>
           <div class="col-md-2">

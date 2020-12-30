@@ -7,6 +7,9 @@ import { userCurrent } from 'src/app/clases/user';
 import { Usuario } from 'src/app/clases/usuario';
 import { PeticionService } from 'src/app/service/peticion.service';
 
+import { environment } from 'src/environments/environment';
+import { catchError, retry } from 'rxjs/internal/operators';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-menu',
@@ -16,11 +19,11 @@ import { PeticionService } from 'src/app/service/peticion.service';
     trigger('animarMenu',
     [
       state('stateOne', style({
-        backgroundColor:"#2954a2"
+        backgroundColor:"#1B386E"
       })),
 
       state('stateTwo', style({
-        backgroundColor:"#2954a6 ",
+        backgroundColor:"#2954A2",
         width:"170px",
         borderRight:"1px solid #FFF"
       })),
@@ -81,7 +84,8 @@ export class MenuComponent implements OnInit {
     private auth: AngularFireAuth,
     private ruta:Router,
     private spinner:NgxSpinnerService,
-    private peticion:PeticionService) {
+    private peticion:PeticionService,
+    private storage:StorageService) {
     //mostrar datos del usuario actual
     this.sesionInciada();
   }
@@ -108,19 +112,23 @@ export class MenuComponent implements OnInit {
   }
 
   sesionInciada(){
-    this.dataUser= JSON.parse(localStorage.getItem("current"))
-    this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
-      (res)=>{
-        this.verMenu = true
-        this.usercurrent = res[0];
-        if (res==null || res=="") {
-          this.ruta.navigateByUrl('login');
+    if (localStorage.getItem("current")==null || localStorage.getItem("current")=="") {
+      this.ruta.navigateByUrl('login');
+    } else {
+      this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
+      this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+        (res)=>{
+          this.verMenu = true
+          this.usercurrent = res[0];
+          if (res==null || res=="") {
+            this.ruta.navigateByUrl('login');
+          }
+        },
+        (error)=>{
+          console.log(error)
         }
-      },
-      (error)=>{
-        console.log(error)
-      }
-    )
+      )
+    }
   }
 
   SignOut(){

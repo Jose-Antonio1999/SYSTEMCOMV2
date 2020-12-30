@@ -1,76 +1,478 @@
-<nav class="navbar navbar-dark bg-dark  navbar-expand-lg fixed-top">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-          <img src="../../../assets/logo.png" alt="" width="30" height="30">
-          BOP
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <div class="navbar-nav me-auto ms-auto text-center">
-        <a class="nav-link active" href="#">Inicio</a>
-        <a class="nav-link ms-2" href="#">Nosotros</a>
-        <a class="nav-link ms-2" href="#">Contactos</a>
-        <a class="nav-link ms-2" href="#">Servicios</a>
+
+    <nav class="navbar navbar-dark  navbar-expand-lg fixed-top navegar">
+      <div class="container-fluid navegar">
+          <a class="navbar-brand " href="#">
+              <img src="../../../assets/img/logo.png" alt="" width="30" height="30">
+              BOP
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse primary" id="navbarSupportedContent">
+            <div class="navbar-nav me-auto ms-auto text-center fs-6 text-uppercase lh-lg beautiful">
+              <a class="nav-link active">Inicio</a>
+              <a class="nav-link ms-2" href="#about">Nosotros</a>
+              <a class="nav-link ms-2" href="#lifeschool">Portafolio</a>
+              <a class="nav-link ms-2" href="#comunications">Comunicados</a>
+              <a class="nav-link ms-2" href="#staff">Equipo</a>
+              <a class="nav-link ms-2" href="#contact">Contacto</a>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-warning fs-6 " [routerLink]="['login']"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+            </div>
+          </div>
       </div>
-      <div class="d-flex justify-content-center">
-          <a class="btn btn-warning" [routerLink]="['/login']">Login</a>
-      </div>
+    </nav>
+
+    <!--banner-Slider carrousel-->
+    <div id="carouselExampleControl" class="carousel slide position-relative" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active ban" style="height: 100vh;" data-bs-interval="4000">
+                <img src="../../../assets/img/bn1.jpg" class="w-100 img-fluid" alt="">
+                <div class="carousel-caption d-none d-md-block welcome">
+                    <h4>Bienvenido a nuestro colegio</h4>
+                    <h3><span>B</span>elén de <span>O</span>sma y <span>P</span>ardo</h3>
+                </div>
+            </div>
+            <div class="carousel-item ban" style="height: 100vh;" data-bs-interval="4000">
+                <img src="../../../assets/img/bn2.jpg" class="w-100 img-fluid" alt="">
+                <div class="carousel-caption d-none d-md-block welcome">
+                    <h4>Bienvenido a nuestro colegio</h4>
+                    <h3><span>B</span>elén de <span>O</span>sma y <span>P</span>ardo</h3>
+                </div>
+            </div>
+            <div class="carousel-item ban" style="height: 100vh;" data-bs-interval="4000">
+                <img src="../../../assets/img/bn3.jpg" class="w-100 img-fluid" alt="">
+                <div class="carousel-caption d-none d-md-block welcome">
+                    <h4>Bienvenido a nuestro colegio</h4>
+                    <h3><span>B</span>elén de <span>O</span>sma y <span>P</span>ardo</h3>
+                </div>
+            </div>
+            <div class="carousel-item ban" style="height: 100vh;" data-bs-interval="4000">
+                <img src="../../../assets/img/bn4.jpg" class="w-100 img-fluid" alt="">
+                <div class="carousel-caption d-none d-md-block welcome">
+                    <h4>Bienvenido a nuestro colegio</h4>
+                    <h3><span>B</span>elén de <span>O</span>sma y <span>P</span>ardo</h3>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</nav>
 
+    <!---ABOUT US-->
+    <section class="container p-3 myabout" id="about">
+        <div class="d-flex flex-row bd-highlight mb-3 mt-5">
+            <div class="contenedor col-md-7 bd-highlight align-self-start p-1">
+                <h2>BOP</h2>
+                <h5 class="mt-2 fst-italic">Belén de Osma y Pardo</h5>
+                <p class="mt-3 fw-light lh-base">Somos una Institución Educativa que ofrece una Educación Básica Regular. Brindamos una formación integral en los niveles educativos de Primaria y Secundaria en turno tarde y mañana, sustentado en los más altos valores éticos, con eficiencia y cultura de calidad, que concretizan en el desarrollo de capacidades y actitudes a través de las áreas científica, humanística, tecnológica, artística y deportiva, haciendo que los hombres y mujeres con sentido de equidad sean competitivos y respondan a las exigencias y grandes desafíos locales, regionales y nacionales.</p>
+            </div>
+            <div class="contenedor bd-highlight align-self-end ms-4">
+                <img class="img-fluid rounded mx-auto d-block mb-5" src="../../../assets/img/ab2.jpg" alt="">
+            </div>
+            <div class="contenedor bd-highlight pt-5">
+                <img class="img-fluid rounded mx-auto d-block" src="../../../assets/img/ab1.jpg" alt="">
+            </div>
+        </div>
+    </section>
 
-<div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel">
-  <ol class="carousel-indicators">
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-      <div class="carousel-item active " data-bs-interval="1000">
-          <img src="../../../assets/bn1.jpg" class="d-block w-100 " height="auto" alt="">
-      </div>
-      <div class="carousel-item" data-bs-interval="5000">
-          <img src="../../../assets/bn2.jpg" class="d-block w-100 " height="auto" alt="">
-      </div>
-      <div class="carousel-item" data-bs-interval="5000">
-          <img src="../../../assets/bn3.jpg" class="d-block w-100 " height="auto" alt="">
-      </div>
-  </div>
-</div>
+    <!--Score-->
+    <section class="container">
+        <div class="d-flex flex-row bd-highlight mb-3 pt-5">
+            <div class="col-sm-3 col-xs-3 stats-grid">
+                <div class='numscroller'>64</div>
+                <div class="stats-img stat2">
+                        <p>Años</p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-3 stats-grid">
+                <div class='numscroller'>20</div>
+                <div class="stats-img stat2">
+                    <p>Secciones</p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-3 stats-grid stat1">
+                <div class='numscroller'>90</div>
+                <div class="stats-img stat2">
+                    <p>Docentes</p>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-3 stats-grid stat1">
+                <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='2200' data-delay='.5' data-increment="10">2200</div>
+                <div class="stats-img stat2">
+                    <p>Alumnos</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="container">
-  <p class="mt-5 text-center">Hola mundo</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur necessitatibus mollitia nulla,
-      possimus vitae aliquid sint,ipsa at harum officia recusandae laboriosam temporibus.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aperiam quae, voluptate eligendi
-        sint nemo minus repudiandae ratione nesciunt! Consequatur, similique sequi ex necessitatibus consequuntur
-        cumque! Recusandae officia voluptate iusto? Assumenda at eius culpa debitis velit? Unde.</p>
-  <p>Hola mundo</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur necessitatibus mollitia nulla,
-      possimus vitae aliquid sint,ipsa at harum officia recusandae laboriosam temporibus.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aperiam quae, voluptate eligendi
-        sint nemo minus repudiantexdae ratione nesciunt! Consequatur, similique sequi ex necessitatibus consequuntur
-        cumque! Recusandae officia voluptate iusto? Assumenda at eius culpa debitis velit? Unde.</p>
-  <p>Hola mundo</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur necessitatibus mollitia nulla,
-      possimus vitae aliquid sint,ipsa at harum officia recusandae laboriosam temporibus.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aperiam quae, voluptate eligendi
-        sint nemo minus repudiandae ratione nesciunt! Consequatur, similique sequi ex necessitatibus consequuntur
-        cumque! Recusandae officia voluptate iusto? Assumenda at eius culpa debitis velit? Unde.</p>
-  <p>Hola mundo</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur necessitatibus mollitia nulla,
-      possimus vitae aliquid sint,ipsa at harum officia recusandae laboriosam temporibus.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aperiam quae, voluptate eligendi
-        sint nemo minus repudiandae ratione nesciunt! Consequatur, similique sequi ex necessitatibus consequuntur
-        cumque! Recusandae officia voluptate iusto? Assumenda at eius culpa debitis velit? Unde.</p>
-  <p>Hola mundo</p>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur necessitatibus mollitia nulla,
-      possimus vitae aliquid sint,ipsa at harum officia recusandae laboriosam temporibus.
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque aperiam quae, voluptate eligendi
-        sint nemo minus repudiandae ratione nesciunt! Consequatur, similique sequi ex necessitatibus consequuntur
-        cumque! Recusandae officia voluptate iusto? Assumenda at eius culpa debitis velit? Unde.</p>
-</section>
+    <!--LIFE SCHOOL-->
+    <section class="container mt-5 pt-4 mystaff porta title" id="lifeschool">
+        <h3 class="text-center">Portafolio</h3>
+        <div class="test mt-4">
+            <div class="row">
+                <h4 class="mb-5">Deportes</h4>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/depor1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Muchachos de la selección de basketball del año 2013 en el Campeonato Nacional - Ayacucho.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/ab2.jpg" class="card-img-top" height="250vh" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Chicas de la selección de Voley en la etapa regional</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/depor2.jpg" class="card-img-top" height="250vh" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base"> Competencia de atletismo, de esta manera orientando a los estudiantes a despertar el interés por el deporte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <h4 class="mb-3">Arte</h4>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/art1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Estudiantes practicando danzas culturales por el aniversario de la institución.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/art2.jpg" class="card-img-top" height="190vh" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Fomentando la cultura para una formación integral de los estudiantes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/art3.jpg" class="card-img-top" height="190vh" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Somos ganadores de los juegos florales escolares regionales 2017</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <h4 class="mb-3">Olimpiadas de matemática</h4>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/diplo1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Entrega de diplomas y medallas a los estudiantes que obtuvieron mejores puntajes en la II Olimpiada Regional de Matematicas-ROMPECOCOS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/champion1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Entrega de estandartes y medallas a las instituciones participantes ganadoras en la II Olimpiada Regional de Matemáticas - ROMPECOCOS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 21rem;">
+                        <img src="../../../assets/img/champion3.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <p class="card-text lh-base">Premiación a los estudiantes ganadores de la olimpiada</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!--COMUNICADOS-->
+    <section class="container mystaff mt-5" id="comunications">
+        <h3 class="text-center mt-5 pt-4">Comunicados</h3>
+        <div class="alinear mt-5">
+            <div class="w-30 p-2">
+                <div class="card" style="width: 23.1rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><u>Reunión</u></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Urgente</h6>
+                      <p class="text-justify fst-italic">Estimados Padres de Familia: Reciban un fraternal saludo en Cristo Jesús y la Virgen Inmaculada, por el presente tenemos a bien invitarlos al 1° DÍA DEL LOGRO 2020, para este viernes 23 del presente. Los estudiantes ya están informados a que área van a representar.</p>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal1">
+                        Leer más
+                      </button>
+                      <!-- Modal -->
+                        <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Comunicado</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--Plantilla comunicado-->
+                                        <table style='max-width: 600px;padding: 10px;margin:0 auto; background:#F1F3F4'>
+                                            <div style='width:100%; margin: 0 auto; margin-bottom: 5px; height:5px; background:#1B386E;'></div>
+                                            <tr>
+                                                <td style='text-align: center; padding: 0; display: flex; justify-content: space-between'>
+                                                    <img width='90%' style='margin: 1.5% auto; text-align: left' src='https://i.postimg.cc/ZKJ9xQH3/belen3.png'>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style='font-family: Times, serif;'>
+                                                    <h2 style='text-align: center;font-size: 25px; font-family:Cardana; '><u>REUNIÓN</u></h2>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style=' text-align: justify;'>
+                                                        <p style='margin: 2px; font-size: 14px;'>Estimados Padres de Familia: Reciban un fraternal saludo en Cristo Jesús y la Virgen Inmaculada,
+                                                            por el presente tenemos a bien invitarlos al 1° DÍA DEL LOGRO 2017, para este viernes 23 del presente. Los estudiantes ya están informados
+                                                            a que área van a representar. Todas las áreas y grados presentarán sus trabajos en simultáneo de 10 a.m. a 12.30 p.m. Para el ingreso, se
+                                                            contará con un equipo que orientará a los visitantes, según la ubicación del área y el nivel. Los talleres extra curriculares de la tarde
+                                                            quedan suspendidos porque los docentes de áreas ambientarán los lugares destinados para las exposiciones. Los alumnos podrán asistir el día
+                                                            jueves 22 con el buzo del colegio; la asistencia el día viernes 23 es el horario normal de todos los días tanto en la entrada como en la
+                                                            salida y con el uniforme de gala, no traerán mochilas con útiles, solo la lonchera.
+                                                            Agradezco de antemano su disposición y apoyo para observar los logros alcanzados por sus hijos durante este periodo escolar. Dios los bendiga</p>
+                                                        <p class="text-end">Andahuaylas, 11 de septiembre de 2020</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                  <p class="text-center fw-bold fs-6 mt-3">ATENTAMENTE: José Antonio Rojas - Director</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style='width:100%; margin: 0 auto; margin-bottom: 5px; margin-top:60px; padding-top:5px; height:50px; background:#1B386E;'>
+                                                        <p style='color:#FFF; text-align: center; margin:6px;'>Belén de Osma y Pardo - Andahuaylas</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--FIN PLANTILLA-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-30 p-2">
+                <div class="card" style="width: 23.1rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><u>Reunión</u></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Urgente</h6>
+                      <p class="text-justify fst-italic">Estimados Padres de Familia: Reciban un fraternal saludo en Cristo Jesús y la Virgen Inmaculada, por el presente tenemos a bien invitarlos al 1° DÍA DEL LOGRO 2020, para este viernes 23 del presente. Los estudiantes ya están informados a que área van a representar.</p>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal2">
+                        Leer más
+                      </button>
+                      <!-- Modal -->
+                        <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Comunicado</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <!--Plantilla comunicado-->
+                                      <table style='max-width: 600px;padding: 10px;margin:0 auto; background:#F1F3F4'>
+                                        <div style='width:100%; margin: 0 auto; margin-bottom: 5px; height:5px; background:#1B386E;'></div>
+                                        <tr>
+                                            <td style='text-align: center; padding: 0; display: flex; justify-content: space-between'>
+                                                <img width='90%' style='margin: 1.5% auto; text-align: left' src='https://i.postimg.cc/ZKJ9xQH3/belen3.png'>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td style='font-family: Times, serif;'>
+                                                <h2 style='text-align: center;font-size: 25px; font-family:Cardana; '><u>REUNIÓN</u></h2>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div style=' text-align: justify;'>
+                                                    <p style='margin: 2px; font-size: 14px;'>Estimados Padres de Familia: Reciban un fraternal saludo en Cristo Jesús y la Virgen Inmaculada,
+                                                        por el presente tenemos a bien invitarlos al 1° DÍA DEL LOGRO 2017, para este viernes 23 del presente. Los estudiantes ya están informados
+                                                        a que área van a representar. Todas las áreas y grados presentarán sus trabajos en simultáneo de 10 a.m. a 12.30 p.m. Para el ingreso, se
+                                                        contará con un equipo que orientará a los visitantes, según la ubicación del área y el nivel. Los talleres extra curriculares de la tarde
+                                                        quedan suspendidos porque los docentes de áreas ambientarán los lugares destinados para las exposiciones. Los alumnos podrán asistir el día
+                                                        jueves 22 con el buzo del colegio; la asistencia el día viernes 23 es el horario normal de todos los días tanto en la entrada como en la
+                                                        salida y con el uniforme de gala, no traerán mochilas con útiles, solo la lonchera.
+                                                        Agradezco de antemano su disposición y apoyo para observar los logros alcanzados por sus hijos durante este periodo escolar. Dios los bendiga</p>
+                                                    <p class="text-end">Andahuaylas, 11 de septiembre de 2020</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                              <p class="text-center fw-bold fs-6 mt-3">ATENTAMENTE: José Antonio Rojas - Director</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div style='width:100%; margin: 0 auto; margin-bottom: 5px; margin-top:60px; padding-top:5px; height:50px; background:#1B386E;'>
+                                                    <p style='color:#FFF; text-align: center; margin:6px;'>Belén de Osma y Pardo - Andahuaylas</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!--FIN PLANTILLA-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-30 p-2">
+                <div class="card" style="width: 23.1rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><u>Reunión</u></h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Urgente</h6>
+                      <p class="text-justify fst-italic">Estimados Padres de Familia: Reciban un fraternal saludo en Cristo Jesús y la Virgen Inmaculada, por el presente tenemos a bien invitarlos al 1° DÍA DEL LOGRO 2020, para este viernes 23 del presente. Los estudiantes ya están informados a que área van a representar.</p>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal3">
+                        Leer más
+                      </button>
+                      <!-- Modal -->
+                        <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Comunicado</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!--Plantilla comunicado-->
+                                        <table style='max-width: 600px;padding: 10px;margin:0 auto; background:#F1F3F4'>
+                                            <div style='width:100%; margin: 0 auto; margin-bottom: 5px; height:5px; background:#1B386E;'></div>
+                                            <tr>
+                                                <td style='text-align: center; padding: 0; display: flex; justify-content: space-between'>
+                                                    <img width='90%' style='margin: 1.5% auto; text-align: left' src='https://i.postimg.cc/ZKJ9xQH3/belen3.png'>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style='font-family: Times, serif;'>
+                                                    <h2 style='text-align: center;font-size: 25px; font-family:Cardana; '><u>REUNIÓN</u></h2>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style=' text-align: justify;'>
+                                                        <p style='margin: 2px; font-size: 14px;'>Estimados Padres de Familia: Reciban un fraternal saludo en Cristo Jesús y la Virgen Inmaculada,
+                                                            por el presente tenemos a bien invitarlos al 1° DÍA DEL LOGRO 2017, para este viernes 23 del presente. Los estudiantes ya están informados
+                                                            a que área van a representar. Todas las áreas y grados presentarán sus trabajos en simultáneo de 10 a.m. a 12.30 p.m. Para el ingreso, se
+                                                            contará con un equipo que orientará a los visitantes, según la ubicación del área y el nivel. Los talleres extra curriculares de la tarde
+                                                            quedan suspendidos porque los docentes de áreas ambientarán los lugares destinados para las exposiciones. Los alumnos podrán asistir el día
+                                                            jueves 22 con el buzo del colegio; la asistencia el día viernes 23 es el horario normal de todos los días tanto en la entrada como en la
+                                                            salida y con el uniforme de gala, no traerán mochilas con útiles, solo la lonchera.
+                                                            Agradezco de antemano su disposición y apoyo para observar los logros alcanzados por sus hijos durante este periodo escolar. Dios los bendiga</p>
+                                                        <p class="text-end">Andahuaylas, 11 de septiembre de 2020</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                  <p class="text-center fw-bold fs-6 mt-3">ATENTAMENTE: José Antonio Rojas - Director</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div style='width:100%; margin: 0 auto; margin-bottom: 5px; margin-top:60px; padding-top:5px; height:50px; background:#1B386E;'>
+                                                        <p style='color:#FFF; text-align: center; margin:6px;'>Belén de Osma y Pardo - Andahuaylas</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--FIN PLANTILLA-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--OUR STAFF-->
+    <section class="container mt-5 pt-5" id="staff">
+        <div class="row mt-4 mystaff">
+            <h3>Equipo</h3>
+            <div class="col cob mt-3">
+                <div class="d-flex justify-content-center">
+                    <img class=" p-1 img mt-4" src="../../../assets/img/staff1.jpg" height="300px" width="300px" alt="">
+                </div>
+                <h4 class="text-center mt-5 fs-4">Prof. Fernando</h4>
+                <p class="text-center fs-5">Director de la Institución Educativa</p>
+            </div>
+            <div class="col cob mt-3">
+                <div class="d-flex justify-content-center">
+                    <img class=" p-1 img mt-4" src="../../../assets/img/staff2.jpg"  height="300px" width="300px" alt="">
+                </div>
+                <h4 class="text-center mt-5 fs-4">Prof. Zunilda</h4>
+                <p class="text-center fs-5">Coordinadora del área pedagógico</p>
+            </div>
+            <div class="col cob mt-3">
+                <div class="d-flex justify-content-center">
+                    <img class="p-1 img mt-4" src="../../../assets/img/staff3.jpg" height="300px" width="300px" alt="">
+                </div>
+                <h4 class="text-center mt-5 fs-4">Prof. Cecilia</h4>
+                <p class="text-center fs-5">Coordinadora de TOE</p>
+            </div>
+        </div>
+    </section>
+
+    <!--CONTACT-->
+    <section class="container mt-5 p-3" id="contact">
+        <div class="row">
+            <div class="col-7 mystaff">
+                <h3>Contactos</h3>
+                <div class="mt-4 d-flex flex-row bd-highlight mb-3 justify-content-center stitle">
+                    <div class="bd-highlight flex-fill "><i class="fas fa-map-marker-alt"></i> Andahuaylas, Apurímac, Perú</div>
+                    <div class="bd-highlight flex-fill "><i class="far fa-phone-alt"></i> (+51) 980 133 600</div>
+                    <div class="bd-highlight flex-fill "><i class="far fa-envelope"></i> <a href="https://www.google.com/intl/es/gmail/about/" target="_blank">bop@gmail.com</a></div>
+                </div>
+                <div class="">
+                    <iframe class="w-100" height="410px" src="https://maps.google.com/maps?q=colegio%20belen%20de%20osma%20y%20pardo&t=&z=13&ie=UTF8&iwloc=&output=embed" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col align-self-center">
+                <div class="mt-4">
+                    <img class=" img-thumbnail rounded w-100 img-fluid" src="../../../assets/img/con1.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="container-fluid mt-5 foot">
+        <div>
+            <div class="clearfix">
+                <div class="col-md-6 col-sm-8 agileinfo-copyright">
+                    <p class="float-start">© 2020 Todo los derechos reservados | Belén de Osma y Pardo - BOP | Design by WireSoft</p>
+                </div>
+                <div class="col-md-6 col-sm-4 agileinfo-icons float-end">
+                    <ul>
+                        <li><a class="icon fb" href="https://www.facebook.com/BOP2016/photos/?ref=page_internal" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="icon tw" href="https://twitter.com/?lang=es" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a class="icon pin" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>

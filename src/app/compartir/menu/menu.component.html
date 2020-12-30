@@ -6,7 +6,7 @@
       <div class="container content-imguser">
         <img [src]="this.usercurrent.path_photo_staffs" alt="" class="text-center img-user">
       </div>
-      <p class="text-center">{{recortarNombre(this.usercurrent.name_staff)}}</p>
+      <p class="text-center">{{this.usercurrent.name_staff}}</p>
     </div>
 
     <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['control-docente']" routerLinkActive="activo" >
+    <div class="conten-icon" [routerLink]="['control-docente/lista-personal']" routerLinkActive="activo" >
       <div class="col-md icon">
         <i class="fas fa-address-book"></i>
       </div>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['estudiante']" routerLinkActive="activo">
+    <div class="conten-icon" [routerLink]="['estudiante/lista-estudiante']" routerLinkActive="activo">
       <div class="col-md icon">
         <i class="fas fa-user-graduate"></i>
       </div>

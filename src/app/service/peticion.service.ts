@@ -45,14 +45,29 @@ export class PeticionService {
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
   }
-  //funciones de subida de archivo
-  verificarPhoto(data:any):Observable<any>{
-    return this.http.post<any>(this.URLsubidaarchvio+"verificarPhoto.php",data);
+  numeroEmailsDocentesGeneral():Observable<any>{
+    return this.http.get<any>(this.URLListar+"emailDocentesGeneral.php");
   }
 
   //funcion de verificacion de usurios
   existeAdmin(){
     return this.http.get<any>(this.URLListar+"verificarAdmin.php");
+  }
+   //funciones de subida de archivo
+  ExisteDatoUsuario(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarStaff.php",data);
+  }
+  existeDNI(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarDNI.php",data);
+  }
+  existeEmail(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarEmails.php",data);
+  }
+  existeApoderado(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarPadre.php",data);
+  }
+  existeAlumno(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarAlumno.php",data);
   }
 
   //funcion mensaje

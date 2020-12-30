@@ -10,7 +10,10 @@
   width:100%;
   font-size:16px;
   padding-top: 10px;
-  background: #1B386E;
+  background: #2954A2;
+}
+.info-user p{
+  font-size:14px;
 }
 .conten-icon{
   display:flex;
@@ -49,7 +52,7 @@
   justify-content:center;
 }
 .activo{
-  background: #1B386E;
+  background: #2954A2;
   cursor:pointer;
   color: #f4792c;
 }

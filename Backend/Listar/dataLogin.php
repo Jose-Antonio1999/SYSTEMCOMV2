@@ -11,7 +11,7 @@ if(isset($data)) {
   $usuario = $data->user;
   $pass = $data->pass;
   //obtener los data
-  $sql_consulta_user = "SELECT * FROM USERS WHERE user = '$usuario' and pass = '$pass' ";
+  $sql_consulta_user = "SELECT * FROM USERS WHERE user = '$usuario' and pass = '$pass' and user_status='habilitado' ";
 
   $query_consuta_user = mysqli_query($conexion,$sql_consulta_user);
 

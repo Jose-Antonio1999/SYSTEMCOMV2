@@ -26,13 +26,18 @@ table{
   width: 7px;
 }
 #contenedorDocentes::-webkit-scrollbar-thumb{
-  background: #0B619E;
+  background: #F4792C;
   border-radius: 10px;
+  cursor: pointer;
 }
 #titleP{
   font-size:17px
 }
-
+.btn{
+  background:#1B386E;
+  margin-left: 7px;
+  color: #FFF;
+}
 .central{
   height: 83%;
   width: 100% !important;

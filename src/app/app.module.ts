@@ -22,7 +22,8 @@ import { PortalComponent } from './Portal/portal/portal.component';
 
 //importar para el editex
 import { NgxWigModule } from 'ngx-wig';
-//crypto
+import * as CryptoJS from 'crypto-js';
+import { catchError, retry } from 'rxjs/operators';
 //firebase
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';

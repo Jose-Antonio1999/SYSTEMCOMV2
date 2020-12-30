@@ -4,8 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PeticionService } from 'src/app/service/peticion.service';
+import { StorageService } from 'src/app/service/storage.service';
 import { Usuario } from '../../clases/usuario'
 import { userCurrent } from '../../clases/user'
+import { environment } from 'src/environments/environment';
+import { catchError, retry } from 'rxjs/internal/operators';
+//crypto
+import * as CryptoJS from 'crypto-js';
 //uso de MD5
 import {Md5} from 'ts-md5/dist/md5';
 
@@ -29,7 +34,8 @@ export class LoginComponent implements OnInit {
     private petecion:PeticionService,
     private ruta:Router,
     private spinner:NgxSpinnerService,
-    private auth:AngularFireAuth) {
+    private auth:AngularFireAuth,
+    private storage:StorageService) {
     //petición para verificar algun usuario
     petecion.existeAdmin().subscribe((res)=>{
       if(res==0){
@@ -54,11 +60,11 @@ export class LoginComponent implements OnInit {
   }
   //funcion para guardar data en localstorage
   guardarUsuario (user:any) {
-    localStorage.setItem("current",JSON.stringify(user))
+    //guaradar el usuario encriptado
+    localStorage.setItem("current",this.storage.encrypt(JSON.stringify(user)))
   }
 
   ingresar(){
-
     //encryptar pass
     const md5 = new Md5();
     this.Formulario.value.pass = md5.appendStr(this.Formulario.value.pass).end();

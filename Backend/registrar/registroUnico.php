@@ -18,7 +18,7 @@ $nombre = $data_staff->nombre;
 $photo_ruta = $data_staff->photo;
 $tipoPersonal = $data_staff->tipoPersonal;
 
-$insert_staff = "INSERT INTO STAFFS VALUES(null,'$dni','$nombre','$apellidoP','$apellidoM','$correo','$celular','$tipoPersonal')";
+$insert_staff = "INSERT INTO STAFFS VALUES(null,'$dni','$nombre','$apellidoP','$apellidoM','$correo','$celular','1','$tipoPersonal')";
 $query_staff = mysqli_query($conexion,$insert_staff);
 
 if (!$query_staff) {

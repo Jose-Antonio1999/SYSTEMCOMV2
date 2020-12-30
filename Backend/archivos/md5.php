@@ -3,4 +3,7 @@
 
 $hola = md5("hello");
 
-echo json_encode($hola);
+$time = time();
+$hora =  date('H:i:s', $time);
+
+echo json_encode($hora);
