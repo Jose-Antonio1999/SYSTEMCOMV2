@@ -18,7 +18,7 @@ if(isset($email)) {
         if (mysqli_num_rows($query_consuta_email)>0) {
             echo json_encode("El email ya esta registrado");
         } else {
-          echo json_encode("");
+          echo json_encode("0");
         }
 
       }

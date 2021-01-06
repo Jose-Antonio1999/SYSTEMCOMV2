@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Grado } from 'src/app/clases/grado';
 import { Seccion } from 'src/app/clases/seccion';
+import { ConsultaDNI } from 'src/app/clases/API';
 import { Parent } from 'src/app/clases/Parent';
 import { userCurrent } from 'src/app/clases/user';
 import { PeticionService } from 'src/app/service/peticion.service';
@@ -26,7 +27,8 @@ export class RegistroEstudianteComponent implements OnInit {
   porcentajeSubidaFoto:number = 0
   usuarioActual:userCurrent
   apoderado:Parent
-
+  alumnoData:ConsultaDNI
+  ApoderadoData:ConsultaDNI
   imgURL:String
 
   constructor(
@@ -165,6 +167,8 @@ export class RegistroEstudianteComponent implements OnInit {
           if (res!='0'){
             this.apoderado = res[0] as Parent
             this.llenarDatosApoderadoBD(this.apoderado)
+          } else {
+            this.APIRENIECApoderado();
           }
         },
         (error)=>{
@@ -184,6 +188,7 @@ export class RegistroEstudianteComponent implements OnInit {
               this.crearFormulario.controls.photo.disable()
               console.log(res)
             } else {
+              this.APIRENIECAlumno()
               console.log(res)
               this.crearFormulario.controls.nombre_estudiante.enable()
               this.crearFormulario.controls.photo.enable()
@@ -193,6 +198,39 @@ export class RegistroEstudianteComponent implements OnInit {
             console.log(error)
           }
         )
+    }
+  }
+  //conulsta de datos a la RENIEC
+  APIRENIECAlumno() {
+    if (this.crearFormulario.value.dni_estudiante.length==8) {
+      this.peticion.APIdni(this.crearFormulario.value.dni_estudiante).subscribe(
+        (res)=>{
+          this.alumnoData = res
+          this.crearFormulario.controls['nombre_estudiante'].setValue(this.alumnoData.name)
+          this.crearFormulario.controls['apellidoP_estudiante'].setValue(this.alumnoData.first_name)
+          this.crearFormulario.controls['apellidoM_estudiante'].setValue(this.alumnoData.last_name)
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    }
+  }
+
+  //conulsta de datos a la RENIEC
+  APIRENIECApoderado() {
+    if (this.crearFormulario.value.dni_apoderado.length==8) {
+      this.peticion.APIdni(this.crearFormulario.value.dni_apoderado).subscribe(
+        (res)=>{
+          this.ApoderadoData = res
+          this.crearFormulario.controls['nombre_apoderado'].setValue(this.ApoderadoData.name)
+          this.crearFormulario.controls['apellidoP_apoderado'].setValue(this.ApoderadoData.first_name)
+          this.crearFormulario.controls['apellidoM_apoderado'].setValue(this.ApoderadoData.last_name)
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
     }
   }
 

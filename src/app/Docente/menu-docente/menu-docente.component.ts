@@ -141,7 +141,15 @@ export class MenuDocenteComponent implements OnInit {
   }
 
   recortarNombre(data:string):string{
-    return data.substr(0,data.search(" "));
+    let name = data;
+    if (data.search(" ")>1) {
+      name = data.substr(0,data.search(" "));
+    }
+    return name;
+  }
+
+  convetirMinuscula(data:string){
+    return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }
 
 }

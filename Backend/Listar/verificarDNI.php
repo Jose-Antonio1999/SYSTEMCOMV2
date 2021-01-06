@@ -17,7 +17,7 @@ if(isset($dni)) {
       if (mysqli_num_rows($query_consuta_user)>0) {
           echo json_encode("El dni ya está registrado");
       } else {
-        echo json_encode("");
+        echo json_encode("0");
       }
 
   }

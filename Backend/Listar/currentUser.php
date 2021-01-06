@@ -5,9 +5,10 @@ require_once("../conexion/conexion.php");
 $email = file_get_contents("php://input");
 
 $sql_consulta_photo = "SELECT id_staff,id_card_number_staff,name_staff,firts_name_staff,last_name_staff,
-                                email_staff,phone_number_staff,path_photo_staffs FROM staff_photos
-                                INNER JOIN staffs on staff_photos.id_staff1=staffs.id_staff
-                                WHERE email_staff = '$email'; ";
+                        email_staff,phone_number_staff,path_photo_staffs, profile_user FROM staff_photos
+                        INNER JOIN staffs on staff_photos.id_staff1=staffs.id_staff
+                        INNER JOIN profile_users ON profile_users.id_profile_user = staffs.id_profile_staff1
+                        WHERE email_staff = '$email'; ";
 
 $ejecucion_conuslta = mysqli_query($conexion,$sql_consulta_photo);
 
@@ -23,6 +24,7 @@ while ($data = mysqli_fetch_array($ejecucion_conuslta)) {
     $lista[$i]['email_staff'] = $data['email_staff'];
     $lista[$i]['phone_number_staff'] = $data['phone_number_staff'];
     $lista[$i]['path_photo_staffs'] = $data['path_photo_staffs'];
+    $lista[$i]['profile_user'] = $data['profile_user'];
     $i++;
 }
 

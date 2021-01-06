@@ -1,7 +1,7 @@
 .conten-menu{
   height:100vh;
   width: 70px;
-  z-index: 1000;
+  z-index: 5000;
   position: absolute;
   overflow: hidden;
 }
@@ -10,10 +10,11 @@
   width:100%;
   font-size:16px;
   padding-top: 10px;
-  background: #2954A2;
+  background: #122549;
 }
 .info-user p{
-  font-size:14px;
+  margin-top: 2px;
+  font-size:16px;
 }
 .conten-icon{
   display:flex;
@@ -55,4 +56,10 @@
   background: #2954A2;
   cursor:pointer;
   color: #f4792c;
+}
+.fondOscuro{
+  position: absolute;
+  z-index: 1000;
+  height: 100vh;
+  width: 100%;
 }

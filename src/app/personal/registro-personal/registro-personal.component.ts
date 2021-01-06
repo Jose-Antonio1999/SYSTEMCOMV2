@@ -7,6 +7,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Profile } from 'src/app/clases/Profile';
 import { userCurrent } from 'src/app/clases/user';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { ConsultaDNI } from 'src/app/clases/API'
 
 @Component({
   selector: 'app-registro-personal',
@@ -25,6 +26,7 @@ export class RegistroPersonalComponent implements OnInit {
   porcentajeSubidaFoto:number = 0
   usuarioActual:userCurrent
   imgURL:String
+  DataAPI:ConsultaDNI
 
   constructor(
     private formbuilder:FormBuilder,
@@ -34,8 +36,6 @@ export class RegistroPersonalComponent implements OnInit {
 
     //funciones de ejecucion principal
     this.crearFormularioRegistro();
-    this.Secciones();
-    this.Grados();
     this.listaProfiles();
   }
 
@@ -44,9 +44,6 @@ export class RegistroPersonalComponent implements OnInit {
 
   crearFormularioRegistro(){
     this.crearFormulario = this.formbuilder.group({
-      estadoTutor:['',[Validators.required]],
-      grado:[''],
-      seccion:[''],
       tipoPersonal:['',Validators.required],
       dni:['',[Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],
       nombre:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
@@ -56,38 +53,6 @@ export class RegistroPersonalComponent implements OnInit {
       celular:['',[Validators.required,Validators.minLength(9),Validators.pattern(/^([0-9])*$/)]],
       photo:['',[Validators.required]]
     })
-  }
-
-  //funcion para listar los grados
-  Secciones(){
-    this.peticion.listaSecction().subscribe(
-      (res)=>{
-        this.listaSecciones = res
-      },
-      (error)=>{
-        console.log(error)
-      }
-    )
-  }
-  //funcion para listar secciones
-  Grados(){
-    this.peticion.listaGrado().subscribe(
-      (res)=>{
-        this.listaGrado = res
-      },
-      (error)=>{
-        console.log(error)
-      }
-    )
-  }
-
-  verificarTutor(){
-    if(this.crearFormulario.value.estadoTutor=='Si'){
-      this.esconderCampo = true
-    } else {
-      this.esconderCampo = false
-    }
-
   }
 
   onFile(event) {
@@ -123,85 +88,55 @@ export class RegistroPersonalComponent implements OnInit {
   }
 
   GuardarDatos(){
-    if (this.verificarCamposRegistrar()==true) {
-        //pasar la url de la imagen y registrar
-        this.crearFormulario.value.photo = this.imgURL
-        this.peticion.registroPersonal(this.crearFormulario.value).subscribe(
-          (res)=>{
-          //cerrar sesión ni bie se crea el usuario
-          this.porcentajeSubidaFoto = 0;
-          this.barraCarga = false
-          this.crearFormulario.reset();
-          this.peticion.mensaje("Personal registrado correctamente",3500,'center','center')
-        },
-          (error)=>{
-            console.log(error)
-          }
-        )
-    }
+    //pasar la url de la imagen y registrar
+    this.crearFormulario.value.photo = this.imgURL
+    this.peticion.registroPersonal(this.crearFormulario.value).subscribe(
+      (res)=>{
+      //cerrar sesión ni bie se crea el usuario
+        this.porcentajeSubidaFoto = 0;
+        this.barraCarga = false
+        this.peticion.mensaje("Personal registrado correctamente",3500,'center','center')
+        this.cancelar();
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
 
   verificarDNIDB(){
-    let existe = false;
     this.peticion.existeDNI(this.crearFormulario.value.dni).subscribe(
       (res)=>{
-        if (res==null || res=="") {
-            existe = true;
-            this.crearFormulario.controls.photo.enable()
-        } else {
-          existe = false;
+        if (res!="0") {
           this.crearFormulario.controls.photo.disable()
           this.peticion.mensaje(res,4500,'center','center')
+        } else {
+          this.crearFormulario.controls.photo.enable()
+          this.APIRENIEC();
         }
       },
       (error)=>{
-        existe = false;
         console.log(error)
       }
     )
   }
 
   verificarEmailBD(){
-    let existe = false;
     this.peticion.existeEmail(this.crearFormulario.value.correo).subscribe(
       (res)=>{
-        if (res==null || res=="") {
-            existe = true;
-            this.crearFormulario.controls.photo.enable()
-        } else {
-          existe = false;
+        if (res!="0") {
           this.crearFormulario.controls.photo.disable()
+          this.crearFormulario.controls.celular.disable()
           this.peticion.mensaje(res,4500,'center','center')
+        } else {
+          this.crearFormulario.controls.photo.enable()
+          this.crearFormulario.controls.celular.enable()
         }
       },
       (error)=>{
-        existe = false;
         console.log(error)
       }
     )
-  }
-
-  verificarCamposRegistrar():boolean{
-    let verificar = false
-    //verificar los campos grados y secciones
-    if (this.esconderCampo==true && this.crearFormulario.value.grado=="" && this.crearFormulario.value.seccion=="") {
-        this.peticion.mensaje("Complete los campos grado y sección",3000,'center','center')
-    } else {
-      if (this.crearFormulario.value.grado=="" && this.esconderCampo==true) {
-        this.peticion.mensaje("Complete los campos grado",3000,'center','center')
-      } else if (this.crearFormulario.value.seccion=="" && this.esconderCampo==true) {
-        this.peticion.mensaje("Complete los campos Sección",3000,'center','center')
-      }
-    }
-    //if general de verificacion
-    if(
-      this.crearFormulario.value.grado!="" &&
-      this.crearFormulario.value.seccion!="" ||
-      this.crearFormulario.value.estadoTutor=="No") {
-      verificar = true
-    }
-
-    return verificar
   }
 
   listaProfiles() {
@@ -216,10 +151,26 @@ export class RegistroPersonalComponent implements OnInit {
   }
 
   cancelar(){
+    this.crearFormularioRegistro();
     this.crearFormulario.reset();
   }
   mostrarMensaje(iconMessaje:any, titleMessaje:any){
 
+  }
+  completarDatosAPI(data:ConsultaDNI){
+    this.crearFormulario.controls['nombre'].setValue(data.name)
+    this.crearFormulario.controls['apellidoP'].setValue(data.first_name)
+    this.crearFormulario.controls['apellidoM'].setValue(data.last_name)
+  }
+  APIRENIEC(){
+    this.peticion.APIdni(this.crearFormulario.value.dni).subscribe(
+      (res)=>{
+        this.completarDatosAPI(res)
+      },
+      (error)=>{
+        this.peticion.mensaje(error,4500,'center','center')
+      }
+    )
   }
 
   verificarDNI(){

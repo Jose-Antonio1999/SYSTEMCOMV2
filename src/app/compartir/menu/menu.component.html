@@ -6,7 +6,8 @@
       <div class="container content-imguser">
         <img [src]="this.usercurrent.path_photo_staffs" alt="" class="text-center img-user">
       </div>
-      <p class="text-center">{{this.usercurrent.name_staff}}</p>
+      <p class="text-center">
+        {{this.recortarNombre(this.convetirMinuscula(this.usercurrent.name_staff))}}</p>
     </div>
 
     <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
@@ -18,7 +19,7 @@
       </div>
     </div>
 
-    <div class="conten-icon">
+    <div class="conten-icon" [routerLink]="['bandeja-salida']" routerLinkActive="activo">
       <div class="col-md icon">
         <i class="fas fa-mail-bulk"></i>
       </div>
@@ -72,12 +73,12 @@
       </div>
     </div>
 
-    <div class="conten-icon">
+    <div class="conten-icon" [routerLink]="['configuracion']" routerLinkActive="activo">
       <div class="col-md icon">
-        <i class="fas fa-user-shield"></i>
+        <i class="fas fa-users-cog"></i>
       </div>
       <div [@iconLetter]="stateIcon" class="letterICon">
-        <p [@animateLetter]='animateLetter'>Usuarios</p>
+        <p [@animateLetter]='animateLetter'>Configuración</p>
       </div>
     </div>
 
@@ -92,7 +93,7 @@
 
   </div>
 </div>
-
+<div class="fondOscuro" [@oscurecer]="oscurecer"></div>
 <!--muestra de registro-->
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Cerrando sesión </p></ngx-spinner>
 

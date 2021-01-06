@@ -25,7 +25,7 @@ import { StorageService } from 'src/app/service/storage.service';
       state('stateTwo', style({
         backgroundColor:"#2954A2",
         width:"170px",
-        borderRight:"1px solid #FFF"
+        borderRight:"1px solid #1B386E",
       })),
 
       transition('stateOne <=> stateTwo',
@@ -69,6 +69,21 @@ import { StorageService } from 'src/app/service/storage.service';
       animate('0.5s')
       )
 
+    ]),
+
+    trigger('oscurecer', [
+      state('normal', style({
+        display:"hidden",
+        zIndex:"0"
+      })),
+      state('oscuro', style({
+        display:"inline-block",
+        background:"rgb(0,0,0,0.5)",
+        transition:"0.2s"
+      })),
+      transition('normal <=> oscuro',
+      animate('0.5s')
+      )
     ])
 
   ]
@@ -77,6 +92,7 @@ export class MenuComponent implements OnInit {
   estadoMenu:String = "stateOne"
   stateIcon:string = "hiddenIcon"
   animateLetter:string  = "stateNormal"
+  oscurecer:string  = "normal"
   dataUser:Usuario
   usercurrent:userCurrent
   verMenu:boolean = false
@@ -97,12 +113,14 @@ export class MenuComponent implements OnInit {
     this.estadoMenu = "stateTwo"
     this.stateIcon = "displayIcon"
     this.animateLetter = "stateColor"
+    this.oscurecer = "oscuro"
   }
 
   desanimarMenu(){
     this.estadoMenu = "stateOne"
     this.stateIcon = "hiddenIcon"
     this.animateLetter = "stateNormal"
+    this.oscurecer = "normal"
   }
 
   currentUSer(){
@@ -141,7 +159,15 @@ export class MenuComponent implements OnInit {
   }
 
   recortarNombre(data:string):string{
-    return data.substr(0,data.search(" "));
+    let name = data;
+    if (data.search(" ")>1) {
+      name = data.substr(0,data.search(" "));
+    }
+    return name;
+  }
+
+  convetirMinuscula(data:string){
+    return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }
 
 }

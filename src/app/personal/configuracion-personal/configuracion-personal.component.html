@@ -1,0 +1,195 @@
+<div class="central">
+  <div class="menu-izquierda">
+    <!-- <app-menu></app-menu> -->
+  </div>
+  <div *ngIf="cargarInterface" class="cuerpo-derecho">
+    <div class="row">
+      <div class="col-md-5 superior">
+        <div class="contenData">
+          <div class="conten_user">
+            <div class="info_user">
+              <div class="text-center mb-1"><b>Perfil</b></div>
+              <div>
+                <img class="img_perfil" [src]="usercurrent.path_photo_staffs" alt="" srcset="">
+              </div>
+              <div>
+                {{usercurrent.name_staff}} {{usercurrent.firts_name_staff}} {{usercurrent.last_name_staff}}
+              </div>
+            </div>
+            <div class="extra-data">
+              <ul class="listaData">
+                <li><b>DNI:</b> {{usercurrent.id_card_number_staff}}</li>
+                <li><b>Cargo:</b> {{usercurrent.profile_user}}</li>
+                <li><b>Email: </b> {{usercurrent.email_staff}}</li>
+                <li><b>Celular:</b> {{usercurrent.phone_number_staff}}</li>
+                <li><a class="btn" (click)="cargarData()" data-bs-toggle="modal" data-bs-target="#dataPersonal">Editar información</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 superior">
+        <div class="contenData">
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7 inferior">
+        <div class="contenDatai">
+          <div class="row">
+            <div class="col-md-5 contenItem"><b>Personal</b></div>
+            <div class="col-md-3 contenItem"><b>Cargo</b></div>
+            <div class="col-md-4 contenItem"><b>Estado</b></div>
+          </div>
+          <hr>
+          <div class="conten_personal">
+            <div class="row" *ngFor="let data of listaStaff">
+              <div class="col-md-5 contenItem"><img class="imgUser" src="{{data.path_photo_staffs}}" alt="" srcset="">
+                {{convetirMinuscula(data.name_staff)}} {{convetirMinuscula(data.firts_name_staff)}}
+              </div>
+              <div class="col-md-3 contenItem">{{data.profile_user}}</div>
+              <div class="col-md-3 contenItem"><p class="link-success">{{estadoUser(data.status_staff)}}</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 inferior">
+        <div class="contenDatai">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="dataPersonal"  data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar datos</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <form [formGroup]="formularioEditar">
+
+              <mat-form-field class="modelInput">
+                <mat-label>Correo</mat-label>
+                <input type="email"  matInput autocomplete="off" formControlName="email">
+                  <mat-icon matSuffix>mail</mat-icon>
+              </mat-form-field>
+
+              <div style="margin-top: -15px; color: red;" *ngIf="formularioEditar.controls['email'].dirty && formularioEditar.controls['email'].invalid">
+                <div *ngIf="formularioEditar.controls['email'].errors.email">
+                  <small>Correo inválido hasta el momento</small>
+                </div>
+                <div *ngIf="formularioEditar.controls['email'].errors.required">
+                  <small>Complete el campo correo</small>
+                </div>
+              </div>
+
+              <mat-form-field class="modelInput">
+                <mat-label>Celular</mat-label>
+                <input type="tel" matInput formControlName="celular" autocomplete="off" maxlength="9">
+                <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
+              </mat-form-field>
+              <div style="margin-top: -15px; color: red;" *ngIf="formularioEditar.controls['celular'].dirty && formularioEditar.controls['celular'].invalid">
+                <div *ngIf="formularioEditar.controls['celular'].errors.pattern">
+                  <small>Por favor digite el número de celular</small>
+                </div>
+                <div *ngIf="!formularioEditar.controls['celular'].errors.minLength
+                          && !formularioEditar.controls['celular'].errors.required
+                          && !formularioEditar.controls['celular'].errors.pattern">
+                    <small>El número celular contiene 9 dígitos</small>
+                </div>
+                <div *ngIf="formularioEditar.controls['celular'].errors.required">
+                  <small>Complete el campo celular</small>
+                </div>
+              </div>
+
+              <div class="formPassword">
+                <div class="first-pass">
+                  <mat-form-field class="modelInput">
+                    <mat-label>Nuevo password</mat-label>
+                    <input class="inputPass" type="password" maxlength="15"  matInput autocomplete="off" formControlName="password">
+                    <mat-icon matSuffix><i class="fas fa-lock"></i></mat-icon>
+                  </mat-form-field>
+                  <div style="margin-top: -15px; color: red;" *ngIf="formularioEditar.controls['password'].dirty && formularioEditar.controls['password'].invalid">
+                    <div *ngIf="!formularioEditar.controls['password'].errors.minLength
+                    && !formularioEditar.controls['password'].errors.required">
+                    <small>La contraseña debe tener al entre 8 y 15 carácteres alfanuméricos</small>
+                    </div>
+                    <!-- <div *ngIf="formularioEditar.controls['password'].errors.pattern">
+                      <small>La contraseña debe tener al entre 8 y 16 caracteres, al menos
+                        un dígito, al menos una minúscula y al menos una mayúscula</small>
+                    </div> -->
+                    <div *ngIf="formularioEditar.controls['password'].errors.required">
+                      <small>Complete el campo email</small>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="first-pass">
+                  <mat-form-field class="modelInput">
+                    <mat-label>Confirmar password</mat-label>
+                    <input class="inputPass" type="password" maxlength="15"   matInput autocomplete="off" formControlName="password2">
+                    <mat-icon matSuffix><i class="fas fa-lock"></i></mat-icon>
+                  </mat-form-field>
+                  <div style="margin-top: -15px; color: red;" *ngIf="formularioEditar.controls['password2'].dirty && formularioEditar.controls['password2'].invalid">
+                    <div *ngIf="!formularioEditar.controls['password2'].errors.minLength
+                    && !formularioEditar.controls['password2'].errors.required">
+                    <small>La contraseña debe tener al entre 8 y 15 carácteres alfanuméricos</small>
+                    </div>
+                    <div *ngIf="formularioEditar.controls['password2'].errors.required">
+                      <small>Complete el campo email</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-group mt-2">
+                <div class="custom-input-file">
+                  <input (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
+                  <p class="letterFile">
+                    <span *ngIf="barraCarga; else letra">
+                      {{porcentajeSubidaFoto}}%
+                    </span>
+                    <ng-template #letra>Nueva foto</ng-template>
+                  </p>
+                </div>
+              </div>
+
+              <mat-form-field class="modelInput">
+                <mat-label>Digite su password para guardar cambios</mat-label>
+                <input  matInput autocomplete="off" type="password" formControlName="oldPass">
+                <mat-icon matSuffix><i class="fas fa-lock"></i></mat-icon>
+              </mat-form-field>
+              <div style="margin-top: -13px; color: red;" *ngIf="formularioEditar.controls['email'].dirty && formularioEditar.controls['email'].invalid">
+                <div *ngIf="formularioEditar.controls['email'].errors.pattern">
+                  <small>password</small>
+                </div>
+                <div *ngIf="formularioEditar.controls['email'].errors.required">
+                  <small>Complete el campo password</small>
+                </div>
+              </div>
+
+              <div class="mt-3 bottonRegisters">
+                <button type="button" class="btn" [disabled]="this.formularioEditar.invalid">Guardar cambios</button>
+                <button type="button" class="btn" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+
+            </form>
+          </div>
+          <div class="col-md-6">
+            <img class="img-config" src="../../../assets/configData.svg" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

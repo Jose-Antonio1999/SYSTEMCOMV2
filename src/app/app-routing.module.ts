@@ -15,13 +15,24 @@ import { PrincipalEstudianteComponent } from './panel-control/principal-estudian
 import { PruebaComponent } from './prueba/prueba.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ListaEstudiantesComponent } from './estudiante/lista-estudiantes/lista-estudiantes.component';
+import { BandejaSalidaComponent } from './comunicado/bandeja-salida/bandeja-salida.component';
+import { ConfiguracionPersonalComponent } from './personal/configuracion-personal/configuracion-personal.component';
+import { ListaEstudiantesDocenteComponent } from './Docente/lista-estudiantes-docente/lista-estudiantes-docente.component';
+import { ListaApoderadosDocenteComponent } from './Docente/lista-apoderados-docente/lista-apoderados-docente.component';
+import { ComunicadoDocenteComponent } from './Docente/comunicado-docente/comunicado-docente.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
   {path: "login", component:LoginComponent},
   {path: "registro-admin", component:RegistroUnicoComponent},
   //Ruta principal
-  {path:"Docente",component:PrincipalDocenteComponent},
+  {path:"Docente",component:PrincipalDocenteComponent,
+    children:[
+      {path:"lista-estudiantes", component: ListaEstudiantesDocenteComponent},
+      {path:"lista-apoderados", component: ListaApoderadosDocenteComponent},
+      {path:"redactar-comunicado", component: ComunicadoDocenteComponent}
+    ]
+  },
   {path:"Admin",component:PrincipalDirectorComponent,
     children:[
       {path: "control-docente", component:PanelPersonalComponent,
@@ -37,6 +48,8 @@ const routes: Routes = [
         ]
       },
       {path:'comunicado', component:PanelComunicadoComponent},
+      {path:'bandeja-salida', component:BandejaSalidaComponent},
+      {path:"configuracion", component:ConfiguracionPersonalComponent}
     ]
   },
   {path:"prueba",component:PruebaComponent},

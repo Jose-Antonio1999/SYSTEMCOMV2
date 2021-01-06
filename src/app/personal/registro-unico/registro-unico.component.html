@@ -15,7 +15,7 @@
           <mat-label>Tipo de personal</mat-label>
           <mat-select formControlName="tipoPersonal">
             <div *ngFor="let data of listaProfile">
-              <mat-option value="{{data.id_profile_user}}">{{data.profile_user}}</mat-option>
+              <mat-option *ngIf="data.profile_user=='Director'" value="{{data.id_profile_user}}">{{data.profile_user}}</mat-option>
             </div>
           </mat-select>
         </mat-form-field>

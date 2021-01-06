@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Profile } from '../clases/Profile'
+import { ConsultaDNI } from '../clases/API'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Staff } from '../clases/staff';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class PeticionService {
+
+
+  Consulta:ConsultaDNI
 
   profile:Profile
   URLRegistro:String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/registrar/";
@@ -41,6 +46,12 @@ export class PeticionService {
 
   listaSecction():Observable<any>{
     return this.http.get<any>(this.URLListar+"listarSeccion.php");
+  }
+  listaStaff():Observable<Staff>{
+    return this.http.get<Staff>(this.URLListar+"listaStaff.php");
+  }
+  listaStudent():Observable<Staff>{
+    return this.http.get<Staff>(this.URLListar+"listaStudent.php");
   }
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
@@ -87,6 +98,11 @@ export class PeticionService {
   //funciones de envio de comunicados
   enviarComunicado(data:any):Observable<any>{
     return this.http.post<any>(this.URLenvio+"envioComunicado.php",JSON.stringify(data));
+  }
+
+  //autocompletado de dato
+  APIdni(dni:String):Observable<ConsultaDNI>{
+    return this.http.get<ConsultaDNI>(`https://dni.optimizeperu.com/api/persons/${dni}?format=json`)
   }
 
 }

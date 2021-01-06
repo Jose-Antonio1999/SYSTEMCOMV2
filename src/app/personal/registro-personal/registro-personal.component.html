@@ -7,42 +7,13 @@
         <div class="letter">
           <h2><i class="fas fa-graduation-cap"></i> Registro Personal</h2>
         </div>
-        <div class="option">
-
-          <mat-form-field class="modelInput">
-            <mat-label>¿Es tutor?</mat-label>
-            <mat-select formControlName="estadoTutor" >
-                <mat-option (click)="verificarTutor()" value="No">No</mat-option >
-                <mat-option (click)="verificarTutor()" value="Si">Si</mat-option >
-            </mat-select>
-          </mat-form-field>
-        </div>
-
-        <div *ngIf="esconderCampo">
-          <mat-form-field class="inputOption">
-            <mat-label>Grado </mat-label>
-            <mat-select formControlName="grado">
-              <div *ngFor="let grado of listaGrado">
-                <mat-option value="{{grado.grade}}">{{grado.grade}}</mat-option>
-              </div>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field class="inputOption">
-            <mat-label>Sección</mat-label>
-            <mat-select formControlName="seccion">
-              <div *ngFor="let data of listaSecciones">
-                <mat-option value="{{data.section}}">{{data.section}}</mat-option>
-              </div>
-            </mat-select>
-          </mat-form-field>
-        </div>
 
         <mat-form-field style="width: 100%;">
           <mat-label>Tipo de personal</mat-label>
           <mat-select formControlName="tipoPersonal">
             <div *ngFor="let data of listaProfile">
-              <mat-option value="{{data.id_profile_user}}">{{data.profile_user}}</mat-option>
+              <mat-option *ngIf="data.profile_user!='Director' && data.profile_user!='Estudiante' "
+              value="{{data.id_profile_user}}">{{data.profile_user}}</mat-option>
             </div>
           </mat-select>
         </mat-form-field>
@@ -84,24 +55,25 @@
           </div>
         </div>
 
+        <div>
+          <mat-form-field class="lastName">
+            <mat-label>Apellido paterno</mat-label>
+            <input  matInput autocomplete="off" formControlName="apellidoP">
+          </mat-form-field>
+          <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoP'].dirty && crearFormulario.controls['apellidoP'].invalid">
+            <div *ngIf="crearFormulario.controls['apellidoP'].errors.pattern">
+              <small>Apellidos inválidos</small>
+            </div>
+            <div *ngIf="crearFormulario.controls['apellidoP'].errors.required">
+              <small>Complete el campo apellidos</small>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="col-md-6" style="margin-top: 50px;">
 
         <div class="form-group" id="contenLastname">
-            <div>
-              <mat-form-field class="lastName">
-                <mat-label>Apellido paterno</mat-label>
-                <input  matInput autocomplete="off" formControlName="apellidoP">
-              </mat-form-field>
-              <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoP'].dirty && crearFormulario.controls['apellidoP'].invalid">
-                <div *ngIf="crearFormulario.controls['apellidoP'].errors.pattern">
-                  <small>Apellidos inválidos</small>
-                </div>
-                <div *ngIf="crearFormulario.controls['apellidoP'].errors.required">
-                  <small>Complete el campo apellidos</small>
-                </div>
-              </div>
-            </div>
             <div>
               <mat-form-field class="lastName">
                 <mat-label>Apellido materno</mat-label>

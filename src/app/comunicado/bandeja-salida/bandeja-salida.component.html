@@ -1,0 +1,49 @@
+<div class="central">
+  <div class="menu-izquierda">
+    <!-- <app-menu></app-menu> -->
+  </div>
+  <div class="cuerpo-derecho">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 titleBan"><h2><i class="fas fa-inbox"></i> Lista de mensajes enviados</h2></div>
+        <div class="col-md-5">
+          <mat-form-field style="width: 90%;" class="example-full-width">
+            <mat-label>Buscar comunicado</mat-label>
+            <input id="buscador" name="buscador" matInput placeholder="Digite el titulo de comunicado" (ngModelChange)="buscarMensajeDos()" [(ngModel)]="valorBusqueda">
+            <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+
+    <div class="contenedorBandeja">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let data of listaMensajes; let i=index">
+            <div class="mt-3">
+              <div class="card">
+                <div class="headerMessage">
+                  <div class="userEnviador">
+                      <i style="margin-top: -10px; font-size: 20px;" class="fas fa-envelope"></i><b>
+                      <p style="margin-top: 10x; margin-left: 4px;"> Reunión de urgencia</p></b>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><b>Asunto:</b> Saludo cordial</h5>
+                  <p class="card-text" style="text-align: justify;">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor, aperiam! Dolorem, ab rerum. Accusamus, modi ipsa est quos porro itaque,
+                    nesciunt odio vitae laudantium, blanditiis sed repudiandae in rerum consectetur. . ...
+                  <span (click)="verMensaje(i)" style="cursor: pointer;" class="badge badge-pill badge-info" data-toggle="modal" data-target="#mensaje">Ver más</span></p>
+                </div>
+                <button class="btn"><span>Mas información</span> <i class="fas fa-chevron-circle-right"></i></button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

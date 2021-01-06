@@ -4,17 +4,6 @@
   align-content: center;
   cursor: pointer;
 }
-#icono{
-  font-size: 25px;
-  margin-top: 12px;
-}
-table{
-  border-collapse:separate;
-  border-spacing: 10;
-  border-radius:10px;
-  -moz-border-radius:10px;
-  -webkit-border-radius: 10px;
-}
 #contenedorDocentes{
   height: 85%;
   width: 102%;
@@ -23,7 +12,7 @@ table{
 }
 #contenedorDocentes::-webkit-scrollbar{
   height: 7px;
-  width: 7px;
+  width: 10px;
 }
 #contenedorDocentes::-webkit-scrollbar-thumb{
   background: #F4792C;
@@ -33,16 +22,40 @@ table{
 #titleP{
   font-size:17px
 }
+.img-user{
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}
+.center-img{
+  margin-top: -10px;
+}
+.title-list{
+  margin-top: 23px;
+}
+.conten-button{
+  display: flex;
+}
 .btn{
   background:#1B386E;
-  margin-left: 7px;
+  margin-right: 5px;
+  height: 30px;
+  font-size: 15px;
+  width: auto;
   color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .central{
   height: 83%;
   width: 100% !important;
+  z-index:10;
 }
 .card{
   margin-bottom: 2px;
-  z-index:1 !important;
+}
+.modal-backdrop
+{
+    opacity:0.9 !important;
 }

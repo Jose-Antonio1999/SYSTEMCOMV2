@@ -36,6 +36,11 @@ import { PruebaComponent } from './prueba/prueba.component';
 import { PanelDocenteComponent } from './Docente/panel-docente/panel-docente.component';
 import { MenuDocenteComponent } from './Docente/menu-docente/menu-docente.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BandejaSalidaComponent } from './comunicado/bandeja-salida/bandeja-salida.component';
+import { ConfiguracionPersonalComponent } from './personal/configuracion-personal/configuracion-personal.component';
+import { ListaApoderadosDocenteComponent } from './Docente/lista-apoderados-docente/lista-apoderados-docente.component';
+import { ListaEstudiantesDocenteComponent } from './Docente/lista-estudiantes-docente/lista-estudiantes-docente.component';
+import { ComunicadoDocenteComponent } from './Docente/comunicado-docente/comunicado-docente.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PruebaComponent,
     PanelDocenteComponent,
     MenuDocenteComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BandejaSalidaComponent,
+    ConfiguracionPersonalComponent,
+    ListaApoderadosDocenteComponent,
+    ListaEstudiantesDocenteComponent,
+    ComunicadoDocenteComponent
   ],
   imports: [
     BrowserModule,
