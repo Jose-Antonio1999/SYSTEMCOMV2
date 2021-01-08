@@ -9,6 +9,7 @@
   width: 102%;
   overflow: hidden;
   overflow-y: scroll;
+  z-index: 100;
 }
 #contenedorDocentes::-webkit-scrollbar{
   height: 7px;
@@ -55,7 +56,24 @@
 .card{
   margin-bottom: 2px;
 }
-.modal-backdrop
-{
-    opacity:0.9 !important;
+
+.modal-backdrop{
+  display: none !important;
 }
+
+/* .conten-modal{
+  background: rgb(0,0,0,0.5);
+  height: 120%;
+  width: 100%;
+  margin-top: -50%;
+  position: absolute;
+  z-index: 8000000 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-asignacion{
+  background:red;
+  width:400px;
+  height: 200px;
+} */

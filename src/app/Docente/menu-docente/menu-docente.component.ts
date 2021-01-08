@@ -9,6 +9,8 @@ import { PeticionService } from 'src/app/service/peticion.service';
 import { environment } from 'src/environments/environment';
 import { catchError, retry } from 'rxjs/internal/operators';
 import { StorageService } from 'src/app/service/storage.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AjustesDocenteComponent } from '../ajustes-docente/ajustes-docente.component';
 
 @Component({
   selector: 'app-menu-docente',
@@ -84,6 +86,7 @@ export class MenuDocenteComponent implements OnInit {
     private ruta:Router,
     private spinner:NgxSpinnerService,
     private peticion:PeticionService,
+    public dialog: MatDialog,
     private storage:StorageService) {
 
     this.sesionInciada();
@@ -150,6 +153,15 @@ export class MenuDocenteComponent implements OnInit {
 
   convetirMinuscula(data:string){
     return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
+  }
+
+  openModalData(){
+    const dialogRef  = this.dialog.open(AjustesDocenteComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result==true) {
+        console.log("cerro")
+      }
+    });
   }
 
 }

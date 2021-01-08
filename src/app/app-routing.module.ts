@@ -20,6 +20,8 @@ import { ConfiguracionPersonalComponent } from './personal/configuracion-persona
 import { ListaEstudiantesDocenteComponent } from './Docente/lista-estudiantes-docente/lista-estudiantes-docente.component';
 import { ListaApoderadosDocenteComponent } from './Docente/lista-apoderados-docente/lista-apoderados-docente.component';
 import { ComunicadoDocenteComponent } from './Docente/comunicado-docente/comunicado-docente.component';
+import { ListaTutoresComponent } from './personal/lista-tutores/lista-tutores.component';
+import { AjustesDocenteComponent } from './Docente/ajustes-docente/ajustes-docente.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
@@ -30,7 +32,8 @@ const routes: Routes = [
     children:[
       {path:"lista-estudiantes", component: ListaEstudiantesDocenteComponent},
       {path:"lista-apoderados", component: ListaApoderadosDocenteComponent},
-      {path:"redactar-comunicado", component: ComunicadoDocenteComponent}
+      {path:"redactar-comunicado", component: PanelComunicadoComponent},
+      {path:"ajustes-docente", component:AjustesDocenteComponent}
     ]
   },
   {path:"Admin",component:PrincipalDirectorComponent,
@@ -38,7 +41,8 @@ const routes: Routes = [
       {path: "control-docente", component:PanelPersonalComponent,
         children:[
           {path:"registro-docente", component:RegistroPersonalComponent},
-          {path:"lista-personal", component:ListaPersonalComponent}
+          {path:"lista-personal", component:ListaPersonalComponent},
+          {path:"lista-tutores", component:ListaTutoresComponent}
         ]
       },
       {path:"estudiante",component:PanelEstudianteComponent,

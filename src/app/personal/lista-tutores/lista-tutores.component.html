@@ -1,0 +1,35 @@
+<div class="container-fluid central">
+
+      <div class="contenDatai">
+        <div class="row">
+          <div class="col-md-1 contenItem"><b>N°</b></div>
+          <div class="col-md-1 contenItem"><b>DNI</b></div>
+          <div class="col-md-3 contenItem"><b>Docente</b></div>
+          <div class="col-md-3 contenItem"><b>Email</b></div>
+          <div class="col-md-2 contenItem"><b>Celular</b></div>
+          <div class="col-md-2 contenItem"><b>Tutoría</b></div>
+        </div>
+        <hr>
+        <div class="conten_personal">
+          <div class="row item-data" *ngFor="let data of listadocentesTutores; let i = index">
+            <div class="col-md-1 contenItem"><b>{{i+1}}</b></div>
+            <div class="col-md-1 contenItem">{{data.id_card_number_staff}}</div>
+            <div class="col-md-3 contenItem">
+              {{convetirMinuscula(data.name_staff)}} {{convetirMinuscula(data.firts_name_staff)}} {{convetirMinuscula(data.last_name_staff)}}
+            </div>
+            <div class="col-md-3 contenItem">{{data.email_staff}}</div>
+            <div class="col-md-2 contenItem"><p>{{data.phone_number_staff}}</p></div>
+            <div class="col-md-2 contenItem">
+              <div *ngIf="data.grade == null; else mos">
+                <button class="btn" (click)="openModalasignacion(data.id_staff)">Asignar</button>
+              </div>
+              <ng-template #mos>
+                <button class="btn" style="background:#039c55;">{{data.grade}} {{this.peticion.gradoSegunName(data.grade)}} {{data.section}}</button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+

@@ -33,6 +33,10 @@ export class PeticionService {
   registroEstudiante(data):Observable<any>{
     return this.http.post<any>(this.URLRegistro+'registroEstudiante.php',JSON.stringify(data));
   }
+  registroTutor(data):Observable<any>{
+    return this.http.post<any>(this.URLRegistro+'registrarTutor.php',JSON.stringify(data));
+  }
+
 
 
   //funciones de peción lista
@@ -50,8 +54,14 @@ export class PeticionService {
   listaStaff():Observable<Staff>{
     return this.http.get<Staff>(this.URLListar+"listaStaff.php");
   }
+  listaStafftutores():Observable<Staff>{
+    return this.http.get<Staff>(this.URLListar+"listaStafftutor.php");
+  }
   listaStudent():Observable<Staff>{
     return this.http.get<Staff>(this.URLListar+"listaStudent.php");
+  }
+  listaDataStudent(data:any):Observable<Staff>{
+    return this.http.post<Staff>(this.URLListar+"dataEstudent.php",JSON.stringify(data));
   }
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
@@ -103,6 +113,25 @@ export class PeticionService {
   //autocompletado de dato
   APIdni(dni:String):Observable<ConsultaDNI>{
     return this.http.get<ConsultaDNI>(`https://dni.optimizeperu.com/api/persons/${dni}?format=json`)
+  }
+
+
+  //funciones extras
+  gradoSegunName(gray:any):String{
+    let resul
+    switch (parseInt(gray)) {
+      case 1: resul = 'ro'
+        break;
+      case 2: resul = 'do'
+        break;
+      case 3: resul = 'ro'
+        break;
+      case 4: resul = 'to'
+        break;
+      case 5: resul = 'to'
+        break;
+    }
+  return resul
   }
 
 }

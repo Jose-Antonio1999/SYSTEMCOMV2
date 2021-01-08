@@ -6,21 +6,21 @@
     <div class="container-fluid">
       <br>
       <div class="row">
-        <div  class="col-md-6 mt-3" style="font-size: 19px;">
+        <div  class="col-md-5 mt-3" style="font-size: 19px;">
 
         </div>
         <div id="contenIcon" class="col-md-1" title="Lista docentes" [routerLink]="['lista-personal']" routerLinkActive="activo">
             <p class="titleTeachers"><i class="fas fa-clipboard-list"></i> Lista</p>
         </div>
-        <div id="contenIcon" class="col-md-1" title="Lista docentes tutores">
+        <div id="contenIcon" class="col-md-1" title="Lista docentes tutores" [routerLink]="['lista-tutores']" routerLinkActive="activo">
             <p class="titleTeachers"><i class="fas fa-chalkboard-teacher"></i> Tutores</p>
         </div>
-        <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['registro-docente']" routerLinkActive="activo">
+        <div id="contenIcon" class="col-md-1" title="Lista docentes tutores" [routerLink]="['registro-docente']" routerLinkActive="activo">
+          <p class="titleTeachers"><i class="fas fa-user-plus"></i> Nuevo</p>
+        </div>
+        <!-- <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['registro-docente']" routerLinkActive="activo">
             <p class="titleTeachers"><i class="fas fa-user-plus"></i> Agregar</p>
-        </div>
-        <div id="contenIcon" class="col-md-1" [routerLink]="['../comunicado']">
-            <p class="titleTeachers"><i class="fas fa-envelope"></i> mensaje</p>
-        </div>
+        </div> -->
         <div class="col-md-2">
         </div>
       </div>
@@ -30,7 +30,5 @@
 
   </div>
 </div>
-
-
 
 

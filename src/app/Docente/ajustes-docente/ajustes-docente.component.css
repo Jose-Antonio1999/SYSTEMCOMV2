@@ -1,0 +1,109 @@
+.central{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-izquierda{
+  height:100%;
+  width:70px;
+}
+.cuerpo-derecho{
+  z-index:100;
+  height:100%;
+  width:100%;
+}
+.contenData{
+  height:auto;
+  width:90%;
+  padding:10px;
+  background-color: #FFF;
+  border-radius: 5px;
+  border: 0.3px solid #CCCCCC;
+}
+.img_perfil{
+  height:160px;
+  width: 160px;
+  border-radius: 50%;
+}
+.conten_user{
+  display: flex;
+  font-size: 15px;
+  justify-content: space-around;
+}
+.info_user{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.extra-data{
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.formulario{
+  width: 100%;
+}
+/*codigo para personalizar el choose file*/
+.letterFile{
+  background:#1B386E;
+  height:36px;
+  width:164px;
+  z-index: 10;
+  margin-top: -37px;
+  position: absolute;
+  border-radius: 3px 0px 0px 3px;
+}
+.btn{
+  background:#1B386E;
+  height: 33px;
+  font-size: 15px;
+  float: left;
+  margin-right: 5px;
+  color: #FFF;
+}
+.custom-input-file p{
+  color:#FFF;
+  display: flex;
+  padding-top: 6px;
+  justify-content: center;
+  align-content: center;
+}
+.menuOption{
+  display: flex;
+  justify-content: flex-end;
+}
+.iconoOption{
+  margin-top: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}
+.more-info{
+  display: flex;
+  justify-content: center;
+  justify-content: stretch;
+  cursor: pointer;
+}
+.conten-data-pass{
+  width: 600px;
+}
+.form-inline{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-inline i{
+  font-size: 14px;
+}
+#bottonRegisters{
+  float: left;
+}

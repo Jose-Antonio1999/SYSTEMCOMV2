@@ -41,6 +41,10 @@ import { ConfiguracionPersonalComponent } from './personal/configuracion-persona
 import { ListaApoderadosDocenteComponent } from './Docente/lista-apoderados-docente/lista-apoderados-docente.component';
 import { ListaEstudiantesDocenteComponent } from './Docente/lista-estudiantes-docente/lista-estudiantes-docente.component';
 import { ComunicadoDocenteComponent } from './Docente/comunicado-docente/comunicado-docente.component';
+import { ListaTutoresComponent } from './personal/lista-tutores/lista-tutores.component';
+import { ModalAsignarTutorComponent } from './modals/modal-asignar-tutor/modal-asignar-tutor.component';
+import { AjustesDocenteComponent } from './Docente/ajustes-docente/ajustes-docente.component';
+import { DataDocenteComponent } from './Docente/Modal-docente/data-docente/data-docente.component';
 
 @NgModule({
   declarations: [
@@ -68,8 +72,13 @@ import { ComunicadoDocenteComponent } from './Docente/comunicado-docente/comunic
     ConfiguracionPersonalComponent,
     ListaApoderadosDocenteComponent,
     ListaEstudiantesDocenteComponent,
-    ComunicadoDocenteComponent
+    ComunicadoDocenteComponent,
+    ListaTutoresComponent,
+    ModalAsignarTutorComponent,
+    AjustesDocenteComponent,
+    DataDocenteComponent
   ],
+  entryComponents:[ModalAsignarTutorComponent, AjustesDocenteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

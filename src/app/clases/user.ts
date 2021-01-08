@@ -7,6 +7,8 @@ export class userCurrent {
   email_staff
   phone_number_staff
   path_photo_staffs
+  grade
+  section
 
   constructor(){
     this.id_staff = this.id_staff
@@ -17,5 +19,7 @@ export class userCurrent {
     this.email_staff = this.email_staff
     this.phone_number_staff = this.phone_number_staff
     this.path_photo_staffs = this.path_photo_staffs
+    this.grade = this.grade
+    this.section = this.section
   }
 }
