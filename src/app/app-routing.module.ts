@@ -22,6 +22,8 @@ import { ListaApoderadosDocenteComponent } from './Docente/lista-apoderados-doce
 import { ComunicadoDocenteComponent } from './Docente/comunicado-docente/comunicado-docente.component';
 import { ListaTutoresComponent } from './personal/lista-tutores/lista-tutores.component';
 import { AjustesDocenteComponent } from './Docente/ajustes-docente/ajustes-docente.component';
+import { PanelFormularioComponent } from './Docente/Formulario/panel-formulario/panel-formulario.component';
+import { CrearFormularioComponent } from './Docente/Formulario/crear-formulario/crear-formulario.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
@@ -33,7 +35,12 @@ const routes: Routes = [
       {path:"lista-estudiantes", component: ListaEstudiantesDocenteComponent},
       {path:"lista-apoderados", component: ListaApoderadosDocenteComponent},
       {path:"redactar-comunicado", component: PanelComunicadoComponent},
-      {path:"ajustes-docente", component:AjustesDocenteComponent}
+      {path:"ajustes-docente", component:AjustesDocenteComponent},
+      {path:"formulario", component:PanelFormularioComponent,
+        children:[
+          {path:"crear-formulario", component:CrearFormularioComponent}
+        ]
+      }
     ]
   },
   {path:"Admin",component:PrincipalDirectorComponent,
@@ -55,6 +62,9 @@ const routes: Routes = [
       {path:'bandeja-salida', component:BandejaSalidaComponent},
       {path:"configuracion", component:ConfiguracionPersonalComponent}
     ]
+  },
+  {
+    path: "Estudiante", component:PrincipalEstudianteComponent
   },
   {path:"prueba",component:PruebaComponent},
   {path:"**",component:NotFoundComponent}

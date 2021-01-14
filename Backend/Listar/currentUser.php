@@ -11,7 +11,7 @@ $sql_consulta_photo = "SELECT id_staff,id_card_number_staff,name_staff,firts_nam
                               LEFT JOIN teacher_tutor ON staffs.id_staff = teacher_tutor.id_staff2
                               LEFT JOIN grades on grades.id_grade  = teacher_tutor.id_grade1
                               LEFT JOIN section ON section.id_section = teacher_tutor.id_section2
-                              WHERE email_staff = '$email' ";
+                              WHERE email_staff = '$email'";
 
 $ejecucion_conuslta = mysqli_query($conexion,$sql_consulta_photo);
 

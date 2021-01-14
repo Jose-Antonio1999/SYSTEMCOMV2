@@ -32,6 +32,8 @@ export class ListaPersonalComponent implements OnInit {
   listaPersonal = Array<Staff>();
   estadoToltip:string = "stateOne"
   asignar:string = "no"
+  nombrePersonal:string
+
   constructor(
     private peticion: PeticionService
   ) {

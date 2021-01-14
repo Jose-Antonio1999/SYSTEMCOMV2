@@ -20,6 +20,7 @@ export class PeticionService {
   URLListar:String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/Listar/";
   URLsubidaarchvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/archivos/"
   URLenvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/envios/"
+  URLactualizar: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/actualizar/"
 
   constructor(private http:HttpClient, private snackBar: MatSnackBar) { }
 
@@ -57,14 +58,20 @@ export class PeticionService {
   listaStafftutores():Observable<Staff>{
     return this.http.get<Staff>(this.URLListar+"listaStafftutor.php");
   }
-  listaStudent():Observable<Staff>{
-    return this.http.get<Staff>(this.URLListar+"listaStudent.php");
+  listaTutoresAsignados():Observable<Staff>{
+    return this.http.get<Staff>(this.URLListar+"listaTutoresAsignados.php");
+  }
+  listaStudent(data:any):Observable<Staff>{
+    return this.http.post<Staff>(this.URLListar+"listaStudent.php",JSON.stringify(data));
   }
   listaDataStudent(data:any):Observable<Staff>{
     return this.http.post<Staff>(this.URLListar+"dataEstudent.php",JSON.stringify(data));
   }
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
+  }
+  obtenerPerfilCurrentDocente(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"currentDocente.php",data);
   }
   numeroEmailsDocentesGeneral():Observable<any>{
     return this.http.get<any>(this.URLListar+"emailDocentesGeneral.php");
@@ -90,6 +97,9 @@ export class PeticionService {
   existeAlumno(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"verificarAlumno.php",data);
   }
+  verificarActivo(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarActivoStaff.php",data);
+  }
 
   //funcion mensaje
   mensaje(mensaje:any,duracion:any,horizontalPosi:any,verticalPosi:any){
@@ -113,6 +123,14 @@ export class PeticionService {
   //autocompletado de dato
   APIdni(dni:String):Observable<ConsultaDNI>{
     return this.http.get<ConsultaDNI>(`https://dni.optimizeperu.com/api/persons/${dni}?format=json`)
+  }
+
+  //metodos para actualizar data
+  desasignarTuor(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"desasignarTutor.php",data);
+  }
+  statusStaff(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"statusPersonal.php",JSON.stringify(data));
   }
 
 

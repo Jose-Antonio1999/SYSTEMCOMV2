@@ -21,6 +21,8 @@ export class ListaEstudiantesDocenteComponent implements OnInit {
   usercurrent:userCurrent
   verMenu:boolean = false
   listaData = new  Array<General>()
+  //variable de busqueda
+  nombreEstudiante:string
   constructor
   (
     private ruta:Router,
@@ -39,7 +41,7 @@ export class ListaEstudiantesDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
         (res)=>{
           this.verMenu = true
           this.usercurrent = res[0];

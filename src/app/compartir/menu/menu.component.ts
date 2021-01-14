@@ -113,14 +113,12 @@ export class MenuComponent implements OnInit {
     this.estadoMenu = "stateTwo"
     this.stateIcon = "displayIcon"
     this.animateLetter = "stateColor"
-    this.oscurecer = "oscuro"
   }
 
   desanimarMenu(){
     this.estadoMenu = "stateOne"
     this.stateIcon = "hiddenIcon"
     this.animateLetter = "stateNormal"
-    this.oscurecer = "normal"
   }
 
   currentUSer(){

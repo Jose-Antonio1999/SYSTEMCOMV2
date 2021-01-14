@@ -20,6 +20,8 @@ export class ListaApoderadosDocenteComponent implements OnInit {
   usercurrent:userCurrent
   verMenu:boolean = false
   listaData = new  Array<General>()
+  //variables para la busqueda
+  dnibuscar:string
   constructor(
     private ruta:Router,
     private spinner:NgxSpinnerService,
@@ -37,7 +39,7 @@ export class ListaApoderadosDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
         (res)=>{
           this.verMenu = true
           this.usercurrent = res[0];
@@ -68,4 +70,9 @@ export class ListaApoderadosDocenteComponent implements OnInit {
   convetirMinuscula(data:string){
     return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }
+
+  buscarApoderado() {
+    console.log(this.dnibuscar)
+  }
+
 }

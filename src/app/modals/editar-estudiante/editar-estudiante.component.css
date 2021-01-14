@@ -1,0 +1,64 @@
+.contenedorForm{
+  width: 70%;
+  margin: 0 auto;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}
+.imgstudent{
+  border:none;
+  outline:none;
+  border-bottom: 1px solid gray;
+}
+/*codigo para personalizar el choose file*/
+.letterFile{
+  background:#1B386E;
+  height:36px;
+  width:164px;
+  z-index: 10;
+  margin-top: -37px;
+  position: absolute;
+  border-radius: 3px 0px 0px 3px;
+}
+.custom-input-file p{
+  color:#FFF;
+  display: flex;
+  padding-top: 6px;
+  justify-content: center;
+  align-content: center;
+}
+.btn{
+  border: none;
+  background-color:#1B386E;
+  color:#FFF;
+  margin-left:5px;
+}
+#contenLastname{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+#dataStudent{
+  margin-top: 47px;
+}
+#bottonRegisters{
+  display: flex;
+  justify-content: flex-end;
+}
+.lastName{
+  width: 100%;
+}
+
+@media (max-width:760px){
+  .contenedorForm{
+    width: 100%;
+    border-radius: none;
+    box-shadow: none;
+  }
+  #dataStudent{
+    margin-top: -10px;
+  }
+}

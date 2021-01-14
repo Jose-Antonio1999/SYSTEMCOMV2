@@ -1,6 +1,7 @@
 .central{
   width: 100%;
   height: 100%;
+  z-index: 20;
   display: flex;
   justify-content: center;
 }
@@ -46,18 +47,27 @@
 /**scroll para lista personal*/
 .conten_personal{
   width:100%;
-  height:80%;
+  height:100%;
+  margin-top: 20px;
   font-size: 15px;
+  background-color: #FFF;
+  border-radius: 5px;
+  border: 0.3px solid #CCCCCC;
   overflow: hidden;
   overflow-y: scroll;
+}
+thead tr th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #FFF;
 }
 .conten_personal::-webkit-scrollbar{
   height: 5px;
   width: 7px;
 }
 .conten_personal::-webkit-scrollbar-thumb{
-  background: #1B386E;
-  border-radius: 5px;
+  background: #CCCCCC;
   cursor: pointer;
 }
 .dataUser{

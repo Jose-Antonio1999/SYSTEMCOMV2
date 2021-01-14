@@ -7,6 +7,8 @@ import { Usuario } from 'src/app/clases/usuario';
 import { PeticionService } from 'src/app/service/peticion.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { Staff } from '../../clases/staff'
+import { MatDialog } from '@angular/material/dialog';
+import { AlertasComponent } from 'src/app/modals/alertas/alertas.component';
 
 @Component({
   selector: 'app-configuracion-personal',
@@ -23,12 +25,15 @@ export class ConfiguracionPersonalComponent implements OnInit {
   imgURL:String
   porcentajeSubidaFoto:number = 0
   formularioEditar:FormGroup
+  nombrePersonal:string
+  estadoStatus:number = 0;
   constructor(
     private peticion:PeticionService,
     private ruta:Router,
     private storage:StorageService,
     private formbuilder:FormBuilder,
-    private storageFire: AngularFireStorage
+    private storageFire: AngularFireStorage,
+    public dialog: MatDialog
   ) {
     this.llenarListastaff();
     this.sesionInciada();
@@ -131,5 +136,53 @@ export class ConfiguracionPersonalComponent implements OnInit {
     }
   }
 
+  estadoPersonal(idP:number, user:string,i:number,estadocurrect:number) {
+
+    if (estadocurrect==0) {
+      this.listaStaff[i].status_staff = this.estadoStatus
+      this.listaStaff[i].status_staff = '1'
+      //data a enviar
+      const data = {'id_personal':idP,'email':user,'estado':1}
+
+      this.peticion.statusStaff(data).subscribe(
+        (res)=>{
+          console.log(res)
+          this.peticion.mensaje('Habilitado',4500,'center','center')
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+
+    }
+
+    if (estadocurrect==1){
+
+      this.listaStaff[i].status_staff = '0'
+      //data  enviar
+      const data = {'id_personal':idP,'email':user,'estado':0}
+
+      this.peticion.statusStaff(data).subscribe(
+        (res)=>{
+          console.log(res)
+          this.peticion.mensaje('Desabilitado',4500,'center','center')
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+
+    }
+
+  }
+
+  openMenssaje() {
+    const dialogRef  = this.dialog.open(AlertasComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result==true) {
+        console.log("cerro")
+      }
+    });
+  }
 
 }

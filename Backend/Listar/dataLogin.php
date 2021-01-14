@@ -4,14 +4,16 @@ require_once("../conexion/conexion.php");
 //obtenemos la data de registro
 $data = file_get_contents("php://input");
 
-if(isset($data)) {
+if(isset($data)){
 
   $data = json_decode($data);
 
   $usuario = $data->user;
   $pass = $data->pass;
+  $estatus = 1;
   //obtener los data
-  $sql_consulta_user = "SELECT * FROM USERS WHERE user = '$usuario' and pass = '$pass' and user_status='habilitado' ";
+  $pass = md5($pass);
+  $sql_consulta_user = "SELECT * FROM USERS WHERE user = '$usuario' and user_status = '$estatus' and pass = '$pass'  ";
 
   $query_consuta_user = mysqli_query($conexion,$sql_consulta_user);
 
@@ -31,7 +33,7 @@ if(isset($data)) {
     echo json_encode($lista);
 
   } else {
-    echo json_encode("");
+    echo json_encode("0");
   }
 }
 

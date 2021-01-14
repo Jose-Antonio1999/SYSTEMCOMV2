@@ -1,0 +1,81 @@
+<!--Codigo para animar el menu-->
+<!--(mouseover)="animarMenu()" (mouseleave)="desanimarMenu()"-->
+<div  *ngIf="verMenu"  [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()">
+  <div class="colunm" style="color:#FFF">
+    <div class="info-user">
+      <div class="container content-imguser">
+        <img   [src]="this.usercurrent.path_photo_staffs"  alt="" class="text-center img-user">
+      </div>
+      <p class="text-center mt-1">{{this.recortarNombre(this.convetirMinuscula(this.usercurrent.name_staff))}}</p>
+    </div>
+
+    <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+      <div class="col-md icon">
+        <i class="fas fa-home"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Principal</p>
+      </div>
+    </div>
+
+    <div class="conten-icon" [routerLink]="['lista-apoderados']" >
+      <div class="col-md icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Apoderados</p>
+      </div>
+    </div>
+
+    <div class="conten-icon" [routerLink]="['lista-estudiantes']">
+      <div class="col-md icon">
+        <i class="fas fa-user-graduate"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Estudiantes</p>
+      </div>
+    </div>
+
+    <div class="conten-icon">
+      <div class="col-md icon">
+        <i class="fas fa-mail-bulk"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Bandeja</p>
+      </div>
+    </div>
+
+    <div class="conten-icon">
+      <div class="col-md icon">
+        <i class="fas fa-poll"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Formulario</p>
+      </div>
+    </div>
+
+    <div class="conten-icon" (click)="openModalData()">
+      <div class="col-md icon">
+        <i class="fas fa-user-cog"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Ajustes</p>
+      </div>
+    </div>
+
+    <div class="conten-icon" (click)="SignOut()">
+      <div class="col-md icon">
+        <i class="fas fa-sign-in-alt"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Salir</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--muestra de registro-->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Cerrando sesión </p></ngx-spinner>
+
+

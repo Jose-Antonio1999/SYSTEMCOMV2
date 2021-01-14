@@ -46,10 +46,14 @@ export class LoginComponent implements OnInit {
 
     })
     //creamos el formulario
+    this.verificarLogin();
     this.crearFormulario ();
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.ruta.navigateByUrl("login")
+    }, 100);
   }
 
   crearFormulario () {
@@ -63,27 +67,36 @@ export class LoginComponent implements OnInit {
     //guaradar el usuario encriptado
     localStorage.setItem("current",this.storage.encrypt(JSON.stringify(user)))
   }
+  verificarLogin() {
+    if (localStorage.getItem("current")!=null) {
+      this.Usuario = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
+      this.redireccionarPagina(this.Usuario.profile)
+    }
+  }
 
   ingresar(){
     //encryptar pass
-    const md5 = new Md5();
-    this.Formulario.value.pass = md5.appendStr(this.Formulario.value.pass).end();
+    // const md5 = new Md5();
+    // this.Formulario.value.pass = md5.appendStr(this.Formulario.value.pass).end();
     //realizar petición
     this.petecion.Login(this.Formulario.value).subscribe(
       (res)=>{
 
         this.spinner.show()
+
         setTimeout(() => {
-          if(res==0 || res == null || res ==""){
+
+          if(res==0 || res =="0"){
             this.aviso = true
             this.mensaje = "Usuario o Contraseña incorrectas"
+
             setTimeout(() => {
               this.aviso = false
             }, 2000);
+
           } else {
             //normalizar al usuario
             this.Usuario = res[0]
-            //console.log(this.Usuario)
             this.guardarUsuario(this.Usuario)
             this.redireccionarPagina(this.Usuario.profile)
           }
@@ -131,7 +144,7 @@ export class LoginComponent implements OnInit {
       //secretaria
       this.ruta.navigateByUrl("Admin")
     }
-    if(data==40) {
+    if(data==50) {
       //estudiante
       this.ruta.navigateByUrl("Estudiante")
     }

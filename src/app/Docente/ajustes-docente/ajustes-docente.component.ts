@@ -42,7 +42,7 @@ export class AjustesDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
         (res)=>{
           this.cargarInterface = true
           this.usercurrent = res[0];

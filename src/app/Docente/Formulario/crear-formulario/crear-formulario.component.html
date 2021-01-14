@@ -1,0 +1,49 @@
+<br>
+<div class="container">
+  <div class="conten-formulario">
+    <div class="row">
+      <div class="col-md-10 conten-list-data" >
+        <form [formGroup]="formularioCampos">
+          <div class="header-form">
+            <mat-form-field class="modelInput">
+              <input matInput placeholder="Título del formulario" formControlName="titulo">
+            </mat-form-field>
+
+            <mat-form-field class="modelInput">
+              <textarea matInput placeholder="Descripción..."formControlName="descripcion" ></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="item-one" *ngFor="let form of listaCampos">
+            <div class="conte-form-dinamic">
+              <mat-form-field class="input-item">
+                <input matInput placeholder="Título del formulario">
+              </mat-form-field>
+            </div>
+            <div class="conte-form-dinamic">
+              <mat-form-field class="select-item">
+                <mat-label>Tipo de pregunta</mat-label>
+                <mat-select>
+                  <mat-option value="option"><i class="fas fa-align-left"></i> Respuesta breve</mat-option>
+                  <mat-option value="option"><i class="fas fa-align-justify"></i> Parrafo</mat-option>
+                  <mat-option value="option"><i class="far fa-circle"></i> Opción multiple</mat-option>
+                  <mat-option value="option"><i class="fas fa-list-ol"></i> Lista despegable</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="footer">
+                <p><i class="fas fa-trash-alt"></i></p>
+              </div>
+            </div>
+          </div>
+          <div class="form-inline mt-3">
+            <button type="button" class="btn" (click)="enviar()">Enviar formulario</button>
+            <button type="button" class="btn">Cancelar</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-2" style="background:green">
+        <button (click)="llenarValores()"><i class="fas fa-plus-circle"></i> Más</button>
+      </div>
+    </div>
+  </div>
+</div>

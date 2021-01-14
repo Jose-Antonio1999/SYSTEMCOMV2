@@ -1,0 +1,33 @@
+<div class="central">
+  <div class="menu-izquierda">
+    <!-- <app-menu></app-menu> -->
+  </div>
+  <div class="cuerpo-derecho">
+    <div class="container-fluid">
+      <br>
+      <div class="row" style="background: #157347;">
+        <div  class="col-md-5 mt-3" style="font-size: 19px;">
+        </div>
+        <div id="contenIcon" class="col-md-1" title="Lista docentes" [routerLink]="['crear-formulario']" routerLinkActive="activo">
+            <p class="titleTeachers"><i class="fas fa-clipboard-list"></i> Nuevo</p>
+        </div>
+        <div id="contenIcon" class="col-md-1" title="Lista docentes tutores" [routerLink]="['lista-tutores']" routerLinkActive="activo">
+            <p class="titleTeachers"><i class="fas fa-chalkboard-teacher"></i> Tutores</p>
+        </div>
+        <div id="contenIcon" class="col-md-1" title="Lista docentes tutores" [routerLink]="['registro-docente']" routerLinkActive="activo">
+          <p><i class="fas fa-user-plus"></i> Nuevo</p>
+        </div>
+        <!-- <div id="contenIcon" class="col-md-1" title="Agregar nuevo docente" [routerLink]="['registro-docente']" routerLinkActive="activo">
+            <p class="titleTeachers"><i class="fas fa-user-plus"></i> Agregar</p>
+        </div> -->
+        <div class="col-md-2">
+        </div>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>
+
+

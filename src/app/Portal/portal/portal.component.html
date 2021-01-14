@@ -16,6 +16,7 @@
               <a class="nav-link ms-2" href="#comunications">Comunicados</a>
               <a class="nav-link ms-2" href="#staff">Equipo</a>
               <a class="nav-link ms-2" href="#contact">Contacto</a>
+              <a class="nav-link ms-2" (click)="delete()">eli</a>
             </div>
             <div class="d-flex justify-content-center">
                 <a class="btn btn-warning fs-6 " [routerLink]="['login']"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
@@ -33,14 +34,14 @@
             <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active ban" style="height: 100vh;" data-bs-interval="4000">
+            <div class="carousel-item ban" style="height: 100vh;" data-bs-interval="4000">
                 <img src="../../../assets/img/bn1.jpg" class="w-100 img-fluid" alt="">
                 <div class="carousel-caption d-none d-md-block welcome">
                     <h4>Bienvenido a nuestro colegio</h4>
                     <h3><span>B</span>elén de <span>O</span>sma y <span>P</span>ardo</h3>
                 </div>
             </div>
-            <div class="carousel-item ban" style="height: 100vh;" data-bs-interval="4000">
+            <div class="carousel-item active ban" style="height: 100vh;" data-bs-interval="4000">
                 <img src="../../../assets/img/bn2.jpg" class="w-100 img-fluid" alt="">
                 <div class="carousel-caption d-none d-md-block welcome">
                     <h4>Bienvenido a nuestro colegio</h4>

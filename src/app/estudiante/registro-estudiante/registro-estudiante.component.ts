@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +8,8 @@ import { ConsultaDNI } from 'src/app/clases/API';
 import { Parent } from 'src/app/clases/Parent';
 import { userCurrent } from 'src/app/clases/user';
 import { PeticionService } from 'src/app/service/peticion.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Student } from 'src/app/clases/student';
 
 @Component({
   selector: 'app-registro-estudiante',
@@ -35,11 +37,13 @@ export class RegistroEstudianteComponent implements OnInit {
     private formBuilder:FormBuilder,
     private peticion:PeticionService,
     private storage: AngularFireStorage,
-    private auth:AngularFireAuth) {
+    private auth:AngularFireAuth
+    ) {
 
     this.crearFomularioRegistroAlumnado()
     this. Secciones();
     this.Grados();
+   // console.log(data);
   }
 
   ngOnInit(): void {

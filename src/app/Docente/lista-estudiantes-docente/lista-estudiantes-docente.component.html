@@ -2,7 +2,7 @@
   <div class="menu-izquierda">
     <!-- <app-menu></app-menu> -->
   </div>
-  <div class="cuerpo-derecho mt-3">
+  <div class="cuerpo-derecho">
     <div class="container-fluid m-3">
       <div class="row">
         <div class="col-md-3"><h4><i class="fas fa-user-graduate"></i> Lista de estudiantes</h4></div>
@@ -13,12 +13,13 @@
       <div class="conten-data">
         <div class="header-table">
             <mat-form-field style="width: 25%;" class="example-full-width">
-              <input id="buscador" name="buscador" matInput placeholder="Buscar apoderado">
+              <input id="buscador" name="buscador" matInput placeholder="Nombre del estudiante"
+              [(ngModel)]="nombreEstudiante">
               <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
             </mat-form-field>
         </div>
         <div class="row contenedorEstudiante" >
-            <div class="col-md-4" *ngFor="let data of listaData; let i=index">
+            <div class="col-md-4" *ngFor="let data of listaData | buscarEstudiante:nombreEstudiante; let i=index">
               <div class="card mt-1">
                 <div class="card-body">
                   <div class="text-center center-img">

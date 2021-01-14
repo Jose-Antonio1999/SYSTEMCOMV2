@@ -1,35 +1,81 @@
 <div class="container-fluid central">
-
-      <div class="contenDatai">
-        <div class="row">
-          <div class="col-md-1 contenItem"><b>N°</b></div>
-          <div class="col-md-1 contenItem"><b>DNI</b></div>
-          <div class="col-md-3 contenItem"><b>Docente</b></div>
-          <div class="col-md-3 contenItem"><b>Email</b></div>
-          <div class="col-md-2 contenItem"><b>Celular</b></div>
-          <div class="col-md-2 contenItem"><b>Tutoría</b></div>
-        </div>
-        <hr>
-        <div class="conten_personal">
-          <div class="row item-data" *ngFor="let data of listadocentesTutores; let i = index">
-            <div class="col-md-1 contenItem"><b>{{i+1}}</b></div>
-            <div class="col-md-1 contenItem">{{data.id_card_number_staff}}</div>
-            <div class="col-md-3 contenItem">
-              {{convetirMinuscula(data.name_staff)}} {{convetirMinuscula(data.firts_name_staff)}} {{convetirMinuscula(data.last_name_staff)}}
-            </div>
-            <div class="col-md-3 contenItem">{{data.email_staff}}</div>
-            <div class="col-md-2 contenItem"><p>{{data.phone_number_staff}}</p></div>
-            <div class="col-md-2 contenItem">
-              <div *ngIf="data.grade == null; else mos">
-                <button class="btn" (click)="openModalasignacion(data.id_staff)">Asignar</button>
-              </div>
-              <ng-template #mos>
-                <button class="btn" style="background:#039c55;">{{data.grade}} {{this.peticion.gradoSegunName(data.grade)}} {{data.section}}</button>
-              </ng-template>
-            </div>
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="title-tabla">
+        <h4><i class="fas fa-user-tie"></i> Asignación de docentes</h4>
       </div>
+      <div class="contenDocentes">
+        <!-- table-sm -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-sm-1">#</th>
+              <th class="col-sm-1"><i class="fas fa-camera"></i></th>
+              <th class="col-sm-4">Docente</th>
+              <th class="col-sm-1">Celular</th>
+              <th class="col-sm-1">Asignar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of listadocentesTutores; let i = index">
+              <th>{{i+1}}</th>
+              <td (click)="mostrarImgUserSingAgisnar(i)">
+                <img class="user-staff" [src]="data.path_photo_staffs" alt="" srcset="">
+              </td>
+              <td>
+                {{convetirMinuscula(data.name_staff)}}
+                {{convetirMinuscula(data.firts_name_staff)}}
+                {{convetirMinuscula(data.last_name_staff)}}
+              </td>
+              <td>96564178</td>
+              <td>
+                <button class="btn"
+                (click)="openModalasignacion(data.id_staff, data.grade, data.section, data.status_mentor)">
+                  asignar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="title-tabla">
+        <h4>.</h4>
+      </div>
+      <div class="contenDocentes">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="col-sm-1">#</th>
+              <th class="col-sm-1"><i class="fas fa-camera"></i></th>
+              <th class="col-sm-4">Docentes tutores</th>
+              <th class="col-sm-1">Celular</th>
+              <th class="col-sm-1">Asignado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of listadocentesTutoresAsig; let i = index">
+              <th>{{i+1}}</th>
+              <td (click)="mostrarImgUser(i)">
+                <img class="user-staff" [src]="data.path_photo_staffs" alt="" srcset="">
+              </td>
+              <td>
+                {{convetirMinuscula(data.name_staff)}}
+                {{convetirMinuscula(data.firts_name_staff)}}
+                {{convetirMinuscula(data.last_name_staff)}}
+              </td>
+              <td>96564178</td>
+              <td><button class="btn"
+                (click)="openModalasignacion(data.id_staff, data.grade, data.section, data.status_mentor)">
+                    {{data.grade}}
+                    {{peticion.gradoSegunName(data.grade)}}
+                    {{data.section}}
+                  </button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-

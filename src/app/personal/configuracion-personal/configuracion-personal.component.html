@@ -36,22 +36,48 @@
     </div>
     <div class="row">
       <div class="col-md-7 inferior">
-        <div class="contenDatai">
-          <div class="row">
-            <div class="col-md-5 contenItem"><b>Personal</b></div>
-            <div class="col-md-3 contenItem"><b>Cargo</b></div>
-            <div class="col-md-4 contenItem"><b>Estado</b></div>
-          </div>
-          <hr>
-          <div class="conten_personal">
-            <div class="row" *ngFor="let data of listaStaff">
-              <div class="col-md-5 contenItem"><img class="imgUser" src="{{data.path_photo_staffs}}" alt="" srcset="">
-                {{convetirMinuscula(data.name_staff)}} {{convetirMinuscula(data.firts_name_staff)}}
-              </div>
-              <div class="col-md-3 contenItem">{{data.profile_user}}</div>
-              <div class="col-md-3 contenItem"><p class="link-success">{{estadoUser(data.status_staff)}}</p></div>
-            </div>
-          </div>
+        <div class="conten_personal">
+          <!-- <mat-form-field style="width: 50%;" class="example-full-width">
+            <mat-label>Buscar docente</mat-label>
+            <input matInput placeholder="Buscar" [(ngModel)]="nombrePersonal">
+            <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+          </mat-form-field> -->
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">&nbsp;&nbsp;&nbsp;<i class="fas fa-camera"></i></th>
+                <th scope="col">Personal
+                </th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of listaStaff; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td class="col-ms-1"><img class="imgUser" src="{{data.path_photo_staffs}}" alt="" srcset=""></td>
+                <td>
+                  {{convetirMinuscula(data.name_staff)}}
+                  {{convetirMinuscula(data.firts_name_staff)}}
+                  {{convetirMinuscula(data.last_name_staff)}}
+                </td>
+                <td>{{data.profile_user}}</td>
+                <td>
+                  <p (click)="estadoPersonal(data.id_staff, data.email_staff,i,data.status_staff)" style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
+                    <button class="btn" *ngIf="data.status_staff==1; else desa" style="background:#1B386E;">
+                      {{estadoUser(data.status_staff)}}
+                    </button>
+                    <ng-template #desa>
+                      <button class="btn" style="background:#E81123;">
+                        {{estadoUser(data.status_staff)}}
+                      </button>
+                    </ng-template>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="col-md-5 inferior">

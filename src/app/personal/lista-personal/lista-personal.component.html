@@ -1,17 +1,17 @@
 
 <div class="container-fluid central">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
       <h4 class="title-list">Lista de Docentes</h4>
     </div>
     <div class="col-md-4">
       <mat-form-field style="width: 90%;" class="example-full-width">
         <mat-label>Buscar docente</mat-label>
-        <input matInput placeholder="Buscar">
+        <input matInput placeholder="Buscar" [(ngModel)]="nombrePersonal">
         <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
       </mat-form-field>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-2">
 
     </div>
     <div class="col-md-2">
@@ -19,8 +19,8 @@
     </div>
   </div>
 
-  <div class="row" id="contenedorDocentes">
-    <div class="col-md-4" *ngFor="let data of listaPersonal; let i=index">
+  <div class="row contenedorDocentes">
+    <div class="col-md-4" *ngFor="let data of listaPersonal | buscarPersonal:nombrePersonal; let i=index">
       <div class="card">
         <div class="card-body">
           <div class="text-center center-img">

@@ -15,7 +15,8 @@
       <div class="header-table">
         <div class="mt-2">
           <mat-form-field style="width: 130%;" class="example-full-width">
-            <input id="buscador" name="buscador" matInput placeholder="Buscar apoderado">
+            <input id="buscador" name="buscador" maxlength="8" matInput placeholder="Buscar apoderado por DNI"
+            [(ngModel)]="dnibuscar">
             <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
           </mat-form-field>
         </div>
@@ -41,7 +42,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of listaData; let i = index">
+              <tr *ngFor="let data of listaData | buscarApoderado:dnibuscar; let i = index">
                 <th scope="row">{{i+1}}</th>
                 <td><img class="img-student" [src]="data.path_photo_students" alt=""></td>
                 <td>{{this.convetirMinuscula(data.name_student)}} {{this.convetirMinuscula(data.firts_name_student)}}</td>

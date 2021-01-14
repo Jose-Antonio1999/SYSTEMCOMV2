@@ -1,0 +1,60 @@
+.conten-formulario{
+  margin: 0 auto;
+  width: 75% !important;
+}
+.modelInput{
+  width: 100%;
+}
+.label-titulo{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.item-one{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.input-item{
+  width: 100%;
+}
+.header-form{
+  background: #FFF;
+  padding: 10px;
+}
+.select-item{
+  width: 100%;
+}
+.conte-form-dinamic{
+  width: 100%;
+}
+.item-one{
+  background: #FFF;
+  margin-top: 10px;
+  padding: 10px;
+}
+.footer{
+  width: 100%;
+  height: auto;
+}
+.footer p{
+  margin-left: 95%;
+}
+.conten-list-data{
+  height: 80vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.conten-list-data::-webkit-scrollbar{
+  height: 7px;
+  width: 10px;
+}
+.conten-list-data::-webkit-scrollbar-thumb{
+  background: #CCCCCC;
+  cursor: pointer;
+}
+.btn{
+  background: #1B386E;
+  margin-right: 5px;
+  color: #FFF;
+}

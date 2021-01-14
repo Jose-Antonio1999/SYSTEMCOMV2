@@ -2,8 +2,79 @@
   <div>
   </div>
   <div class="row">
-    <div class="col-md-12 inferior">
-      <div class="contenDatai">
+    <div class="col-md-12">
+
+      <div class="contenData">
+        <div class="row">
+          <div class="col-md-3"><h4>Lista de estudiantes</h4></div>
+          <div class="col-md-4">
+            <mat-form-field style="width: 90%;" class="example-full-width">
+              <input id="buscador" name="buscador" matInput placeholder="Nombre del estudiante" [(ngModel)]="nombreEstudiante">
+              <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+            </mat-form-field>
+          </div>
+          <div class="col-md-5 sg">
+            <mat-form-field style="width: 50%;">
+              <mat-label>Grado Estudiante </mat-label>
+              <mat-select [(ngModel)]="grado" (ngModelChange)="verificarParaListar()">
+                <div *ngFor="let data of listaGrado">
+                  <mat-option value="{{data.id_grade}}">{{data.grade}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field style="width: 50%;">
+              <mat-label>Sección Estudiante</mat-label>
+              <mat-select [(ngModel)]="seccion" (ngModelChange)="verificarParaListar()">
+                <div *ngFor="let data of listaSecciones">
+                  <mat-option value="{{data.id_section}}">{{data.section}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><i class="fas fa-camera"></i></th>
+              <th scope="col">DNI estudiante</th>
+              <th scope="col">Estudiantes</th>
+              <th scope="col">Email estudiante</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of listaStudent | buscarEstudiante:nombreEstudiante; let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td><img class="imgUser" src="{{data.path_photo_students}}" alt="" srcset=""></td>
+              <td>{{data.DNI_student}}</td>
+              <td>{{convetirMinuscula(data.name_student)}} {{convetirMinuscula(data.firts_name_student)}} {{convetirMinuscula(data.last_name_student)}}</td>
+              <td>{{data.email_student}}</td>
+              <td>
+                <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
+                  <button class="btn" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
+                    {{estadoUser(data.status_student)}}
+                  </button>
+                  <ng-template #desa>
+                    <button class="btn" style="background:#E81123;">
+                      {{estadoUser(data.status_student)}}
+                    </button>
+                  </ng-template>
+                </p>
+              </td>
+              <td><button class="btn btna" (click)="modalEditar(i)"><i class="fas fa-edit"></i> Editar</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="ultimo==-1" class="alert alert-info" role="alert">
+          Nose encontraron alumnos en el aula para ese grado y sección
+        </div>
+      </div>
+
+      <!-- <div class="contenDatai">
         <div class="row">
           <div class="col-md-3 contenItem"><b>Estudiante</b></div>
           <div class="col-md-1 contenItem"><b>DNI</b></div>
@@ -13,7 +84,8 @@
         <hr>
         <div class="conten_personal">
           <div class="row item-data" *ngFor="let data of listaStudent">
-            <div class="col-md-3 contenItem"><img class="imgUser" src="{{data.path_photo_students}}" alt="" srcset="">
+            <div class="col-md-3 contenItem">
+              <img class="imgUser" src="{{data.path_photo_students}}" alt="" srcset="">
               {{convetirMinuscula(data.name_student)}} {{convetirMinuscula(data.firts_name_student)}} {{convetirMinuscula(data.last_name_student)}}
             </div>
             <div class="col-md-1 contenItem">{{data.DNI_student}}</div>
@@ -21,7 +93,7 @@
             <div class="col-md-5 contenItem"><p class="link-success">{{estadoUser(data.status_staff)}}</p></div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

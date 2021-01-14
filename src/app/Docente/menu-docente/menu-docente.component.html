@@ -1,6 +1,6 @@
 <!--Codigo para animar el menu-->
 <!--(mouseover)="animarMenu()" (mouseleave)="desanimarMenu()"-->
-<div *ngIf="verMenu" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()">
+<div *ngIf="verMenu" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()" (mouseover)="verificarActivo()">
   <div class="colunm" style="color:#FFF">
     <div class="info-user">
       <div class="container content-imguser">
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div class="conten-icon">
+    <div class="conten-icon" [routerLink]="['formulario']">
       <div class="col-md icon">
         <i class="fas fa-poll"></i>
       </div>

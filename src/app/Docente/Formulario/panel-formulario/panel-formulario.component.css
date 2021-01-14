@@ -1,0 +1,26 @@
+.central{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-izquierda{
+  height:100%;
+  width:70px;
+}
+.cuerpo-derecho{
+  z-index: 5;
+  height:100%;
+  width:90%;
+}
+.activo{
+  height: 45px;
+  border-bottom:2px solid #F4792C;
+}
+#contenIcon{
+  display: flex;
+  height: auto;
+  justify-content: center;
+  padding-top: 10px;
+}

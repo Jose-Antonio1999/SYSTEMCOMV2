@@ -119,11 +119,15 @@ export class MenuDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
         (res)=>{
           this.verMenu = true
           this.usercurrent = res[0];
           if (res==null || res=="") {
+            //si se accedio eliminar la data guardada
+            localStorage.removeItem('current')
+            this.peticion.mensaje('Acceso denegado',4500,'center','center')
+            //mas aun redirigir a login
             this.ruta.navigateByUrl('login');
           }
         },
@@ -162,6 +166,19 @@ export class MenuDocenteComponent implements OnInit {
         console.log("cerro")
       }
     });
+  }
+
+  verificarActivo() {
+    this.peticion.verificarActivo(this.usercurrent.email_staff).subscribe(
+      (res)=>{
+        if (res=='0') {
+          this.SignOut();
+        }
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
 
 }

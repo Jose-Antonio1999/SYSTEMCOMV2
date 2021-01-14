@@ -45,6 +45,16 @@ import { ListaTutoresComponent } from './personal/lista-tutores/lista-tutores.co
 import { ModalAsignarTutorComponent } from './modals/modal-asignar-tutor/modal-asignar-tutor.component';
 import { AjustesDocenteComponent } from './Docente/ajustes-docente/ajustes-docente.component';
 import { DataDocenteComponent } from './Docente/Modal-docente/data-docente/data-docente.component';
+import { BuscarApoderadoPipe } from './pipes/buscar-apoderado.pipe';
+import { BuscarEstudiantePipe } from './pipes/buscar-estudiante.pipe';
+import { VistaImagenUserComponent } from './modals/vista-imagen-user/vista-imagen-user.component';
+import { BuscarPersonalPipe } from './pipes/buscar-personal.pipe';
+import { AlertasComponent } from './modals/alertas/alertas.component';
+import { PanelStudentComponent } from './Interface-estudiante/panel-student/panel-student.component';
+import { MenuStudentComponent } from './Interface-estudiante/menu-student/menu-student.component';
+import { EditarEstudianteComponent } from './modals/editar-estudiante/editar-estudiante.component';
+import { PanelFormularioComponent } from './Docente/Formulario/panel-formulario/panel-formulario.component';
+import { CrearFormularioComponent } from './Docente/Formulario/crear-formulario/crear-formulario.component';
 
 @NgModule({
   declarations: [
@@ -76,9 +86,25 @@ import { DataDocenteComponent } from './Docente/Modal-docente/data-docente/data-
     ListaTutoresComponent,
     ModalAsignarTutorComponent,
     AjustesDocenteComponent,
-    DataDocenteComponent
+    DataDocenteComponent,
+    BuscarApoderadoPipe,
+    BuscarEstudiantePipe,
+    VistaImagenUserComponent,
+    BuscarPersonalPipe,
+    AlertasComponent,
+    PanelStudentComponent,
+    MenuStudentComponent,
+    EditarEstudianteComponent,
+    PanelFormularioComponent,
+    CrearFormularioComponent
   ],
-  entryComponents:[ModalAsignarTutorComponent, AjustesDocenteComponent],
+  entryComponents:[
+    ModalAsignarTutorComponent,
+    AjustesDocenteComponent,
+    VistaImagenUserComponent,
+    AlertasComponent,
+    RegistroEstudianteComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
