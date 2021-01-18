@@ -57,6 +57,7 @@ export class AjustesDocenteComponent implements OnInit {
       )
     }
   }
+
   convetirMinuscula(data:string){
     return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }

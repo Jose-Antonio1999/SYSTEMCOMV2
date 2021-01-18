@@ -21,8 +21,8 @@ FROM teacher_tutor INNER JOIN grades on teacher_tutor.id_grade1 = grades.id_grad
             INNER JOIN section ON section.id_section = students.id_section1
             INNER JOIN photos_students ON photos_students.id_student2 = students.id_student
             INNER JOIN parents ON students.id_parent1 = parents.id_parent
-            WHERE teacher_tutor.id_staff2 = '76' AND students.status_student = '1' AND grades.grade = '3'
-            AND section.section = 'B' and teacher_tutor.status_mentor = '1'";
+            WHERE teacher_tutor.id_staff2 = '$idTutor' AND students.status_student = '1' AND grades.grade = '$grado'
+            AND section.section = '$seccion' and teacher_tutor.status_mentor = '1'";
 
   $query = mysqli_query($conexion,$sql);
 

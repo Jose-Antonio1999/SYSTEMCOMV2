@@ -15,12 +15,17 @@
   width:90%;
 }
 .activo{
-  height: 45px;
+  height: 43px;
   border-bottom:2px solid #F4792C;
 }
 #contenIcon{
   display: flex;
-  height: auto;
+  height: 40px;
   justify-content: center;
   padding-top: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.row{
+  height: 43px !important;
 }

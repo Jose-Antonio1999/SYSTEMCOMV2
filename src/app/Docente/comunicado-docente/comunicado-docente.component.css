@@ -1,0 +1,114 @@
+
+.central{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.row{
+  height:60px !important;
+  margin:0 auto !important;
+}
+.menu-izquierda{
+  height:100%;
+  width:80px;
+}
+.cuerpo-derecho{
+  z-index: 100;
+  height:100%;
+  width:100%;
+  background-color:#E7E6E8;
+}
+.input{
+  width: 100%;
+}
+.title{
+  height: 50px;
+  width: 100%;
+  padding-top: 15px;
+}
+.titleV{
+  height: 50px;
+  width: 100%;
+  padding-top: 15px;
+}
+h2{
+  font-size: 25px;
+}
+.contenform{
+  height: 88%;
+}
+.inputFile{
+  border: none;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+.contenComunicado{
+  padding: 5px;
+}
+.contenImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px;
+}
+.contenMessage{
+  padding: 10px
+}
+.titleComunicado{
+  margin-top: -15px;
+}
+.inputOption{
+  width: 50%;
+}
+/*codigo para personalizar el choose file*/
+.letterFile{
+  background:#1B386E;
+  height:36px;
+  width:164px;
+  z-index: 10;
+  margin-top: -37px;
+  position: absolute;
+  border-radius: 3px 0px 0px 3px;
+}
+.btn{
+  border:none;
+  color: #FFF;
+  width: 120px;
+  margin-top:5px;
+  margin-right: 4px;
+  background-color: #1B386E !important;
+}
+.custom-input-file p{
+  color:#FFF;
+  display: flex;
+  padding-top: 6px;
+  justify-content: center;
+  align-content: center;
+}
+.conteFile {
+  margin-top:15px;
+}
+.ContenComunicado{
+  background-color: #FFF;
+  height:370px;
+}
+.contenImg{
+  display: flex;
+  justify-content: center;
+}
+.imgPass{
+  height: 120px;
+  width: 120px;
+}
+.btnSavePass{
+  margin-top: -4px;
+  font-size:12px;
+  width: 100px;
+}
+.nonecordar{
+  width: 140px;
+}
+.conteHelp{
+  height: 220px !important;
+}

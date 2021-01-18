@@ -9,7 +9,7 @@ import { PeticionService } from 'src/app/service/peticion.service';
 import { environment } from 'src/environments/environment';
 import { catchError, retry } from 'rxjs/internal/operators';
 import { StorageService } from 'src/app/service/storage.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 //interface para guardar el password
 interface savePass {
   passw:String
@@ -62,14 +62,14 @@ export class PanelComunicadoComponent implements OnInit {
     private ruta:Router,
     private servicestorage:StorageService,
     private peticion:PeticionService,
-    private storage: AngularFireStorage) {
+    private storage: AngularFireStorage,
+    private rutaActiva: ActivatedRoute) {
 
     this.crearFomulario();
     this.Grados();
     this.Secciones();
     this.agregarListaDestinos();
     this.usuarioCurrent();
-
   }
 
   ngOnInit(): void {

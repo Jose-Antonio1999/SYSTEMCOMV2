@@ -5,7 +5,7 @@ require_once("../conexion/conexion.php");
 $email = file_get_contents("php://input");
 
 $sql_consulta_photo = "SELECT id_staff,id_card_number_staff,name_staff,firts_name_staff,last_name_staff,
-                              email_staff,phone_number_staff,path_photo_staffs, profile_user, grade, section FROM staff_photos
+                              email_staff,phone_number_staff,path_photo_staffs, profile_user,id_teacher_tutor, grade, section FROM staff_photos
                               LEFT JOIN staffs on staff_photos.id_staff1=staffs.id_staff
                               LEFT JOIN profile_users ON profile_users.id_profile_user = staffs.id_profile_staff1
                               LEFT JOIN teacher_tutor ON staffs.id_staff = teacher_tutor.id_staff2
@@ -28,6 +28,7 @@ while ($data = mysqli_fetch_array($ejecucion_conuslta)) {
     $lista[$i]['phone_number_staff'] = $data['phone_number_staff'];
     $lista[$i]['path_photo_staffs'] = $data['path_photo_staffs'];
     $lista[$i]['profile_user'] = $data['profile_user'];
+    $lista[$i]['id_teacher_tutor'] = $data['id_teacher_tutor'];
     $lista[$i]['grade'] = $data['grade'];
     $lista[$i]['section'] = $data['section'];
     $i++;

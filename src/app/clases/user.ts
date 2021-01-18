@@ -7,6 +7,7 @@ export class userCurrent {
   email_staff
   phone_number_staff
   path_photo_staffs
+  id_teacher_tutor
   grade
   section
 
@@ -19,6 +20,7 @@ export class userCurrent {
     this.email_staff = this.email_staff
     this.phone_number_staff = this.phone_number_staff
     this.path_photo_staffs = this.path_photo_staffs
+    this.id_teacher_tutor = this.id_teacher_tutor
     this.grade = this.grade
     this.section = this.section
   }

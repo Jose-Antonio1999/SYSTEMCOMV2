@@ -11,6 +11,7 @@ import { catchError, retry } from 'rxjs/internal/operators';
 import { StorageService } from 'src/app/service/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AjustesDocenteComponent } from '../ajustes-docente/ajustes-docente.component';
+import { VistaImagenUserComponent } from 'src/app/modals/vista-imagen-user/vista-imagen-user.component';
 
 @Component({
   selector: 'app-menu-docente',
@@ -179,6 +180,21 @@ export class MenuDocenteComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  vistaImgPerfil(){
+    const data = {
+      'photo': this.usercurrent.path_photo_staffs,
+      'nombre': this.usercurrent.name_staff,
+      'apellidoP': this.usercurrent.firts_name_staff,
+      'apellidoM': this.usercurrent.last_name_staff
+    };
+    const dialogRef  = this.dialog.open(VistaImagenUserComponent,{data:data});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result==true) {
+        console.log("cerro")
+      }
+    });
   }
 
 }

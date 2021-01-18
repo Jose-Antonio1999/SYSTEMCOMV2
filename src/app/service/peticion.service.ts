@@ -5,6 +5,7 @@ import { Profile } from '../clases/Profile'
 import { ConsultaDNI } from '../clases/API'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Staff } from '../clases/staff';
+import { Area } from '../clases/Area';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,12 @@ export class PeticionService {
   listaDataStudent(data:any):Observable<Staff>{
     return this.http.post<Staff>(this.URLListar+"dataEstudent.php",JSON.stringify(data));
   }
+  listaArea():Observable<any>{
+    return this.http.get<any>(this.URLListar+"listarAreaTutoria.php");
+  }
+  listaTipoPregunta():Observable<any>{
+    return this.http.get<any>(this.URLListar+"listarTipoPregunta.php");
+  }
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
   }
@@ -119,6 +126,12 @@ export class PeticionService {
   enviarComunicado(data:any):Observable<any>{
     return this.http.post<any>(this.URLenvio+"envioComunicado.php",JSON.stringify(data));
   }
+  enviarComunicadoDocente(data:any):Observable<any>{
+    return this.http.post<any>(this.URLenvio+"envioComunicadoDocente.php",JSON.stringify(data));
+  }
+  enviarFormulario(data:any):Observable<any>{
+    return this.http.post<any>(this.URLenvio+"envioFormulario.php",JSON.stringify(data));
+  }
 
   //autocompletado de dato
   APIdni(dni:String):Observable<ConsultaDNI>{
@@ -147,6 +160,24 @@ export class PeticionService {
       case 4: resul = 'to'
         break;
       case 5: resul = 'to'
+        break;
+    }
+  return resul
+  }
+  idSeccion(seccion:any):string{
+    let resul
+    switch (seccion) {
+      case 'A': resul = '1'
+        break;
+      case 'B': resul = '2'
+        break;
+      case 'C': resul = '3'
+        break;
+      case 'D': resul = '4'
+        break;
+      case 'E': resul = '5'
+        break;
+      case 'F': resul = '6'
         break;
     }
   return resul

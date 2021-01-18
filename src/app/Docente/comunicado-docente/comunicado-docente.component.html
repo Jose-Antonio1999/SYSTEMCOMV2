@@ -1,1 +1,209 @@
-<p>comunicado-docente works!</p>
+<div class="central">
+  <div class="menu-izquierda">
+    <!-- <app-menu></app-menu> -->
+  </div>
+  <div class="cuerpo-derecho">
+
+    <div class="row contenform">
+      <div class="row centralHead">
+      <div class="col-md-6"><div class="title">
+        <h2><i class="far fa-envelope"></i>
+        Comunicado a alumnos del {{grado}}
+        {{tipogrado}}
+        {{seccion}}
+      </h2></div></div>
+      <div class="col-md-4"><div class="titleV"><h2><i class="fas fa-pager"></i> Datos</h2></div></div>
+      <div class="col-md-2">.</div>
+    </div>
+
+    <form [formGroup]="formulalrioComunicado">
+      <div class="row">
+
+        <div class="col-md-6">
+            <!--input usuario por defecto-->
+            <div class="form-group" *ngIf="false">
+              <mat-form-field class="input">
+                <mat-label>Email</mat-label>
+                <input matInput  formControlName="origen">
+              </mat-form-field>
+            </div>
+
+            <mat-form-field style="width: 100%;">
+              <mat-label>Comunicado para</mat-label>
+              <mat-select formControlName="destinoGrupal">
+                <div *ngFor="let data of listaDestinos; let i=index">
+                  <mat-option value="{{i}}" (click)="opcion(i)">{{data}}</mat-option>
+                </div>
+              </mat-select>
+            </mat-form-field>
+
+            <div *ngIf="false">
+              <mat-form-field class="inputOption">
+                <mat-label>Grado </mat-label>
+                <mat-select formControlName="grado">
+                  <div *ngFor="let data of listaGrado">
+                    <mat-option value="{{data.id_grade}}">{{data.grade}}</mat-option>
+                  </div>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="inputOption">
+                <mat-label>Sección</mat-label>
+                <mat-select formControlName="seccion">
+                  <div *ngFor="let data of listaSecciones">
+                    <mat-option value="{{data.id_section}}">{{data.section}}</mat-option>
+                  </div>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group" *ngIf="enviaIndividual">
+              <mat-form-field class="input">
+                <mat-label>Email</mat-label>
+                <input matInput  formControlName="emaildestino" autocomplete="off">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="input">
+                <mat-label>Asunto</mat-label>
+                <input matInput  formControlName="asunto">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field class="input">
+                <mat-label>Tipo Comunicado</mat-label>
+                <input  matInput autocomplete="off"  formControlName="tipo">
+              </mat-form-field>
+            </div>
+
+            <div class="form-group conteFile">
+              <div class="custom-input-file">
+                <input type="file" class="form-control" accept="application/pdf,image/*" formControlName="archivoAdjunto" (change)="onFile($event)">
+                <p class="letterFile">
+                  <span *ngIf="barraCarga; else letra">
+                    {{porcentajeSubidaFoto}}%
+                  </span>
+                  <ng-template #letra>Adjuntar archivo</ng-template>
+                </p>
+              </div>
+            </div>
+
+            <div *ngIf="campoPass" class="form-group">
+              <mat-form-field class="input">
+                <mat-label>Contraseña de su cuenta de Gmail registrada</mat-label>
+                <input #passw matInput autocomplete="off" type="password" formControlName="pass" data-bs-toggle="modal" data-bs-target="#modalpass">
+                <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons">visibility</span></mat-icon>
+                <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons">visibility_off</span></mat-icon>
+              </mat-form-field>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+          <!--Codigo de de editor-->
+          <ngx-wig [content]="text1" formControlName="cuerpo" (ngModelChange)="verificarLog()"></ngx-wig>
+
+          <div style="float:right;">
+            <mat-hint align="end">{{this.tamanioTexto}}/1800</mat-hint>
+          </div>
+
+          <div class="form-inline mt-2">
+            <button type="button" class="btn" (click)="enviar()" [disabled]="this.formulalrioComunicado.invalid || verCargaPhoto==true">
+              <i class="fas fa-paper-plane"></i>
+              Enviar <div *ngIf="vistaSpinner" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>
+            </button>
+            <button type="button" class="btn" (click)="cancelarEnvio()">Cancelar</button>
+            <button type="button" class="btn" (click)="bo()"><i class="fas fa-save"></i> Guardar</button>
+            <button type="button" class="btn" data-dismiss="modal"
+                    (click)="insertarHTML()" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop" *ngIf="this.formulalrioComunicado.valid"
+                    >Vista previa</button>
+          </div>
+
+        </div>
+
+      </div>
+    </form>
+
+    </div>
+
+</div>
+
+
+<!--Codigo de ventana modal-->
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Vista previa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div style="height: auto">
+        <div class="comunicado" style="margin: 0 auto; height:auto; margin-top: 10px;">
+
+          <div style="width:85%; margin: 0 auto; margin-bottom: 5px; height:5px; background:#1B386E"></div>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <img style=" width: 70%; margin: 1.5% auto; text-align: left" src="https://i.postimg.cc/ZKJ9xQH3/belen3.png">
+            </div>
+            <div style="width:85%; margin: 0 auto; justify-content: center;">
+              <h2 style="display: flex; justify-content: center; align-content: center; margin: 10px;">
+                {{this.formulalrioComunicado.value.asunto}}
+              </h2>
+            </div>
+
+            <div style="width:80%; height:auto;
+            margin: 0 auto; text-align:justify;
+            background-color: rgb(255,255,255,0.8);" #vistaPrevia>
+            </div>
+          <div style="width:85%; margin: 0 auto; margin-bottom: 20px; margin-top: 50px; height:60px; background:#1B386E"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--modal para administrar password-->
+<div class="modal fade" id="modalpass" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel"><i class="fas fa-laugh"></i> Hola  te podemos ayudar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body conteHelp">
+        <div class="container row">
+          <div class="col-md-9">
+            <small>
+              Para el envió de comunicado es necesario escribir la contraseña
+              de su cuenta <b>{{this.userEmail}}</b> con el cual se enviará.
+              <b>¿podemos recordartelo?</b>
+            </small>
+            <div class="form-group">
+              <form [formGroup]="formularioHelp">
+                <mat-form-field class="input">
+                  <mat-label>Escribir password</mat-label>
+                  <input #recorpassw  matInput autocomplete="on" type="password" formControlName="passwo" >
+                  <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons">visibility</span></mat-icon>
+                  <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons">visibility_off</span></mat-icon>
+                </mat-form-field>
+              </form>
+            </div>
+            <div>
+              <button type="button" class="btn btnSavePass" (click)="savePassw()" data-bs-dismiss="modal">Guardar</button>
+              <button type="button" class="btn btnSavePass nonecordar" (click)="noMostrarMensaje()" data-bs-dismiss="modal">No mostrar mensaje</button>
+            </div>
+
+          </div>
+          <div class="col-md-3 contenImg">
+            <img class="imgPass" src="../../../assets/passwordSave.svg" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

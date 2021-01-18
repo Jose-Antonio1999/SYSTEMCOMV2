@@ -45,7 +45,7 @@ if(isset($data)){
         //encryptar password
         $pass_new = md5($dni);
         //insertar a la tabla usuarios
-        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo','$pass_new','habilitado')";
+        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo','$pass_new','1')";
         $sql_insert_user = mysqli_query($conexion,$insert_user);
 
         if(!$sql_insert_user) {

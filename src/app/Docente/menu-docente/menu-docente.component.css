@@ -48,4 +48,5 @@
 .content-imguser{
   display:flex;
   justify-content:center;
+  cursor: pointer;
 }

@@ -1,6 +1,6 @@
 .conten-formulario{
   margin: 0 auto;
-  width: 75% !important;
+  width: 80% !important;
 }
 .modelInput{
   width: 100%;
@@ -8,6 +8,9 @@
 .label-titulo{
   font-size: 20px;
   margin-bottom: 10px;
+}
+.title-form{
+  font-size: 28px;
 }
 .item-one{
   display: flex;
@@ -20,6 +23,8 @@
 .header-form{
   background: #FFF;
   padding: 10px;
+  border-top: 10px solid #1B386E;
+  border-radius: 10px;
 }
 .select-item{
   width: 100%;
@@ -31,20 +36,20 @@
   background: #FFF;
   margin-top: 10px;
   padding: 10px;
+  border-radius: 10px;
 }
 .footer{
   width: 100%;
   height: auto;
 }
 .footer p{
-  margin-left: 95%;
+  margin-left: 93%;
 }
 .conten-list-data{
-  height: 80vh;
+  height: 85vh;
   overflow: hidden;
   overflow-y: scroll;
 }
-
 .conten-list-data::-webkit-scrollbar{
   height: 7px;
   width: 10px;
@@ -57,4 +62,13 @@
   background: #1B386E;
   margin-right: 5px;
   color: #FFF;
+}
+.head-img{
+  overflow: hidden;
+}
+.img-head{
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 10px;
+  margin-bottom: 5px;
 }

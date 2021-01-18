@@ -21,7 +21,7 @@
           </mat-form-field>
         </div>
         <div>
-          <div class="conten-envio-general"  [routerLink]="['../redactar-comunicado']">
+          <div class="conten-envio-general" (click)="comunicado()"  [routerLink]="['../redactar-comunicado']">
             <span class="material-icons">add_circle_outline</span> &nbsp; Comunicado
           </div>
         </div>
@@ -36,9 +36,9 @@
                 <th scope="col">Estudiante</th>
                 <th scope="col">DNI a.</th>
                 <th scope="col">Apoderado</th>
-                <th scope="col">Email</th>
+                <th scope="col">Email apoderado</th>
                 <th scope="col">Celular</th>
-                <th scope="col">enviar comunicado</th>
+                <th scope="col">enviar</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                 <td>{{this.convetirMinuscula(data.name_parent)}} {{this.convetirMinuscula(data.firts_name_parent)}} {{this.convetirMinuscula(data.last_name_parent)}}</td>
                 <td>{{data.email_parent}}</td>
                 <td>{{data.phone_number_parent}}</td>
-                <td><button class="btn" [routerLink]="['../redactar-comunicado']"><i class="fas fa-pen-square"></i> comunicado</button></td>
+                <td><button (click)="comunicadoEspecifico(data.email_parent)" class="btn" [routerLink]="['../redactar-comunicado']"><i class="fas fa-pen-square"></i> comunicado</button></td>
               </tr>
             </tbody>
           </table>

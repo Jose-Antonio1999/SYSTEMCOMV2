@@ -1,12 +1,15 @@
-<div class="container">
+<div class="conten-card">
   <div class="text-center">
+    <p class="text-center"><i class="fas fa-camera"></i></p>
     <img [src]="data.photo" alt="" srcset="">
   </div>
-  <div class="text-center">
-    <h4 class="mt-2">
+  <div>
+    <h4 class="mt-2 info">
+      <p class="name-staff">
       {{convetirMinuscula(data.nombre)}}
       {{convetirMinuscula(data.apellidoP)}}
       {{convetirMinuscula(data.apellidoM)}}
+      </p>
     </h4>
   </div>
 </div>

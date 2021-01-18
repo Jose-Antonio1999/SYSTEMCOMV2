@@ -75,4 +75,24 @@ export class ListaApoderadosDocenteComponent implements OnInit {
     console.log(this.dnibuscar)
   }
 
+  comunicado(){
+    const data = {
+      'opcion':1,
+      'grado':this.usercurrent.grade,
+      'secion':this.usercurrent.section,
+      'emailDocente': this.usercurrent.email_staff,
+      'data':''};
+    localStorage.setItem('comunicado',this.storage.encrypt(data));
+  }
+  comunicadoEspecifico(correo:String){
+    const data = {
+      'opcion':0,
+      'grado':this.usercurrent.grade,
+      'secion':this.usercurrent.section,
+      'emailDocente': this.usercurrent.email_staff,
+      'data':correo
+    };
+    localStorage.setItem('comunicado',this.storage.encrypt(data));
+  }
+
 }

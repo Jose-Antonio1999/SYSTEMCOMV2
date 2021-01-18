@@ -34,7 +34,7 @@ const routes: Routes = [
     children:[
       {path:"lista-estudiantes", component: ListaEstudiantesDocenteComponent},
       {path:"lista-apoderados", component: ListaApoderadosDocenteComponent},
-      {path:"redactar-comunicado", component: PanelComunicadoComponent},
+      {path:"redactar-comunicado", component: ComunicadoDocenteComponent},
       {path:"ajustes-docente", component:AjustesDocenteComponent},
       {path:"formulario", component:PanelFormularioComponent,
         children:[

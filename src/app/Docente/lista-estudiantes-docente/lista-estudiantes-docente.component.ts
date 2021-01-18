@@ -72,5 +72,14 @@ export class ListaEstudiantesDocenteComponent implements OnInit {
   convetirMinuscula(data:string){
     return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }
-
+  comunicadoEspecifico(correo:String){
+    const data = {
+      'opcion':0,
+      'grado':this.usercurrent.grade,
+      'secion':this.usercurrent.section,
+      'emailDocente': this.usercurrent.email_staff,
+      'data':correo
+    };
+    localStorage.setItem('comunicado',this.storage.encrypt(data));
+  }
 }

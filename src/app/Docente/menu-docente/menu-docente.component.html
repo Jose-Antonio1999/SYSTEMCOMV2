@@ -3,7 +3,7 @@
 <div *ngIf="verMenu" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()" (mouseover)="verificarActivo()">
   <div class="colunm" style="color:#FFF">
     <div class="info-user">
-      <div class="container content-imguser">
+      <div class="container content-imguser" (click)="vistaImgPerfil()">
         <img   [src]="this.usercurrent.path_photo_staffs"  alt="" class="text-center img-user">
       </div>
       <p class="text-center mt-1">{{this.recortarNombre(this.convetirMinuscula(this.usercurrent.name_staff))}}</p>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['formulario']">
+    <div class="conten-icon" [routerLink]="['formulario/crear-formulario']">
       <div class="col-md icon">
         <i class="fas fa-poll"></i>
       </div>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" (click)="openModalData()">
+    <div class="conten-icon" [routerLink]="['ajustes-docente']">
       <div class="col-md icon">
         <i class="fas fa-user-cog"></i>
       </div>

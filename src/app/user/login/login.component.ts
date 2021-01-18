@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
           if(res==0 || res =="0"){
             this.aviso = true
             this.mensaje = "Usuario o Contraseña incorrectas"
-
+            console.log(res)
             setTimeout(() => {
               this.aviso = false
             }, 2000);

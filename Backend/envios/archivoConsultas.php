@@ -102,3 +102,28 @@ function emailsGradoSeccion($grado,$seccion){
   return $lista_email_gs;
 }
 
+//consulta de los emails de los alumnos de un grado y seccion en especifico
+function emailsAlumnosGradoSeccion($grado,$seccion){
+  //instanciamos la conexion de manera global
+  global $conexion;
+  //consulta de email de los padres en general
+  $sql_consulta_GS = "SELECT email_student FROM students
+                            WHERE status_student = 1 and id_grade2 = '$grado' and id_section1 = '$seccion'";
+  $sql_ejecucion = mysqli_query($conexion,$sql_consulta_GS);
+  //verifcar si se ejecuto la consulta de manera correcta
+  if (!$sql_ejecucion) {
+    echo json_encode("ERROR DE CONSULTA");
+  } else {
+    //mostrar los datos si la consulta se hizo de manera correcta
+    $lista_email_gs = [];
+    $i = 0;
+    //recorrer los datos devueltos
+    while($fila = mysqli_fetch_array($sql_ejecucion)) {
+      $lista_email_gs[$i]['email_student'] = $fila['email_student'];
+      $i++;
+    }
+
+  }
+  return $lista_email_gs;
+}
+

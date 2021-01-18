@@ -1,3 +1,25 @@
+<div class="conten-general">
+  <div class="content-img">
+    <img class="img-head" src="../../../assets/Head/image-head2.jpg" alt="" srcset="">
+  </div>
+  <div class="info-user-staff">
+    <div class="data-info-user">
+      <div class="name-user">
+        <h5><b>{{convetirMinuscula(usercurrent.name_staff)}} {{convetirMinuscula(usercurrent.firts_name_staff)}} {{convetirMinuscula(usercurrent.last_name_staff)}}</b></h5>
+        <i class="fas fa-chalkboard-teacher"></i> Docente
+      </div>
+      <div class="other-data">
+        <h5><b><i class="fas fa-address-card"></i></b> {{this.usercurrent.id_card_number_staff}}</h5>
+        <h5><b><i class="fas fa-envelope"></i></b> {{this.usercurrent.email_staff}}</h5>
+        <h5><b><i class="fas fa-mobile"></i></b> {{this.usercurrent.phone_number_staff}}</h5>
+      </div>
+    </div>
+    <div class="conten-img-user">
+      <img class="img-user" [src]="usercurrent.path_photo_staffs" alt="" srcset="">
+    </div>
+  </div>
+</div>
+<!--
 <div class="container" *ngIf="cargarInterface">
   <div class="more-info" (click)="opcion()">
     <span class="material-icons">add_circle</span> Más
@@ -47,7 +69,7 @@
                         <div *ngIf="crearFormulario.controls['dni'].errors.required">
                           <small>Complete el campo dni</small>
                         </div>
-                      </div> -->
+                      </div>
                     </div>
 
                     <div class="form-group">
@@ -63,7 +85,7 @@
                         <div *ngIf="crearFormulario.controls['nombre'].errors.required">
                           <small>Complete el campo nombres</small>
                         </div>
-                      </div> -->
+                      </div>
                     </div>
 
                     <div>
@@ -78,7 +100,7 @@
                         <div *ngIf="crearFormulario.controls['apellidoP'].errors.required">
                           <small>Complete el campo apellidos</small>
                         </div>
-                      </div> -->
+                      </div>
                     </div>
 
                   </div>
@@ -97,7 +119,7 @@
                             <div *ngIf="crearFormulario.controls['apellidoM'].errors.required">
                               <small>Complete el campo apellidos</small>
                             </div>
-                          </div> -->
+                          </div>
                         </div>
                     </div>
 
@@ -182,7 +204,7 @@
                 <div *ngIf="formularioEditar.controls['email'].errors.required">
                   <small>Complete el campo password</small>
                 </div>
-              </div> -->
+              </div>
               <mat-form-field class="modelInput">
                 <mat-label>Confirmar contraseña</mat-label>
                 <input matInput autocomplete="off" type="password">
@@ -195,7 +217,7 @@
                 <div *ngIf="formularioEditar.controls['email'].errors.required">
                   <small>Complete el campo password</small>
                 </div>
-              </div> -->
+              </div>
             </div>
             <div class="mt-2 mb-2">
               <mat-dialog-actions align="end">
@@ -211,3 +233,4 @@
   </div>
 </div>
 
+-->

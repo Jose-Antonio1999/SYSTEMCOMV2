@@ -36,7 +36,7 @@
                   </div>
                   <div style="font-size: 15px;"><i id="icon" class="fas fa-mobile-alt"></i> {{data.phone_number_parent}}</div>
                   <div class="mt-3 conten-button text-center">
-                    <button  class="btn" [routerLink]="['../redactar-comunicado']"><i class="fas fa-pen-square"></i> mensaje</button>
+                    <button (click)="comunicadoEspecifico(data.email_student)"  class="btn" [routerLink]="['../redactar-comunicado']"><i class="fas fa-pen-square"></i> mensaje</button>
                   </div>
                 </div>
               </div>
