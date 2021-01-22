@@ -4,31 +4,158 @@
   </div>
   <div *ngIf="cargarInterface" class="cuerpo-derecho">
     <div class="row">
-      <div class="col-md-5 superior">
+      <div class="col-md-6 superior">
         <div class="contenData">
           <div class="conten_user">
-            <div class="info_user">
-              <div class="text-center mb-1"><b>Perfil</b></div>
-              <div>
-                <img class="img_perfil" [src]="usercurrent.path_photo_staffs" alt="" srcset="">
-              </div>
-              <div>
-                {{usercurrent.name_staff}} {{usercurrent.firts_name_staff}} {{usercurrent.last_name_staff}}
-              </div>
+            <div class="col-md-3" class="img-conten">
+              <img class="img_perfil" [src]="usercurrent.path_photo_staffs" alt="" srcset="">
             </div>
-            <div class="extra-data">
-              <ul class="listaData">
-                <li><b>DNI:</b> {{usercurrent.id_card_number_staff}}</li>
-                <li><b>Cargo:</b> {{usercurrent.profile_user}}</li>
-                <li><b>Email: </b> {{usercurrent.email_staff}}</li>
-                <li><b>Celular:</b> {{usercurrent.phone_number_staff}}</li>
-                <li><a class="btn" (click)="cargarData()" data-bs-toggle="modal" data-bs-target="#dataPersonal">Editar información</a></li>
-              </ul>
+            <div class="col-md-9">
+              <div class="m-3">
+                <div [ngSwitch]="opsw">
+                  <div *ngSwitchCase="'vista'">
+                    <p class="text-center"><b>{{usercurrent.name_staff}} {{usercurrent.firts_name_staff}} {{usercurrent.last_name_staff}}</b></p>
+                    <ul class="listaData">
+                      <li><b><i class="fas fa-address-card"></i></b> {{usercurrent.id_card_number_staff}}</li>
+                      <li><b><i class="fas fa-user-circle"></i></b> {{usercurrent.profile_user}}</li>
+                      <li><b><i class="fas fa-envelope"></i></b> {{usercurrent.email_staff}}</li>
+                      <li><b><i class="fas fa-mobile-alt"></i></b> {{usercurrent.phone_number_staff}}</li>
+                      <li>
+                        <a class="btn btn-sm" (click)="swVista('data')">Editar datos</a>
+                        <a class="btn btn-sm" (click)="swVista('pass')">Cambiar contraseña</a>
+                        <a class="btn btn-sm" (click)="swVista('photo')">Cambiar foto</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div *ngSwitchCase="'data'">
+                    <div class="form-social">
+                      <form [formGroup]="crearFormulariosocial">
+                        <div class="form-group">
+                          <mat-form-field class="modelInput">
+                            <mat-label>Correo</mat-label>
+                            <input type="email"  matInput autocomplete="off" formControlName="email">
+                              <mat-icon matSuffix>mail</mat-icon>
+                          </mat-form-field>
+                          <div style="margin-top: -13px; color: red;"
+                          *ngIf="crearFormulariosocial.controls['email'].dirty && crearFormulariosocial.controls['email'].invalid">
+                            <div *ngIf="crearFormulariosocial.controls['email'].errors.email">
+                              <small>Correo inválido hasta el momento</small>
+                            </div>
+                            <div *ngIf="crearFormulariosocial.controls['email'].errors.required">
+                              <small>Complete el campo correo</small>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <mat-form-field class="modelInput">
+                            <mat-label>Celular</mat-label>
+                            <input type="tel" matInput autocomplete="off" maxlength="9" formControlName="celular">
+                            <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
+                          </mat-form-field>
+                          <div style="margin-top: -13px; color: red;"
+                          *ngIf="crearFormulariosocial.controls['celular'].dirty && crearFormulariosocial.controls['celular'].invalid">
+                            <div *ngIf="crearFormulariosocial.controls['celular'].errors.pattern">
+                              <small>Por favor digite el número de celular</small>
+                            </div>
+                            <div *ngIf="!crearFormulariosocial.controls['celular'].errors.minLength
+                                      && !crearFormulariosocial.controls['celular'].errors.required
+                                      && !crearFormulariosocial.controls['celular'].errors.pattern">
+                                <small>El número celular contiene 9 dígitos</small>
+                            </div>
+                            <div *ngIf="crearFormulariosocial.controls['celular'].errors.required">
+                              <small>Complete el campo celular</small>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-1 mb-2">
+                          <mat-dialog-actions align="end">
+                            <button type="submit" class="btn" mat-button (click)="guardarSocialData()"
+                            [disabled]="crearFormulariosocial.invalid">Guardar cambios</button>
+                            <button type="reset" class="btn" mat-button (click)="swVista('vista')" >Cancelar</button>
+                          </mat-dialog-actions>
+                        </div>
+
+                      </form>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'pass'">
+                    <div class="conten-pass">
+                      <form [formGroup]="crearFormulariopass">
+                        <div class="form-group">
+                          <mat-form-field class="modelInput">
+                            <mat-label>Digite su nueva contraseña</mat-label>
+                            <input #passw type="password" matInput maxlength="15" autocomplete="of" formControlName="pass1">
+                            <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons icon">visibility</span></mat-icon>
+                            <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons icon">visibility_off</span></mat-icon>
+                          </mat-form-field>
+                          <div style="margin-top: -13px; color: red;"
+                          *ngIf="crearFormulariopass.controls['pass1'].dirty && crearFormulariopass.controls['pass1'].invalid">
+                            <div *ngIf="crearFormulariopass.controls['pass1'].errors.pattern">
+                              <small>Digite una contraseña mas segura</small>
+                            </div>
+                            <div *ngIf="crearFormulariopass.controls['pass1'].errors.required">
+                              <small>Complete el campo password</small>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+
+                          <mat-form-field class="modelInput">
+                            <mat-label>Confirmar contraseña</mat-label>
+                            <input matInput autocomplete="off" type="password" maxlength="15" formControlName="pass2">
+                            <mat-icon matSuffix><i class="fas fa-lock"></i></mat-icon>
+                          </mat-form-field>
+
+                          <div style="margin-top: -13px; color: red;"
+                           *ngIf="crearFormulariopass.controls['pass2'].dirty && crearFormulariopass.controls['pass2'].invalid">
+                            <div *ngIf="crearFormulariopass.controls['pass2'].errors.pattern">
+                              <small>Digite una contraseña mas segura</small>
+                            </div>
+                            <div *ngIf="crearFormulariopass.controls['pass2'].errors.required">
+                              <small>Complete el campo password</small>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-2">
+                          <mat-dialog-actions align="end">
+                            <button mat-button (click)="guardarPassword()" class="btn"
+                            [disabled]="crearFormulariopass.invalid">Guardar cambios</button>
+                            <button type="reset" class="btn" mat-button (click)="swVista('vista')" >Cancelar</button>
+                          </mat-dialog-actions>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div *ngSwitchCase="'photo'">
+                    <form [formGroup]="crearFormularioPhoto">
+                      <small class="info-pass">
+                        La foto de perfil se actualizará automáticamente
+                      </small>
+                      <div class="form-group mt-3">
+                        <div class="custom-input-file">
+                          <input  (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
+                          <p class="letterFile">
+                            <span *ngIf="barraCarga; else letra">
+                              {{porcentajeSubidaFoto}}%
+                            </span>
+                            <ng-template #letra>Nueva foto</ng-template>
+                          </p>
+                        </div>
+                      </div>
+                      <button (click)="swVista('vista')" type="button" class="btn btn mt-2">Cancelar</button>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-7 superior">
+      <div class="col-md-6 superior">
         <div class="contenData">
 
         </div>
@@ -51,6 +178,7 @@
                 </th>
                 <th scope="col">Cargo</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Actualizar</th>
               </tr>
             </thead>
             <tbody>
@@ -64,16 +192,21 @@
                 </td>
                 <td>{{data.profile_user}}</td>
                 <td>
-                  <p (click)="estadoPersonal(data.id_staff, data.email_staff,i,data.status_staff)" style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
-                    <button class="btn" *ngIf="data.status_staff==1; else desa" style="background:#1B386E;">
+                  <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
+                    <button (click)="estadoPersonal(data.id_staff, data.email_staff,i,data.status_staff)"  class="btn btn-sm "
+                    *ngIf="data.status_staff==1; else desa" style="background:#1B386E;">
                       {{estadoUser(data.status_staff)}}
                     </button>
                     <ng-template #desa>
-                      <button class="btn" style="background:#E81123;">
+                      <button (click)="estadoPersonal(data.id_staff, data.email_staff,i,data.status_staff)"  class="btn btn-sm "
+                      style="background:#E81123;">
                         {{estadoUser(data.status_staff)}}
                       </button>
                     </ng-template>
                   </p>
+                </td>
+                <td>
+                  <button (click)="modalEditarPersonal(i)" class="btn btn-sm btn-update"><i class="far fa-edit"></i> Actualizar</button>
                 </td>
               </tr>
             </tbody>

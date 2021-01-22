@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="contenData">
+        <div class="row">
+          <div class="col-md-4 texto"><h4>Lista de apoderados en general</h4></div>
+          <div class="col-md-4">
+            <mat-form-field style="width: 90%;" class="example-full-width">
+              <input id="buscador" name="buscador" matInput placeholder="DNI del apoderado" [(ngModel)]="dniPadre">
+              <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">DNI apoderado</th>
+              <th scope="col">Apoderado</th>
+              <th scope="col">Email apoderado</th>
+              <th scope="col">celular</th>
+              <th scope="col">Estudiante</th>
+              <th scope="col">Grado</th>
+              <th scope="col">Sección</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let data of listaStudent; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{data.DNI_parent}}</td>
+              <td>{{Minuscula(data.name_parent)}} {{Minuscula(data.firts_name_parent)}}</td>
+              <td>{{data.email_parent}}</td>
+              <td>{{data.phone_number_parent}}</td>
+              <td>{{Minuscula(data.name_student)}} {{Minuscula(data.firts_name_student)}}</td>
+              <td>{{data.grade}}</td>
+              <td>{{data.section}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+        <div *ngIf="ultimo==-1" class="alert alert-info" role="alert">
+          Nose encontraron alumnos en el aula para ese grado y sección
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

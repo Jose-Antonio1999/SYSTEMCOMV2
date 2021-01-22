@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConsultaDNI } from 'src/app/clases/API';
 import { Grado } from 'src/app/clases/grado';
@@ -53,13 +53,12 @@ export class EditarEstudianteComponent implements OnInit {
     this.crearFormulario = this.formBuilder.group({
       grado:['',Validators.required],
       seccion:['',Validators.required],
-      dni_estudiante:['',[Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],
+      dni_estudiante:[''],
       nombre_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       apellidoP_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       apellidoM_estudiante:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-      photo:['',[Validators.required]],
+      photo:[''],
       correo_estudiante:['',[Validators.required,Validators.email]],
-      id_apoderado:[''],
       dni_apoderado:['',[Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],
       nombre_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       apellidoP_apoderado:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
@@ -94,13 +93,13 @@ export class EditarEstudianteComponent implements OnInit {
 
   onFile(event) {
 
-    let dni = this.crearFormulario.value.dni_estudiante
+    let dni = this.crearFormulario.value.dni_estudiante_2
     let nombre = this.crearFormulario.value.nombre_estudiante
     let email = this.crearFormulario.value.correo_estudiante
 
     if (dni!="" || nombre!="" || email!="") {
         const file = event.target.files[0];
-        const ruta = 'studentPhotos/'+this.crearFormulario.value.dni_estudiante;
+        const ruta = 'studentPhotos/'+this.crearFormulario.value.dni_estudiante_2;
         const ref = this.storage.ref(ruta);
         const task = ref.put(file);
 
@@ -109,6 +108,7 @@ export class EditarEstudianteComponent implements OnInit {
           ref.getDownloadURL().subscribe((imgUrl)=>{
             this.imgURL = imgUrl
             this.verCargaPhoto = true
+            this.peticion.mensaje("Foto de perfil actualizado correctamente",4500,'center','center')
           })
         })
         //observale de la subida del archivo en %
@@ -123,16 +123,15 @@ export class EditarEstudianteComponent implements OnInit {
 
   }
 
-  registrar(){
+  update(){
     //pasar la url de la imagen y registrar
     this.crearFormulario.value.photo = this.imgURL
-    this.peticion.registroEstudiante(this.crearFormulario.value).subscribe(
+    this.peticion.updateStudent(this.crearFormulario.value).subscribe(
       (res)=>{
         //cerrar sesión ni bie se crea el usuario
         this.porcentajeSubidaFoto = 0;
         this.barraCarga = false
-        this.cancelar()
-        this.peticion.mensaje("Estudiante registrado correctamente",3500,'center','center')
+        this.peticion.mensaje("Datos del estudiante actualizados correctamente",3500,'center','center')
         console.log(res)
       },
       (error)=>{
@@ -142,13 +141,8 @@ export class EditarEstudianteComponent implements OnInit {
 
   }
 
-  cancelar(){
-    this.crearFomularioRegistroAlumnado()
-    this.crearFormulario.reset()
-  }
-
-  mostrarMensaje(iconMessaje:any, titleMessaje:any){
-
+  mostrarMensaje(){
+    // this.peticion.mensaje("Los cambios")
   }
 
   llenarDatosApoderadoBD(data:Parent){
@@ -167,8 +161,10 @@ export class EditarEstudianteComponent implements OnInit {
           if (res!='0'){
             this.apoderado = res[0] as Parent
             this.llenarDatosApoderadoBD(this.apoderado)
+            console.log("data BD")
           } else {
             this.APIRENIECApoderado();
+            console.log("data RENIEC")
           }
         },
         (error)=>{
@@ -193,6 +189,9 @@ export class EditarEstudianteComponent implements OnInit {
       this.crearFormulario.controls['apellidoM_apoderado'].setValue(this.data.last_name_parent)
       this.crearFormulario.controls['correo_apoderado'].setValue(this.data.email_parent)
       this.crearFormulario.controls['celular_apoderado'].setValue(this.data.phone_number_parent)
+      //desabilitar el campo original y crear uno nuevo
+      this.crearFormulario.controls.dni_estudiante.disable()
+      this.crearFormulario.addControl('dni_estudiante_2', new FormControl(this.data.DNI_student,[Validators.required]))
   }
 
   verificarAlumnoBD() {
@@ -217,6 +216,7 @@ export class EditarEstudianteComponent implements OnInit {
         )
     }
   }
+
   //conulsta de datos a la RENIEC
   APIRENIECAlumno() {
     if (this.crearFormulario.value.dni_estudiante.length==8) {

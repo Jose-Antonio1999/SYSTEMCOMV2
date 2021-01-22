@@ -1,0 +1,23 @@
+.img-belen{
+  height: 33%;
+  width: 33%;
+  border-radius: 5px;
+
+}
+.texto{
+  z-index: 200;
+  font-family: 'Patua One', cursive;
+  font-size: 32px;
+  padding-top: 50px;
+}
+.cubrir{
+  background:#E7E6E8;
+  opacity: 0.7;
+  z-index: 10;
+  width: 80%;
+  height: 70%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

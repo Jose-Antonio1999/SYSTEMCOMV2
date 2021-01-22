@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { userCurrent } from 'src/app/clases/user';
 import { Usuario } from 'src/app/clases/usuario';
@@ -13,11 +13,16 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./ajustes-docente.component.css']
 })
 export class AjustesDocenteComponent implements OnInit {
+  @ViewChild('passw',{static:false}) passw:ElementRef
+  verPass:boolean = false
 
   dataUser:Usuario
   usercurrent: userCurrent
   cargarInterface:boolean = false
   crearFormulario:FormGroup;
+  crearFormulariosocial:FormGroup;
+  crearFormulariopass:FormGroup;
+  crearFormularioPhoto:FormGroup;
   imgURL:String
   barraCarga:boolean = false
   verCargaPhoto:boolean = false
@@ -30,8 +35,10 @@ export class AjustesDocenteComponent implements OnInit {
     private formbuilder:FormBuilder,
     private storageFire: AngularFireStorage
   ) {
-    this. crearFormularioRegistro();
     this.sesionInciada();
+    this.formularioDatosElectronicos();
+    this.formularioPassword();
+    this.crearformularioFoto();
   }
 
   ngOnInit(): void {
@@ -42,13 +49,15 @@ export class AjustesDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
+      this.peticion.obtenerPerfilCurrent(this.dataUser.DNI).subscribe(
         (res)=>{
-          this.cargarInterface = true
-          this.usercurrent = res[0];
-          this.completarDatos(this.usercurrent)
+
           if (res==null || res=="") {
-            this.ruta.navigateByUrl('login');
+            console.log("no es es tutor")
+          } else {
+            this.cargarInterface = true
+            this.usercurrent = res[0];
+            this.completarDatos(this.usercurrent)
           }
         },
         (error)=>{
@@ -62,45 +71,42 @@ export class AjustesDocenteComponent implements OnInit {
     return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }
 
-  crearFormularioRegistro(){
-    this.crearFormulario = this.formbuilder.group({
-      tipoPersonal:['',Validators.required],
-      dni:['',[Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],
-      nombre:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-      apellidoP:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-      apellidoM:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-      correo:['',[Validators.required,Validators.email]],
-      celular:['',[Validators.required,Validators.minLength(9),Validators.pattern(/^([0-9])*$/)]],
-      photo:['',[Validators.required]]
+  formularioDatosElectronicos(){
+    this.crearFormulariosocial = this.formbuilder.group({
+      email:['',[Validators.required,Validators.email]],
+      celular:['',[Validators.required,Validators.minLength(9),Validators.pattern(/^([0-9])*$/)]]
+    })
+
+  }
+
+  formularioPassword(){
+    this.crearFormulariopass = this.formbuilder.group({
+      pass1:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)]],
+      pass2:['',[Validators.required,Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)]]
+    })
+
+  }
+
+  crearformularioFoto(){
+    this.crearFormularioPhoto = this.formbuilder.group({
+      photo:['',Validators.required]
     })
   }
 
   completarDatos(data:userCurrent) {
-    this.crearFormulario.controls['tipoPersonal'].setValue('30')
-    this.crearFormulario.controls['dni'].setValue(data.id_card_number_staff)
-    this.crearFormulario.controls['nombre'].setValue(data.name_staff)
-    this.crearFormulario.controls['apellidoP'].setValue(data.firts_name_staff)
-    this.crearFormulario.controls['apellidoM'].setValue(data.last_name_staff)
-    this.crearFormulario.controls['correo'].setValue(data.email_staff)
-    this.crearFormulario.controls['celular'].setValue(data.phone_number_staff)
-    //desabilidar campos
-    this.crearFormulario.controls.tipoPersonal.disable()
-    this.crearFormulario.controls.dni.disable()
-    this.crearFormulario.controls.nombre.disable()
-    this.crearFormulario.controls.apellidoP.disable()
-    this.crearFormulario.controls.apellidoM.disable()
+    this.crearFormulariosocial.controls['email'].setValue(data.email_staff)
+    this.crearFormulariosocial.controls['celular'].setValue(data.phone_number_staff)
   }
 
   onFile(event) {
 
-    let dni = this.crearFormulario.value.dni
-    let nombre = this.crearFormulario.value.nombre
-    let correo = this.crearFormulario.value.correo
+    let dni = this.usercurrent.id_card_number_staff
+    this.crearFormularioPhoto.controls.photo.disable()
 
-    if (dni!="" || nombre!="" || correo!="") {
+    if (dni!="") {
 
       const file = event.target.files[0];
-      const ruta = 'staffPhotos/'+this.crearFormulario.value.dni;
+      const ruta = 'staffPhotos/'+dni;
       const ref = this.storageFire.ref(ruta);
       const task = ref.put(file);
 
@@ -109,6 +115,8 @@ export class AjustesDocenteComponent implements OnInit {
           ref.getDownloadURL().subscribe((imgUrl)=>{
           this.imgURL = imgUrl
           this.verCargaPhoto = true
+          this.peticion.mensaje("Foto de perfil cambiada correctamente",4500,'center','center');
+          this.restablecerDatosPhoto()
           })
       })
        //observale de la subida del archivo en %
@@ -117,10 +125,19 @@ export class AjustesDocenteComponent implements OnInit {
           this.porcentajeSubidaFoto = parseInt(porcentaje.toString(),10)
       })
     } else {
-      this.peticion.mensaje("Complete los campos anteriores para subir la foto",3500,'center','center')
-      this.crearFormulario.controls['photo'].setValue('')
+      this.peticion.mensaje("Error al cambiar la foto de perfil",3500,'center','center')
     }
 
+  }
+
+  restablecerDatosPhoto(){
+    this.actualizarData();
+    this.usercurrent.path_photo_staffs = this.imgURL
+    this.crearFormularioPhoto.controls.photo.enable()
+    this.crearFormularioPhoto.controls['photo'].setValue('')
+    this.barraCarga = false
+    this.porcentajeSubidaFoto = 0
+    this.opsw = "vista"
   }
 
   //variable contador
@@ -133,6 +150,74 @@ export class AjustesDocenteComponent implements OnInit {
       this.op = "data-personal"
       this.c = 0
     }
+  }
+
+  opsw:string = "vista"
+  swVista(data:string){
+    this.opsw = data
+  }
+
+  verPassw(){
+    this.passw.nativeElement.type = "text"
+    this.verPass = true
+  }
+  noPassw(){
+    this.passw.nativeElement.type = "password"
+    this.verPass = false
+  }
+
+  guardarSocialData(){
+    //crear un campo antes de enviar comunicaso
+    this.crearFormulariosocial.addControl('id_card_number', new FormControl(this.usercurrent.id_card_number_staff, Validators.required));
+    this.peticion.updateSocialData(this.crearFormulariosocial.value).subscribe(
+      (res)=>{
+        this.peticion.mensaje(res,5000,'center','center')
+        this.opsw ="vista"
+        this.crearFormulariosocial.reset();
+        this.actualizarData();
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
+  }
+
+  guardarPassword(){
+    if(this.crearFormulariopass.value.pass1==this.crearFormulariopass.value.pass2) {
+      //crear un campo antes de enviar comunicaso
+      this.crearFormulariopass.addControl('DNI', new FormControl(this.usercurrent.id_card_number_staff, Validators.required));
+      this.crearFormulariopass.addControl('profile', new FormControl(this.dataUser.profile, Validators.required));
+      this.peticion.updatePassword(this.crearFormulariopass.value).subscribe(
+        (res)=>{
+          console.log(res)
+          this.peticion.mensaje(res,4500,'center','center')
+          this.crearFormulariopass.removeControl('DNI')
+          this.crearFormulariopass.removeControl('profile')
+          this.opsw = "vista"
+          this.crearFormulariopass.reset()
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    } else {
+      this.peticion.mensaje("Las contraseñas no coinciden",4500,'center','center');
+    }
+  }
+
+  actualizarData(){
+    this.peticion.obtenerPerfilCurrent(this.dataUser.DNI).subscribe(
+      (res)=>{
+        if (res==null || res=="") {
+          console.log("no es es tutor")
+        } else {
+          this.usercurrent = res[0];
+        }
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
   }
 
 }

@@ -12,6 +12,7 @@ $i = 0;
 
 while ($fila = mysqli_fetch_array($query)) {
   $lista[$i]['id_staff'] = $fila['id_staff'];
+  $lista[$i]['id_profile_staff1'] = $fila['id_profile_staff1'];
   $lista[$i]['id_card_number_staff'] = $fila['id_card_number_staff'];
   $lista[$i]['name_staff'] = $fila['name_staff'];
   $lista[$i]['firts_name_staff'] = $fila['firts_name_staff'];

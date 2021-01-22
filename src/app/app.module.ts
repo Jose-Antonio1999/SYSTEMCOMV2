@@ -35,7 +35,6 @@ import { PrincipalDocenteComponent } from './panel-control/principal-docente/pri
 import { PruebaComponent } from './prueba/prueba.component';
 import { PanelDocenteComponent } from './Docente/panel-docente/panel-docente.component';
 import { MenuDocenteComponent } from './Docente/menu-docente/menu-docente.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { BandejaSalidaComponent } from './comunicado/bandeja-salida/bandeja-salida.component';
 import { ConfiguracionPersonalComponent } from './personal/configuracion-personal/configuracion-personal.component';
 import { ListaApoderadosDocenteComponent } from './Docente/lista-apoderados-docente/lista-apoderados-docente.component';
@@ -55,6 +54,16 @@ import { MenuStudentComponent } from './Interface-estudiante/menu-student/menu-s
 import { EditarEstudianteComponent } from './modals/editar-estudiante/editar-estudiante.component';
 import { PanelFormularioComponent } from './Docente/Formulario/panel-formulario/panel-formulario.component';
 import { CrearFormularioComponent } from './Docente/Formulario/crear-formulario/crear-formulario.component';
+import { ListaRespuestasComponent } from './Docente/Formulario/lista-respuestas/lista-respuestas.component';
+import { BienvenidaSistemaComponent } from './compartir/bienvenida-sistema/bienvenida-sistema.component';
+import { CarpetaTutoriaComponent } from './Interface-estudiante/tutoria/carpeta-tutoria/carpeta-tutoria.component';
+import { ListaPadresComponent } from './estudiante/lista-padres/lista-padres.component';
+import { MensajeNotutorComponent } from './compartir/mensaje-notutor/mensaje-notutor.component';
+import { EditarPersonalComponent } from './modals/editar-personal/editar-personal.component';
+import { NotFoundPageComponent } from './compartir/not-found-page/not-found-page.component';
+import { PanelTutoriaComponent } from './Interface-estudiante/tutoria/panel-tutoria/panel-tutoria.component';
+import { InfoTutorComponent } from './Interface-estudiante/tutoria/info-tutor/info-tutor.component';
+import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/responer-formulario/responer-formulario.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +86,6 @@ import { CrearFormularioComponent } from './Docente/Formulario/crear-formulario/
     PruebaComponent,
     PanelDocenteComponent,
     MenuDocenteComponent,
-    NotFoundComponent,
     BandejaSalidaComponent,
     ConfiguracionPersonalComponent,
     ListaApoderadosDocenteComponent,
@@ -96,14 +104,25 @@ import { CrearFormularioComponent } from './Docente/Formulario/crear-formulario/
     MenuStudentComponent,
     EditarEstudianteComponent,
     PanelFormularioComponent,
-    CrearFormularioComponent
+    CrearFormularioComponent,
+    ListaRespuestasComponent,
+    BienvenidaSistemaComponent,
+    CarpetaTutoriaComponent,
+    ListaPadresComponent,
+    MensajeNotutorComponent,
+    EditarPersonalComponent,
+    NotFoundPageComponent,
+    PanelTutoriaComponent,
+    InfoTutorComponent,
+    ResponerFormularioComponent
   ],
   entryComponents:[
     ModalAsignarTutorComponent,
     AjustesDocenteComponent,
     VistaImagenUserComponent,
     AlertasComponent,
-    RegistroEstudianteComponent
+    RegistroEstudianteComponent,
+    EditarPersonalComponent
   ],
   imports: [
     BrowserModule,

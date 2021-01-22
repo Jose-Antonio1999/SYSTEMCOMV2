@@ -55,11 +55,13 @@
               <td>{{data.email_student}}</td>
               <td>
                 <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
-                  <button class="btn" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
+                  <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
+                  class="btn" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
                     {{estadoUser(data.status_student)}}
                   </button>
                   <ng-template #desa>
-                    <button class="btn" style="background:#E81123;">
+                    <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
+                    class="btn" style="background:#E81123;">
                       {{estadoUser(data.status_student)}}
                     </button>
                   </ng-template>
@@ -73,27 +75,6 @@
           Nose encontraron alumnos en el aula para ese grado y sección
         </div>
       </div>
-
-      <!-- <div class="contenDatai">
-        <div class="row">
-          <div class="col-md-3 contenItem"><b>Estudiante</b></div>
-          <div class="col-md-1 contenItem"><b>DNI</b></div>
-          <div class="col-md-3 contenItem"><b>Apoderado</b></div>
-          <div class="col-md-5 contenItem"><b>Estado</b></div>
-        </div>
-        <hr>
-        <div class="conten_personal">
-          <div class="row item-data" *ngFor="let data of listaStudent">
-            <div class="col-md-3 contenItem">
-              <img class="imgUser" src="{{data.path_photo_students}}" alt="" srcset="">
-              {{convetirMinuscula(data.name_student)}} {{convetirMinuscula(data.firts_name_student)}} {{convetirMinuscula(data.last_name_student)}}
-            </div>
-            <div class="col-md-1 contenItem">{{data.DNI_student}}</div>
-            <div class="col-md-3 contenItem">{{data.name_parent}} {{data.firts_name_parent}} {{data.last_name_parent}}</div>
-            <div class="col-md-5 contenItem"><p class="link-success">{{estadoUser(data.status_staff)}}</p></div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

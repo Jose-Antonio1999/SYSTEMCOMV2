@@ -64,6 +64,9 @@
 .modal-backdrop{
   display: none !important;
 }
+.call{
+  color: #FFF;
+}
 
 /* .conten-modal{
   background: rgb(0,0,0,0.5);

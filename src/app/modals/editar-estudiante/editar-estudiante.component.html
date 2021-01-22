@@ -32,7 +32,7 @@
         <mat-form-field class="modelInput">
           <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
           <mat-label>Dni estudiante</mat-label>
-          <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8" (ngModelChange)="verificarAlumnoBD()">
+          <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8">
         </mat-form-field>
         <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_estudiante'].dirty && crearFormulario.controls['dni_estudiante'].invalid">
           <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.pattern">
@@ -181,7 +181,8 @@
               <mat-label>Apellido materno</mat-label>
               <input type="text"  matInput autocomplete="off" formControlName="apellidoM_apoderado">
             </mat-form-field>
-            <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['apellidoM_apoderado'].dirty && crearFormulario.controls['apellidoM_apoderado'].invalid">
+            <div style="margin-top: -13px; color: red;"
+              *ngIf="crearFormulario.controls['apellidoM_apoderado'].dirty && crearFormulario.controls['apellidoM_apoderado'].invalid">
               <div *ngIf="crearFormulario.controls['apellidoM_apoderado'].errors.pattern">
                 <small>Apellidos inválidos</small>
               </div>
@@ -198,7 +199,8 @@
           <input type="email"  matInput autocomplete="off" formControlName="correo_apoderado">
             <mat-icon matSuffix>mail</mat-icon>
         </mat-form-field>
-        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['correo_apoderado'].dirty && crearFormulario.controls['correo_apoderado'].invalid">
+        <div style="margin-top: -13px; color: red;"
+          *ngIf="crearFormulario.controls['correo_apoderado'].dirty && crearFormulario.controls['correo_apoderado'].invalid">
           <div *ngIf="crearFormulario.controls['correo_apoderado'].errors.email">
             <small>Correo inválido hasta el momento</small>
           </div>
@@ -212,7 +214,8 @@
           <input matInput formControlName="celular_apoderado" autocomplete="off" maxlength="9">
           <mat-icon matSuffix><span class="material-icons">stay_current_portrait</span></mat-icon>
         </mat-form-field>
-        <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['celular_apoderado'].dirty && crearFormulario.controls['celular_apoderado'].invalid">
+        <div style="margin-top: -13px; color: red;"
+          *ngIf="crearFormulario.controls['celular_apoderado'].dirty && crearFormulario.controls['celular_apoderado'].invalid">
           <div *ngIf="crearFormulario.controls['celular_apoderado'].errors.pattern">
             <small>número de celular inválido</small>
           </div>
@@ -228,8 +231,10 @@
 
 
       <div class="form-inline" id="bottonRegisters">
-        <button type="button" class="btn" (click)="registrar()" [disabled]="crearFormulario.invalid || verCargaPhoto==false">Guargar cambios</button>
-        <button type="button" class="btn" (click)="cancelar()">Cancelar</button>
+        <button type="button" class="btn"
+        [mat-dialog-close]="true"
+        (click)="update()" [disabled]="crearFormulario.invalid">Guargar cambios</button>
+        <button type="button" class="btn" mat-dialog-close >Cancelar</button>
       </div>
 
     </div>

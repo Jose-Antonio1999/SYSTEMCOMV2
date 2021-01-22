@@ -52,17 +52,16 @@ export class CrearFormularioComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
+      this.peticion.obtenerTutor(this.dataUser.DNI).subscribe(
         (res)=>{
-          this.vista = true
-          this.usercurrent = res[0];
-          this.id_docente_tutor = this.usercurrent.id_teacher_tutor
+
           if (res==null || res=="") {
             //si se accedio eliminar la data guardada
-            localStorage.removeItem('current')
-            this.peticion.mensaje('Acceso denegado',4500,'center','center')
-            //mas aun redirigir a login
-            this.ruta.navigateByUrl('login');
+            console.log("no es tutor")
+          } else {
+            this.vista = true
+            this.usercurrent = res[0];
+            this.id_docente_tutor = this.usercurrent.id_teacher_tutor
           }
         },
         (error)=>{

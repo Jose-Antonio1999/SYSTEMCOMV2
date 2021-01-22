@@ -15,7 +15,7 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./principal-director.component.css']
 })
 export class PrincipalDirectorComponent implements OnInit {
-  dataUser:Usuario
+  usuarioActivo:Usuario
   vista:boolean = false
   constructor(
     private auth:AngularFireAuth,
@@ -33,11 +33,11 @@ export class PrincipalDirectorComponent implements OnInit {
     if (localStorage.getItem("current")==null || localStorage.getItem("current")=="") {
         this.ruta.navigateByUrl('login');
     } else {
-      this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      if (this.dataUser==null || this.dataUser==null) {
+      this.usuarioActivo = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
+      if (this.usuarioActivo==null || this.usuarioActivo==null) {
           this.ruta.navigateByUrl('login');
       } else {
-        this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+        this.peticion.obtenerPerfilCurrent(this.usuarioActivo.DNI).subscribe(
           (res)=>{
             if (res==null || res=="") {
               this.vista = false

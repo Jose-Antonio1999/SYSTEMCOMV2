@@ -27,6 +27,7 @@ if(isset($data)){
       $lista[$i]['profile'] = $fila['profile'];
       $lista[$i]['user'] = $fila['user'];
       $lista[$i]['user_status'] = $fila['user_status'];
+      $lista[$i]['DNI'] = $fila['DNI'];
       $i++;
     }
     //imprir la data obtenida

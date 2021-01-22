@@ -12,7 +12,7 @@ if(isset($data)) {
   $seccion = $data->seccion;
   $idTutor = $data->idTutor;
 
-  $sql = "SELECT grade, section, id_student,DNI_student, name_student, firts_name_student, last_name_student,
+  $sql = "SELECT grade, section,id_student,DNI_student, name_student, firts_name_student, last_name_student,
                   promotion_student, email_student, path_photo_students, id_parent, DNI_parent, name_parent,
                   firts_name_parent, last_name_parent, email_parent, phone_number_parent
 
@@ -22,7 +22,7 @@ FROM teacher_tutor INNER JOIN grades on teacher_tutor.id_grade1 = grades.id_grad
             INNER JOIN photos_students ON photos_students.id_student2 = students.id_student
             INNER JOIN parents ON students.id_parent1 = parents.id_parent
             WHERE teacher_tutor.id_staff2 = '$idTutor' AND students.status_student = '1' AND grades.grade = '$grado'
-            AND section.section = '$seccion' and teacher_tutor.status_mentor = '1'";
+            AND section.section = '$seccion' and teacher_tutor.status_mentor = '1'" ;
 
   $query = mysqli_query($conexion,$sql);
 

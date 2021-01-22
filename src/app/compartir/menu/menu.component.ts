@@ -93,7 +93,7 @@ export class MenuComponent implements OnInit {
   stateIcon:string = "hiddenIcon"
   animateLetter:string  = "stateNormal"
   oscurecer:string  = "normal"
-  dataUser:Usuario
+  usuarioActivo:Usuario
   usercurrent:userCurrent
   verMenu:boolean = false
   constructor(
@@ -103,22 +103,36 @@ export class MenuComponent implements OnInit {
     private peticion:PeticionService,
     private storage:StorageService) {
     //mostrar datos del usuario actual
+    this.carga()
     this.sesionInciada();
   }
 
   ngOnInit(): void {
   }
 
+  //mensaje de carga y salida
+  cargaMensaje:string = "Cargando"
+  carga(){
+   /** spinner starts on init */
+    this.spinner.show();
+    setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+    }, 2000);
+  }
+
   animarMenu(){
     this.estadoMenu = "stateTwo"
     this.stateIcon = "displayIcon"
     this.animateLetter = "stateColor"
+    this.oscurecer  = "oscuro"
   }
 
   desanimarMenu(){
     this.estadoMenu = "stateOne"
     this.stateIcon = "hiddenIcon"
     this.animateLetter = "stateNormal"
+    this.oscurecer  = "normal"
   }
 
   currentUSer(){
@@ -131,8 +145,8 @@ export class MenuComponent implements OnInit {
     if (localStorage.getItem("current")==null || localStorage.getItem("current")=="") {
       this.ruta.navigateByUrl('login');
     } else {
-      this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+      this.usuarioActivo = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
+      this.peticion.obtenerPerfilCurrent(this.usuarioActivo.DNI).subscribe(
         (res)=>{
           this.verMenu = true
           this.usercurrent = res[0];
@@ -148,6 +162,7 @@ export class MenuComponent implements OnInit {
   }
 
   SignOut(){
+    this.cargaMensaje = "Cerrando sesión"
     localStorage.removeItem('current')
     this.spinner.show();
     setTimeout(() => {

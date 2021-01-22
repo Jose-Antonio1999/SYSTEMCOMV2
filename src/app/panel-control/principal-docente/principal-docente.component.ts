@@ -34,7 +34,7 @@ export class PrincipalDocenteComponent implements OnInit {
       if (this.dataUser==null || this.dataUser==null) {
           this.ruta.navigateByUrl('login');
       } else {
-        this.peticion.obtenerPerfilCurrent(this.dataUser.user).subscribe(
+        this.peticion.obtenerPerfilCurrent(this.dataUser.DNI).subscribe(
           (res)=>{
             if (res==null || res=="") {
               this.vista = false

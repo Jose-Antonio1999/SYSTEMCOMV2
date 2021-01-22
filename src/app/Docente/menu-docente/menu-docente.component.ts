@@ -89,12 +89,21 @@ export class MenuDocenteComponent implements OnInit {
     private peticion:PeticionService,
     public dialog: MatDialog,
     private storage:StorageService) {
-
+    this.carga();
     this.sesionInciada();
-
   }
-
   ngOnInit(): void {
+  }
+  //mensaje de carga y salida
+  cargaMensaje:string = "Cargando"
+  carga(){
+    /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+          /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 2000);
   }
 
   animarMenu(){
@@ -120,14 +129,14 @@ export class MenuDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
+
+      this.peticion.obtenerPerfilCurrent(this.dataUser.DNI).subscribe(
         (res)=>{
           this.verMenu = true
           this.usercurrent = res[0];
           if (res==null || res=="") {
             //si se accedio eliminar la data guardada
             localStorage.removeItem('current')
-            this.peticion.mensaje('Acceso denegado',4500,'center','center')
             //mas aun redirigir a login
             this.ruta.navigateByUrl('login');
           }
@@ -136,10 +145,12 @@ export class MenuDocenteComponent implements OnInit {
           console.log(error)
         }
       )
+
     }
   }
 
   SignOut(){
+    this.cargaMensaje ="Cerrando sesión"
     localStorage.removeItem('current')
     this.spinner.show();
     setTimeout(() => {
@@ -170,7 +181,7 @@ export class MenuDocenteComponent implements OnInit {
   }
 
   verificarActivo() {
-    this.peticion.verificarActivo(this.usercurrent.email_staff).subscribe(
+    this.peticion.verificarActivo(this.dataUser.DNI).subscribe(
       (res)=>{
         if (res=='0') {
           this.SignOut();

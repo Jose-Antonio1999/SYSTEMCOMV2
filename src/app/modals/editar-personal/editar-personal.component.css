@@ -1,0 +1,97 @@
+.container{
+  padding:15px;
+  /* border-radius: 10px;
+  background-color: rgb(255,255,255,0.5); */
+}
+#contenIcon{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+#icono{
+  font-size: 25px;
+  margin-top: 12px;
+}
+#contenedorDocentes{
+  height: 65vh;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#contenedorDocentes::-webkit-scrollbar{
+  height: 7px;
+  width: 7px;
+}
+#bottonRegisters button{
+  width: 30%;
+}
+#contenedorDocentes::-webkit-scrollbar-thumb{
+  background: gray;
+  border-radius: 10px;
+}
+#bottonRegisters{
+  display: flex;
+}
+.letter{
+  font-size:18px;
+}
+.btn{
+  border: none;
+  background-color:#1B386E;
+  color:#FFF;
+  margin-right: 5px;
+}
+/*codigo para personalizar el choose file*/
+.letterFile{
+  background:#1B386E;
+  height:36px;
+  width:164px;
+  z-index: 10;
+  margin-top: -37px;
+  position: absolute;
+  border-radius: 3px 0px 0px 3px;
+}
+.custom-input-file p{
+  color:#FFF;
+  display: flex;
+  padding-top: 6px;
+  justify-content: center;
+  align-content: center;
+}
+.contenFoto{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.iconphoto{
+  font-size: 23px;
+  margin-left: 5px;
+}
+.inputPhoto{
+  text-decoration: none;
+  outline:none;
+  border:none;
+}
+.lastName{
+  width: 100%;
+}
+.card{
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.menuOption{
+  display: flex;
+  justify-content: flex-end;
+}
+.iconoOption{
+  margin-top: 2px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.modelInput{
+  width: 100%;
+}
+.inputOption{
+  width: 50%;
+}

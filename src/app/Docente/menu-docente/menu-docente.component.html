@@ -1,6 +1,6 @@
 <!--Codigo para animar el menu-->
 <!--(mouseover)="animarMenu()" (mouseleave)="desanimarMenu()"-->
-<div *ngIf="verMenu" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()" (mouseover)="verificarActivo()">
+<div *ngIf="verMenu" [@animarMenu]="estadoMenu" class="conten-menu" (mouseover)="animarMenu()" (mouseleave)="desanimarMenu()">
   <div class="colunm" style="color:#FFF">
     <div class="info-user">
       <div class="container content-imguser" (click)="vistaImgPerfil()">
@@ -9,7 +9,7 @@
       <p class="text-center mt-1">{{this.recortarNombre(this.convetirMinuscula(this.usercurrent.name_staff))}}</p>
     </div>
 
-    <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+    <div class="conten-icon" data-bs-toggle="tooltip" data-bs-placement="top">
       <div class="col-md icon">
         <i class="fas fa-home"></i>
       </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['lista-apoderados']" >
+    <div class="conten-icon" (click)="verificarActivo()" [routerLink]="['lista-apoderados']" >
       <div class="col-md icon">
         <i class="fas fa-users"></i>
       </div>
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['lista-estudiantes']">
+    <div class="conten-icon" (click)="verificarActivo()" [routerLink]="['lista-estudiantes']">
       <div class="col-md icon">
         <i class="fas fa-user-graduate"></i>
       </div>
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['formulario/crear-formulario']">
+    <div class="conten-icon" (click)="verificarActivo()" [routerLink]="['formulario/crear-formulario']">
       <div class="col-md icon">
         <i class="fas fa-poll"></i>
       </div>
@@ -54,7 +54,7 @@
       </div>
     </div>
 
-    <div class="conten-icon" [routerLink]="['ajustes-docente']">
+    <div class="conten-icon" (click)="verificarActivo()" [routerLink]="['ajustes-docente']">
       <div class="col-md icon">
         <i class="fas fa-user-cog"></i>
       </div>
@@ -76,5 +76,5 @@
 </div>
 
 <!--muestra de registro-->
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Cerrando sesión </p></ngx-spinner>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-newton-cradle" [fullScreen] = "true"><p style="color: white" >{{cargaMensaje}}</p></ngx-spinner>
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Tutor } from 'src/app/clases/tutor';
 import { userCurrent } from 'src/app/clases/user';
 import { Usuario } from 'src/app/clases/usuario';
 import { PeticionService } from 'src/app/service/peticion.service';
@@ -17,9 +18,10 @@ export class ListaApoderadosDocenteComponent implements OnInit {
   stateIcon:string = "hiddenIcon"
   animateLetter:string  = "stateNormal"
   dataUser:Usuario
-  usercurrent:userCurrent
-  verMenu:boolean = false
+  tutor:Tutor
+  vistaInterface:boolean = true
   listaData = new  Array<General>()
+  mensajeVacio:boolean = false
   //variables para la busqueda
   dnibuscar:string
   constructor(
@@ -39,20 +41,27 @@ export class ListaApoderadosDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
+
+      this.peticion.obtenerTutor(this.dataUser.DNI).subscribe(
         (res)=>{
-          this.verMenu = true
-          this.usercurrent = res[0];
-          // pasar el grado y seccion para la data alumno
-          this.dataStudent(this.usercurrent.grade,this.usercurrent.section,this.usercurrent.id_staff)
+
           if (res==null || res=="") {
-            this.ruta.navigateByUrl('login');
+            //si no es tutor bloquear o mostrar mensaje
+            console.log("no es tutor")
+            this.vistaInterface = false
+          } else {
+
+            this.tutor = res[0];
+            // pasar el grado y seccion para la data alumno
+            this.dataStudent(this.tutor.grade, this.tutor.section,this.tutor.id_staff)
           }
+
         },
         (error)=>{
           console.log(error)
         }
       )
+
     }
   }
 
@@ -61,6 +70,9 @@ export class ListaApoderadosDocenteComponent implements OnInit {
     this.peticion.listaDataStudent(data).subscribe(
       (res)=>{
         this.listaData = res as any
+        if(this.listaData.length==0){
+          this.mensajeVacio = true
+        }
       },
       (error)=>{
         console.log(error)
@@ -78,18 +90,18 @@ export class ListaApoderadosDocenteComponent implements OnInit {
   comunicado(){
     const data = {
       'opcion':1,
-      'grado':this.usercurrent.grade,
-      'secion':this.usercurrent.section,
-      'emailDocente': this.usercurrent.email_staff,
+      'grado':this.tutor.grade,
+      'secion':this.tutor.section,
+      'emailDocente': this.tutor.email_staff,
       'data':''};
     localStorage.setItem('comunicado',this.storage.encrypt(data));
   }
   comunicadoEspecifico(correo:String){
     const data = {
       'opcion':0,
-      'grado':this.usercurrent.grade,
-      'secion':this.usercurrent.section,
-      'emailDocente': this.usercurrent.email_staff,
+      'grado':this.tutor.grade,
+      'secion':this.tutor.section,
+      'emailDocente': this.tutor.email_staff,
       'data':correo
     };
     localStorage.setItem('comunicado',this.storage.encrypt(data));

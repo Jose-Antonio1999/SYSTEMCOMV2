@@ -1,0 +1,76 @@
+<div class="central2">
+  <div class="menu-izquierda">
+    <!-- <app-menu></app-menu> -->
+  </div>
+  <div class="cuerpo-derecho">
+    <div class="container-fluid central">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="title-list">Formularios</h4>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-2">
+
+        </div>
+      </div>
+
+      <div class="row contenedorDocentes">
+
+        <div class="col-md-12" *ngFor="let data of listaFormulario, let i=index">
+          <div class="card m-2">
+            <div class="card-header head-form">
+              <h5>{{data.title}}</h5>
+              <span class="badge rounded-pill bg-info text-dark">enviado el {{data.date}}</span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Descripción</h5>
+              <p class="card-text">{{data.description}}</p>
+              <button (click)="obtenerPreguntas(data.id_form,i)" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Ir al formulario</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-file"></i> Formulario de tutoría</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <h4 class="text-center titulo-form">{{tituloFormulario}}</h4>
+        </div>
+          <form [formGroup]="formularioRespuesta">
+            <div class="card mt-2" *ngFor="let data of listaPreguntas; let i=index">
+              <div class="card-body">
+                <p class="question">{{data.question}}</p>
+                This is some text within a card body.
+
+                This is some text within a card body.
+                This is some text within a card body.
+                This is some text within a card body.
+                This is some text within a card body.
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-sm">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

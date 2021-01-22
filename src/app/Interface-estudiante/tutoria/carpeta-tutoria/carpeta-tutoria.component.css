@@ -1,0 +1,70 @@
+.central2{
+  width: 97%;
+  height: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-izquierda{
+  height:100%;
+  width:70px;
+}
+.cuerpo-derecho{
+  z-index:100;
+  height:100%;
+  width:100%;
+}
+.contenedorDocentes{
+  height: 83%;
+  width: 102%;
+  overflow: hidden;
+  overflow-y: scroll;
+  z-index: 100;
+}
+.contenedorDocentes::-webkit-scrollbar{
+  height: 7px;
+  width: 10px;
+}
+.contenedorDocentes::-webkit-scrollbar-thumb{
+  background: #CCCCCC;
+  cursor: pointer;
+}
+.central{
+  height: 95%;
+  width: 100% !important;
+  z-index:10;
+  border-radius: 10px;
+  margin-top: 15px;
+  background: #FFF;
+  -webkit-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+  box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+}
+.title-list{
+  margin-top: 23px;
+}
+.head-form{
+  display: flex;
+  justify-content: space-between;
+}
+.text-dark{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn{
+  outline: none !important;
+  background: #154360;
+  color: #FFF;
+}
+.titulo-form{
+  color: #000;
+  font-family: 'Patua One';
+  font-size: 22px;
+}
+.question{
+  color: #000;
+  font-family: 'Patua One';
+  font-size: 18px;
+}

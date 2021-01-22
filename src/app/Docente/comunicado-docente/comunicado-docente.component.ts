@@ -125,18 +125,31 @@ export class ComunicadoDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.servicestorage.decrypt(localStorage.getItem("current")))
-      this.peticion.obtenerPerfilCurrentDocente(this.dataUser.user).subscribe(
+      this.peticion.obtenerTutor(this.dataUser.DNI).subscribe(
         (res)=>{
-          this.usercurrent = res[0];
           // pasar el grado y seccion para la data alumno
           if (res==null || res=="") {
             this.ruta.navigateByUrl('login');
+          } else {
+            this.usercurrent = res[0];
+            //eliminar localstorage recorpass
+            //this.eliminarRecordarpass()
           }
         },
         (error)=>{
           console.log(error)
         }
       )
+    }
+  }
+
+  eliminarRecordarpass(){
+    if(localStorage.getItem('recordarPass')!=null){
+      const recupe = JSON.parse(this.servicestorage.decrypt(localStorage.getItem("recordarPass")))
+      if (recupe.email!=this.usercurrent.user) {
+          localStorage.removeItem('recordarPass')
+          this.campoPass = true
+      }
     }
   }
 

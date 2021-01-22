@@ -2,12 +2,12 @@
 
 require_once("../conexion/conexion.php");
 //obtenemos la data de registro
-$email = file_get_contents("php://input");
+$DNI = file_get_contents("php://input");
 
-if(isset($email)) {
+if(isset($DNI)) {
 
       //verificar si existe ese email
-      $sql_consulta_email = " SELECT id_user FROM users WHERE user = '$email' and user_status = '1' ";
+      $sql_consulta_email = " SELECT id_user FROM users WHERE DNI = '$DNI' and user_status = '1' ";
 
       $query_consuta_email = mysqli_query($conexion,$sql_consulta_email);
 

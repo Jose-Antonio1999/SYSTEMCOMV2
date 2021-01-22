@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-6">
       <div class="title-tabla">
-        <h4>.</h4>
+        <h4 style="color: #FFF;">.</h4>
       </div>
       <div class="contenDocentes">
         <table class="table">
@@ -66,7 +66,7 @@
                 {{convetirMinuscula(data.last_name_staff)}}
               </td>
               <td>96564178</td>
-              <td><button class="btn"
+              <td><button class="btn btn-sm"
                 (click)="openModalasignacion(data.id_staff, data.grade, data.section, data.status_mentor)">
                     {{data.grade}}
                     {{peticion.gradoSegunName(data.grade)}}

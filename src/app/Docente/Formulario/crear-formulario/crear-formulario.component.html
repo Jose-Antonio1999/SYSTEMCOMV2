@@ -9,14 +9,6 @@
             <img class="img-head" src="../../../../assets/Head/head-2.jpg" alt="" srcset="">
           </div>
           <div class="header-form">
-            <mat-form-field class="modelInput">
-              <input matInput class="title-form" placeholder="Título del formulario" formControlName="titulo">
-            </mat-form-field>
-
-            <mat-form-field class="modelInput">
-              <textarea matInput placeholder="Descripción..." (ngModelChange)=" verificarLogDescripcion()" formControlName="descripcion" maxlength="390"></textarea>
-              <mat-hint align="end">{{this.tamanioTexto}} / 390</mat-hint>
-            </mat-form-field>
 
             <mat-form-field class="modelInput">
               <mat-label>Aréa de tutoría</mat-label>
@@ -27,6 +19,15 @@
               </mat-select>
             </mat-form-field>
 
+            <mat-form-field class="modelInput">
+              <input matInput class="title-form" placeholder="Título del formulario" formControlName="titulo">
+            </mat-form-field>
+
+            <mat-form-field class="modelInput">
+              <textarea matInput placeholder="Descripción..." (ngModelChange)=" verificarLogDescripcion()" formControlName="descripcion" maxlength="390"></textarea>
+              <mat-hint align="end">{{this.tamanioTexto}} / 390</mat-hint>
+            </mat-form-field>
+
           </div>
 
           <div formArrayName="preguntas">
@@ -34,7 +35,7 @@
             <div class="item-one" *ngFor="let data of obtenerPreguntas.controls; let indice = index" [formGroupName]="indice">
               <div class="conte-form-dinamic">
                 <mat-form-field class="input-item">
-                  <input matInput placeholder="Título del formulario" formControlName="pregunta">
+                  <input matInput placeholder="Nombre" autocomplete="off" formControlName="pregunta">
                 </mat-form-field>
               </div>
               <div class="conte-form-dinamic">

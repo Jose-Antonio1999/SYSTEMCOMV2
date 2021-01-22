@@ -85,16 +85,15 @@ thead tr th {
   display: flex;
   font-size: 15px;
   justify-content: space-around;
+  height: 100%;
 }
 .info_user{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  overflow: hidden;
 }
 .img_perfil{
-  height:120px;
-  width: 120px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }
 .img-config{
   height: 100%;
@@ -146,13 +145,9 @@ form i{
   cursor: pointer;
 }
 .listaData li{
+  margin-left: -20px;
   text-decoration: none;
   list-style: none;
-}
-.extra-data{
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
 }
 /*codigo para personalizar el choose file*/
 .letterFile{
@@ -170,4 +165,17 @@ form i{
   padding-top: 6px;
   justify-content: center;
   align-content: center;
+}
+.btn-update{
+  background: #157347;
+}
+.info-pass{
+  color:#2FD44A;
+  font-size: 15px;
+}
+.form-social{
+  margin-top: -35px;
+}
+.conten-pass{
+  margin-top: -35px;
 }

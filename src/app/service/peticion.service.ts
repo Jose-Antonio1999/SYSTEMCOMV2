@@ -77,8 +77,11 @@ export class PeticionService {
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
   }
-  obtenerPerfilCurrentDocente(data:any):Observable<any>{
-    return this.http.post<any>(this.URLListar+"currentDocente.php",data);
+  obtenerPerfilStudent(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"currentStudent.php",data);
+  }
+  obtenerTutor(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"currentTutor.php",data);
   }
   numeroEmailsDocentesGeneral():Observable<any>{
     return this.http.get<any>(this.URLListar+"emailDocentesGeneral.php");
@@ -145,7 +148,24 @@ export class PeticionService {
   statusStaff(data:any):Observable<any>{
     return this.http.post<any>(this.URLactualizar+"statusPersonal.php",JSON.stringify(data));
   }
-
+  updateStudent(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"updateStudent.php",JSON.stringify(data));
+  }
+  updateSocialData(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"socialDataStaff.php",JSON.stringify(data));
+  }
+  updateSocialDataStudent(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"socialDataStudent.php",JSON.stringify(data));
+  }
+  updatePassword(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"updatePassword.php",JSON.stringify(data));
+  }
+  updateStaff(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"updateStaff.php",JSON.stringify(data));
+  }
+  AccessStudent(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"AccessStudent.php",JSON.stringify(data));
+  }
 
   //funciones extras
   gradoSegunName(gray:any):String{

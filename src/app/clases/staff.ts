@@ -2,6 +2,7 @@ import { throwToolbarMixedModesError } from "@angular/material/toolbar"
 
 export class Staff {
   id_staf
+  id_profile_staff1
   id_card_number_staff
   name_staff
   firts_name_staff
@@ -14,6 +15,7 @@ export class Staff {
 
   constructor() {
     this.id_staf = this.id_staf
+    this.id_profile_staff1 = this.id_profile_staff1
     this.id_card_number_staff = this.id_card_number_staff
     this.name_staff = this.name_staff
     this.firts_name_staff = this.firts_name_staff

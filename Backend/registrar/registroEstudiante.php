@@ -76,7 +76,7 @@ if(isset($data)){
             //pasw new
             $pass_new = md5($dni_estudiante);
             //insertar a la tabla usuarios
-            $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo_estudiante','$pass_new','habilitado')";
+            $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo_estudiante','$dni_estudiante','$pass_new','1')";
             $sql_insert_user = mysqli_query($conexion,$insert_user);
 
             if(!$sql_insert_user) {
@@ -121,7 +121,7 @@ if(isset($data)){
         //pasw new
         $pass_new = md5($dni_estudiante);
         //insertar a la tabla usuarios
-        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo_estudiante','$pass_new','habilitado')";
+        $insert_user = "INSERT INTO USERS VALUES(null,'$perfil','$correo_estudiante','$dni_estudiante','$pass_new','1')";
         $sql_insert_user = mysqli_query($conexion,$insert_user);
 
         if(!$sql_insert_user) {

@@ -8,7 +8,6 @@ if(isset($dni)) {
 
       //verificar si existe ese email
       $sql_consulta_parent = "SELECT * FROM PARENTS WHERE DNI_parent = '$dni' ";
-
       $query_consuta_parent = mysqli_query($conexion,$sql_consulta_parent);
 
       if (!$query_consuta_parent) {

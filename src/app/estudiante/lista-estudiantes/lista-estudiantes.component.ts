@@ -13,6 +13,7 @@ import { EditarEstudianteComponent } from 'src/app/modals/editar-estudiante/edit
   styleUrls: ['./lista-estudiantes.component.css']
 })
 export class ListaEstudiantesComponent implements OnInit {
+
   listaStudent = Array<Student>()
   listaSecciones: Array<Seccion>
   listaGrado: Array<Grado>
@@ -20,8 +21,10 @@ export class ListaEstudiantesComponent implements OnInit {
   seccion:string = "1"
   ultimo:number = -1
   nombreEstudiante:string
+  estadoStatus:number = 0;
   //data por defecto para listar por grado y seccion
   data = {'grado':1, 'seccion':1}
+
   constructor(
     private peticion:PeticionService,
     public dialog: MatDialog
@@ -103,9 +106,52 @@ export class ListaEstudiantesComponent implements OnInit {
     const dialogRef  = this.dialog.open(EditarEstudianteComponent,{data:this.listaStudent[i]});
     dialogRef.afterClosed().subscribe(result => {
       if (result==true) {
-        console.log("cerro")
+        this.verificarParaListar();
+      }
+      if (result==true) {
+        this.verificarParaListar();
       }
     });
+  }
+
+  estadoStudent(dni:string, email:string, i:number, estadocurrect:number) {
+
+    if (estadocurrect==0) {
+
+      this.listaStudent[i].status_student = '1'
+      //data a enviar
+      const data = {'dni':dni,'email':email,'estatus':1}
+
+      this.peticion.AccessStudent(data).subscribe(
+        (res)=>{
+          console.log(res)
+          this.peticion.mensaje('Estudiante habilitado',4500,'center','center')
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+
+    }
+
+    if (estadocurrect==1){
+
+      this.listaStudent[i].status_student = '0'
+      //data  enviar
+      const data = {'dni':dni,'email':email,'estatus':0}
+
+      this.peticion.AccessStudent(data).subscribe(
+        (res)=>{
+          console.log(res)
+          this.peticion.mensaje('Estudiante desabilitado',4500,'center','center')
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+
+    }
+
   }
 
 }

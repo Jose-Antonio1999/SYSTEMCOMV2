@@ -1,0 +1,9 @@
+.conten-menu{
+  padding-top: 20px;
+  width: 25% !important;
+}
+.center-data{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

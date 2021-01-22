@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
     })
     //creamos el formulario
-    this.verificarLogin();
+    //this.verificarLogin();
     this.crearFormulario ();
   }
 
@@ -96,9 +96,13 @@ export class LoginComponent implements OnInit {
 
           } else {
             //normalizar al usuario
+            //verificar el perfil del estudiante
+            this.Usuario = res[0]
+            console.log(this.Usuario)
             this.Usuario = res[0]
             this.guardarUsuario(this.Usuario)
             this.redireccionarPagina(this.Usuario.profile)
+
           }
           this.spinner.hide()
         }, 1000);
@@ -130,23 +134,23 @@ export class LoginComponent implements OnInit {
   redireccionarPagina(data:number) {
     if (data==10) {
       //director
-      this.ruta.navigateByUrl("Admin")
+      this.ruta.navigateByUrl("Admin/bienvenida")
     }
     if(data==20) {
       //subdirector
-      this.ruta.navigateByUrl("Admin")
+      this.ruta.navigateByUrl("Admin/bienvenida")
     }
     if(data==30) {
       //docente
-      this.ruta.navigateByUrl("Docente")
+      this.ruta.navigateByUrl("Docente/bienvenida")
     }
     if(data==40) {
       //secretaria
-      this.ruta.navigateByUrl("Admin")
+      this.ruta.navigateByUrl("Admin/bienvenida")
     }
     if(data==50) {
       //estudiante
-      this.ruta.navigateByUrl("Estudiante")
+      this.ruta.navigateByUrl("Estudiante/bienvenida")
     }
 
 

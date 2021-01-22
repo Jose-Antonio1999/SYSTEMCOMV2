@@ -13,7 +13,6 @@ import { PrincipalDocenteComponent } from './panel-control/principal-docente/pri
 import { PrincipalDirectorComponent } from './panel-control/principal-director/principal-director.component';
 import { PrincipalEstudianteComponent } from './panel-control/principal-estudiante/principal-estudiante.component';
 import { PruebaComponent } from './prueba/prueba.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { ListaEstudiantesComponent } from './estudiante/lista-estudiantes/lista-estudiantes.component';
 import { BandejaSalidaComponent } from './comunicado/bandeja-salida/bandeja-salida.component';
 import { ConfiguracionPersonalComponent } from './personal/configuracion-personal/configuracion-personal.component';
@@ -24,6 +23,16 @@ import { ListaTutoresComponent } from './personal/lista-tutores/lista-tutores.co
 import { AjustesDocenteComponent } from './Docente/ajustes-docente/ajustes-docente.component';
 import { PanelFormularioComponent } from './Docente/Formulario/panel-formulario/panel-formulario.component';
 import { CrearFormularioComponent } from './Docente/Formulario/crear-formulario/crear-formulario.component';
+import { ListaRespuestasComponent } from './Docente/Formulario/lista-respuestas/lista-respuestas.component';
+import { PanelStudentComponent } from './Interface-estudiante/panel-student/panel-student.component';
+import { BienvenidaSistemaComponent } from './compartir/bienvenida-sistema/bienvenida-sistema.component';
+import { CarpetaTutoriaComponent } from './Interface-estudiante/tutoria/carpeta-tutoria/carpeta-tutoria.component';
+import { ListaPadresComponent } from './estudiante/lista-padres/lista-padres.component';
+import { MensajeNotutorComponent } from './compartir/mensaje-notutor/mensaje-notutor.component';
+import { NotFoundPageComponent } from './compartir/not-found-page/not-found-page.component';
+import { PanelTutoriaComponent } from './Interface-estudiante/tutoria/panel-tutoria/panel-tutoria.component';
+import { InfoTutorComponent } from './Interface-estudiante/tutoria/info-tutor/info-tutor.component';
+import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/responer-formulario/responer-formulario.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
@@ -32,19 +41,22 @@ const routes: Routes = [
   //Ruta principal
   {path:"Docente",component:PrincipalDocenteComponent,
     children:[
+      {path:'bienvenida', component: BienvenidaSistemaComponent},
       {path:"lista-estudiantes", component: ListaEstudiantesDocenteComponent},
       {path:"lista-apoderados", component: ListaApoderadosDocenteComponent},
       {path:"redactar-comunicado", component: ComunicadoDocenteComponent},
       {path:"ajustes-docente", component:AjustesDocenteComponent},
       {path:"formulario", component:PanelFormularioComponent,
         children:[
-          {path:"crear-formulario", component:CrearFormularioComponent}
+          {path:"crear-formulario", component:CrearFormularioComponent},
+          {path:"Lista-respuestas", component:ListaRespuestasComponent}
         ]
       }
     ]
   },
   {path:"Admin",component:PrincipalDirectorComponent,
     children:[
+      {path:'bienvenida', component: BienvenidaSistemaComponent},
       {path: "control-docente", component:PanelPersonalComponent,
         children:[
           {path:"registro-docente", component:RegistroPersonalComponent},
@@ -52,6 +64,7 @@ const routes: Routes = [
           {path:"lista-tutores", component:ListaTutoresComponent}
         ]
       },
+      {path:"lista-padres",component:ListaPadresComponent},
       {path:"estudiante",component:PanelEstudianteComponent,
         children:[
           {path:"registro-estudiante", component: RegistroEstudianteComponent},
@@ -64,10 +77,21 @@ const routes: Routes = [
     ]
   },
   {
-    path: "Estudiante", component:PrincipalEstudianteComponent
+    path: "Estudiante", component:PrincipalEstudianteComponent,
+    children:[
+      {path:'bienvenida', component: BienvenidaSistemaComponent},
+      {path:'perfil-estudiante', component: PanelStudentComponent},
+      {path:'tutoria', component: PanelTutoriaComponent,
+        children:[
+          {path:'carpeta-tutoria', component: CarpetaTutoriaComponent,},
+          {path: 'formulario', component:ResponerFormularioComponent},
+          {path:'info-user', component:InfoTutorComponent}
+        ]
+      }
+    ]
   },
   {path:"prueba",component:PruebaComponent},
-  {path:"**",component:NotFoundComponent}
+  {path:"**",component:NotFoundPageComponent}
 
 ];
 

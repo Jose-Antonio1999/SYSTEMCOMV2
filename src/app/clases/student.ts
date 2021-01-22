@@ -20,6 +20,9 @@ export class Student {
   section
   id_photos_student
   path_photo_students
+  id_grade2
+  id_section1
+
   constructor() {
     this.id_student =  this.id_student
     this.DNI_student = this.DNI_student
@@ -42,5 +45,7 @@ export class Student {
     this.section = this.section
     this.id_photos_student = this.id_photos_student
     this.path_photo_students = this.path_photo_students
+    this.id_grade2 = this.id_grade2
+    this.id_section1 = this.id_section1
   }
 }

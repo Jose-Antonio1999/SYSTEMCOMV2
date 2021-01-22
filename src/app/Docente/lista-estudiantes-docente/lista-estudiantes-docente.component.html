@@ -1,4 +1,4 @@
-<div class="central">
+<div *ngIf="vistaInterface; else mostrar"  class="central">
   <div class="menu-izquierda">
     <!-- <app-menu></app-menu> -->
   </div>
@@ -41,8 +41,16 @@
                 </div>
               </div>
             </div>
+            <div *ngIf="mensajeVacio">
+              <div class="alert alert-info" role="alert">
+                <i class="fas fa-folder-open"></i> No se encontraron apoderados registrados
+              </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<ng-template #mostrar>
+  <app-mensaje-notutor></app-mensaje-notutor>
+</ng-template>

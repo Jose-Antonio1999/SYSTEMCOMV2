@@ -1,1 +1,145 @@
-<p>panel-student works!</p>
+
+<div class="conten-general">
+  <div class="content-img">
+    <img class="img-head" src="../../../assets/Head/image-head3.jpg" alt="" srcset="">
+  </div>
+  <div *ngIf="cargarInterface" class="info-user-staff">
+    <div class="data-info-user">
+      <div class="name-user">
+        <h5><b>{{convetirMinuscula(usercurrent.name_student)}} {{convetirMinuscula(usercurrent.firts_name_student)}}</b></h5>
+      </div>
+
+      <div [ngSwitch]="opsw">
+        <div *ngSwitchCase="'vista'">
+          <div class="other-data">
+            <h5><b><i class="fas fa-chalkboard-teacher"></i></b> Estudiante Beleniano del
+              {{this.usercurrent.grade}} {{this.refGrado}} {{this.usercurrent.section}}</h5>
+            <h5><b><i class="fas fa-address-card"></i></b> {{this.usercurrent.DNI_student}}</h5>
+            <h5><b><i class="fas fa-envelope"></i></b> {{this.usercurrent.email_student}}</h5>
+            <h5><b><i class="fas fa-user-tie"></i></b> {{convetirMinuscula(this.usercurrent.name_parent)}}
+                                                        {{convetirMinuscula(this.usercurrent.firts_name_parent)}} - Apoderado</h5>
+          </div>
+          <div class="form-inline list-change">
+            <button (click)="swVista('change')" type="button" class="btn btn"><i class="far fa-edit"></i> Editar datos</button>
+            <button (click)="swVista('pass')" type="button" class="btn btn"><i class="fas fa-lock"></i> Cambiar password</button>
+            <button (click)="swVista('photo')" type="button" class="btn btn"><i class="fas fa-camera"></i> nueva foto</button>
+          </div>
+        </div>
+        <div *ngSwitchCase="'change'">
+          <div>
+            <form [formGroup]="crearFormulariosocial">
+              <small class="info-pass">
+                No olvide iniciar sesión con sus nuevos datos al actualizar
+              </small>
+              <br>
+              <div class="form-group">
+                <mat-form-field class="modelInput">
+                  <mat-label>Correo</mat-label>
+                  <input type="email"  matInput autocomplete="off" formControlName="email">
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>
+                <div style="margin-top: -13px; color: red;"
+                *ngIf="crearFormulariosocial.controls['email'].dirty && crearFormulariosocial.controls['email'].invalid">
+                  <div *ngIf="crearFormulariosocial.controls['email'].errors.email">
+                    <small>Correo inválido hasta el momento</small>
+                  </div>
+                  <div *ngIf="crearFormulariosocial.controls['email'].errors.required">
+                    <small>Complete el campo correo</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-2 mb-2">
+                <mat-dialog-actions align="end">
+                  <button type="submit" class="btn" mat-button (click)="guardarSocialData()"
+                  [disabled]="crearFormulariosocial.invalid">Guardar cambios</button>
+                  <button type="reset" class="btn" mat-button (click)="swVista('vista')" >Cancelar</button>
+                </mat-dialog-actions>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'pass'">
+          <div>
+            <form [formGroup]="crearFormulariopass">
+              <div class="form-group">
+                <small class="info-pass">
+                  El password debe tener al menos 8 carácteres y
+                  como máximo 15 carácteres, al menos una letra mayúscula, al menos una letra minúscula, al menos un dígito,
+                  al menos 1 caracter especial y no espacios en blanco.
+                </small>
+                <mat-form-field class="modelInput">
+                  <mat-label>Digite su nueva contraseña</mat-label>
+                  <input #passw type="password" matInput maxlength="15" autocomplete="of" formControlName="pass1">
+                  <mat-icon *ngIf="!verPass" style="cursor: pointer;" (click)="verPassw()" matSuffix><span class="material-icons icon">visibility</span></mat-icon>
+                  <mat-icon *ngIf="verPass"  style="cursor: pointer;" (click)="noPassw()" matSuffix><span class="material-icons icon">visibility_off</span></mat-icon>
+                </mat-form-field>
+                <div style="margin-top: -13px; color: red;"
+                *ngIf="crearFormulariopass.controls['pass1'].dirty && crearFormulariopass.controls['pass1'].invalid">
+                  <div *ngIf="crearFormulariopass.controls['pass1'].errors.pattern">
+                    <small>Digite una contraseña mas segura</small>
+                  </div>
+                  <div *ngIf="crearFormulariopass.controls['pass1'].errors.required">
+                    <small>Complete el campo password</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+
+                <mat-form-field class="modelInput">
+                  <mat-label>Confirmar contraseña</mat-label>
+                  <input matInput autocomplete="off" type="password" maxlength="15" formControlName="pass2">
+                  <mat-icon matSuffix><i class="fas fa-lock"></i></mat-icon>
+                </mat-form-field>
+
+                <div style="margin-top: -13px; color: red;"
+                 *ngIf="crearFormulariopass.controls['pass2'].dirty && crearFormulariopass.controls['pass2'].invalid">
+                  <div *ngIf="crearFormulariopass.controls['pass2'].errors.pattern">
+                    <small>Digite una contraseña mas segura</small>
+                  </div>
+                  <div *ngIf="crearFormulariopass.controls['pass2'].errors.required">
+                    <small>Complete el campo password</small>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2 mb-2">
+                <mat-dialog-actions align="end">
+                  <button mat-button (click)="guardarPassword()" class="btn"
+                  [disabled]="crearFormulariopass.invalid">Guardar cambios</button>
+                  <button type="reset" class="btn" mat-button (click)="swVista('vista')" >Cancelar</button>
+                </mat-dialog-actions>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'photo'">
+          <form [formGroup]="crearFormularioPhoto">
+            <small class="info-pass">
+              La foto de perfil se actualizará automáticamente
+            </small>
+            <div class="form-group mt-3">
+              <div class="custom-input-file">
+                <input  (change)="onFile($event)"  type="file" class="form-control" accept="image/*" formControlName="photo">
+                <p class="letterFile">
+                  <span *ngIf="barraCarga; else letra">
+                    {{porcentajeSubidaFoto}}%
+                  </span>
+                  <ng-template #letra>Nueva foto</ng-template>
+                </p>
+              </div>
+            </div>
+            <button (click)="swVista('vista')" type="button" class="btn btn mt-2">Cancelar</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div class="conten-img-user">
+      <img class="img-user" [src]="usercurrent.path_photo_students" alt="" srcset="">
+    </div>
+  </div>
+</div>

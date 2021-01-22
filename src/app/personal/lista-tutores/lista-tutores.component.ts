@@ -25,17 +25,6 @@ export class ListaTutoresComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openModalasignacion(idDocente:number, grado:string, seccion:string, status_mentor:number){
-    const data_staff = {id_docente:idDocente, grado:grado, seccion: seccion, estatus:status_mentor}
-    const dialogRef  = this.dialog.open(ModalAsignarTutorComponent,{data:data_staff});
-    dialogRef.afterClosed().subscribe(result => {
-      if (result==true) {
-        this.listaData ();
-        this.listatutoresAsignados();
-      }
-    });
-  }
-
   listaData () {
     this.peticion.listaStafftutores().subscribe(
       (res)=>{
@@ -46,6 +35,35 @@ export class ListaTutoresComponent implements OnInit {
       }
     )
   }
+
+  listatutoresAsignados() {
+    this.peticion.listaTutoresAsignados().subscribe(
+      (res)=>{
+        this.listadocentesTutoresAsig = res as any
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
+  }
+
+  openModalasignacion(idDocente:number, grado:string, seccion:string, status_mentor:number){
+    const data_staff = {id_docente:idDocente, grado:grado, seccion: seccion, estatus:status_mentor}
+    const dialogRef  = this.dialog.open(ModalAsignarTutorComponent,{data:data_staff});
+    dialogRef.afterClosed().subscribe(result => {
+      if (result==true) {
+        this.listaData();
+        this.listatutoresAsignados();
+      }
+
+      if (result==true) {
+        this.listatutoresAsignados();
+        this.listaData();
+      }
+
+    });
+  }
+
   convetirMinuscula(data:string){
     return data.toLowerCase().replace(/\b[a-z]/g,c=>c.toUpperCase());
   }
@@ -64,48 +82,37 @@ export class ListaTutoresComponent implements OnInit {
   mostrarImgUser(i:number){
 
     const info = {
-      photo: this.listadocentesTutoresAsig[i].path_photo_staffs,
-      nombre: this.listadocentesTutoresAsig[i].name_staff,
-      apellidoP: this.listadocentesTutoresAsig[i].firts_name_staff,
-      apellidoM: this.listadocentesTutoresAsig[i].last_name_staff
+      // photo: this.listadocentesTutoresAsig[i].path_photo_staffs,
+      // nombre: this.listadocentesTutoresAsig[i].name_staff,
+      // apellidoP: this.listadocentesTutoresAsig[i].firts_name_staff,
+      // apellidoM: this.listadocentesTutoresAsig[i].last_name_staff
     }
 
-    const dialogRef  = this.dialog.open(VistaImagenUserComponent,{data:info});
-    dialogRef.afterClosed().subscribe(result => {
-      if (result==true) {
-        console.log("cerro")
-      }
-    });
+    // const dialogRef  = this.dialog.open(VistaImagenUserComponent,{data:info});
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result==true) {
+    //     console.log("cerro")
+    //   }
+    // });
 
   }
 
   mostrarImgUserSingAgisnar(i:number){
 
     const info = {
-      photo: this.listadocentesTutores[i].path_photo_staffs,
-      nombre: this.listadocentesTutores[i].name_staff,
-      apellidoP: this.listadocentesTutores[i].firts_name_staff,
-      apellidoM: this.listadocentesTutores[i].last_name_staff
+      // photo: this.listadocentesTutores[i].path_photo_staffs,
+      // nombre: this.listadocentesTutores[i].name_staff,
+      // apellidoP: this.listadocentesTutores[i].firts_name_staff,
+      // apellidoM: this.listadocentesTutores[i].last_name_staff
     }
 
-    const dialogRef  = this.dialog.open(VistaImagenUserComponent,{data:info});
-    dialogRef.afterClosed().subscribe(result => {
-      if (result==true) {
-        console.log("cerro")
-      }
-    });
+    // const dialogRef  = this.dialog.open(VistaImagenUserComponent,{data:info});
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result==true) {
+    //     console.log("cerro")
+    //   }
+    // });
 
-  }
-
-  listatutoresAsignados() {
-    this.peticion.listaTutoresAsignados().subscribe(
-      (res)=>{
-        this.listadocentesTutoresAsig = res as any
-      },
-      (error)=>{
-        console.log(error)
-      }
-    )
   }
 
 }
