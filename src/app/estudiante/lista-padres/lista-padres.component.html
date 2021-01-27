@@ -9,7 +9,8 @@
           <div class="col-md-4 texto"><h4>Lista de apoderados en general</h4></div>
           <div class="col-md-4">
             <mat-form-field style="width: 90%;" class="example-full-width">
-              <input id="buscador" name="buscador" matInput placeholder="DNI del apoderado" [(ngModel)]="dniPadre">
+              <input id="buscador" name="buscador" matInput placeholder="DNI del apoderado"
+                [(ngModel)]="dniPadre">
               <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
             </mat-form-field>
           </div>
@@ -29,7 +30,7 @@
           </thead>
           <tbody>
 
-            <tr *ngFor="let data of listaStudent; let i = index">
+            <tr *ngFor="let data of listaStudent | buscarApoderado:dniPadre; let i = index">
               <th scope="row">{{i+1}}</th>
               <td>{{data.DNI_parent}}</td>
               <td>{{Minuscula(data.name_parent)}} {{Minuscula(data.firts_name_parent)}}</td>

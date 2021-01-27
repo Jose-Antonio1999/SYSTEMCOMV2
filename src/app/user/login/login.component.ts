@@ -51,9 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.ruta.navigateByUrl("login")
-    }, 100);
+
   }
 
   crearFormulario () {

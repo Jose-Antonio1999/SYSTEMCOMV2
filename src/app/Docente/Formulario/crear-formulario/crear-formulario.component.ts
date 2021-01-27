@@ -7,8 +7,6 @@ import { userCurrent } from 'src/app/clases/user';
 import { Usuario } from 'src/app/clases/usuario';
 import { PeticionService } from 'src/app/service/peticion.service';
 import { StorageService } from 'src/app/service/storage.service';
-import { Formulario } from '../../../clases/formulario';
-
 
 @Component({
   selector: 'app-crear-formulario',
@@ -20,7 +18,6 @@ export class CrearFormularioComponent implements OnInit {
   tamanioTexto: Number = 0;
   dataUser:Usuario
   usercurrent:userCurrent
-  Formulario: Formulario
   contadorCampo: number
   formularioCampos:FormGroup;
   vista:boolean = false

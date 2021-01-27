@@ -64,6 +64,8 @@ import { NotFoundPageComponent } from './compartir/not-found-page/not-found-page
 import { PanelTutoriaComponent } from './Interface-estudiante/tutoria/panel-tutoria/panel-tutoria.component';
 import { InfoTutorComponent } from './Interface-estudiante/tutoria/info-tutor/info-tutor.component';
 import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/responer-formulario/responer-formulario.component';
+import { BuscarComunicadosPipe } from './pipes/buscar-comunicados.pipe';
+import { MensajesGuardadosComponent } from './comunicado/mensajes-guardados/mensajes-guardados.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +116,9 @@ import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/resp
     NotFoundPageComponent,
     PanelTutoriaComponent,
     InfoTutorComponent,
-    ResponerFormularioComponent
+    ResponerFormularioComponent,
+    BuscarComunicadosPipe,
+    MensajesGuardadosComponent
   ],
   entryComponents:[
     ModalAsignarTutorComponent,

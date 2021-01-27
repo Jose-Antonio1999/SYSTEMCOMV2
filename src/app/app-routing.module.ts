@@ -33,6 +33,7 @@ import { NotFoundPageComponent } from './compartir/not-found-page/not-found-page
 import { PanelTutoriaComponent } from './Interface-estudiante/tutoria/panel-tutoria/panel-tutoria.component';
 import { InfoTutorComponent } from './Interface-estudiante/tutoria/info-tutor/info-tutor.component';
 import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/responer-formulario/responer-formulario.component';
+import { MensajesGuardadosComponent } from './comunicado/mensajes-guardados/mensajes-guardados.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
@@ -73,6 +74,7 @@ const routes: Routes = [
       },
       {path:'comunicado', component:PanelComunicadoComponent},
       {path:'bandeja-salida', component:BandejaSalidaComponent},
+      {path:'mensajes-guardados', component:MensajesGuardadosComponent},
       {path:"configuracion", component:ConfiguracionPersonalComponent}
     ]
   },

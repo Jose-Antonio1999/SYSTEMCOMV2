@@ -110,7 +110,7 @@
               Enviar <div *ngIf="vistaSpinner" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>
             </button>
             <button type="button" class="btn" (click)="cancelarEnvio()">Cancelar</button>
-            <button type="button" class="btn" (click)="bo()"><i class="fas fa-save"></i> Guardar</button>
+            <button type="button" class="btn" (click)="guardarComunicado()"><i class="fas fa-save"></i> Guardar</button>
             <button type="button" class="btn" data-dismiss="modal"
                     (click)="insertarHTML()" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop" *ngIf="this.formulalrioComunicado.valid"

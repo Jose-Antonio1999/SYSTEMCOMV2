@@ -238,6 +238,28 @@ export class RegistroEstudianteComponent implements OnInit {
     }
   }
 
+  verificarEmailBD(){
+    if(!this.crearFormulario.controls['correo_estudiante'].invalid) {
+      this.peticion.existeEmail(this.crearFormulario.value.correo_estudiante).subscribe(
+        (res)=>{
+          if (res!="0") {
+            this.crearFormulario.controls.photo.disable()
+            this.crearFormulario.controls.dni_apoderado.disable()
+            this.peticion.mensaje(res,4500,'center','center')
+          } else {
+            this.crearFormulario.controls.photo.enable()
+            this.crearFormulario.controls.dni_apoderado.enable()
+          }
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+
+    }
+
+  }
+
 
 
 }

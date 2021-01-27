@@ -321,8 +321,29 @@ export class PanelComunicadoComponent implements OnInit {
     localStorage.setItem("recordarPass",this.servicestorage.encrypt(JSON.stringify(savep)))
   }
 
-  bo(){
-    localStorage.removeItem("recordarPass")
+  guardarComunicado(){
+     //enviar comunicado
+      console.log(this.formulalrioComunicado.value)
+      // this.formulalrioComunicado.value.rutaArchivo = this.archivoAdjuntadoURL
+      // this.peticion.enviarComunicado(this.formulalrioComunicado.value).subscribe(
+      //   (res)=>{
+      //    //verificar el envio
+      //     if (res==1) {
+      //       this.peticion.mensaje("Mensaje enviado correctamente",4500,'center','center')
+      //       this.vistaSpinner = false
+      //       this.cancelarEnvio()
+      //     } else {
+      //       this.vistaSpinner = false
+      //       this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
+      //     }
+      //     console.log(res)
+      //   },
+      //   (error)=>{
+      //     this.vistaSpinner = false
+      //     this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
+      //     console.log(error)
+      //   }
+      // )
   }
 
   esValidoEmail(mail:any) {

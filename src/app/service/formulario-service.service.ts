@@ -10,7 +10,6 @@ export class FormularioServiceService {
 
   URLRegistro:String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/registrar/";
   URLListar:String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/Listar/";
-  URLsubidaarchvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/archivos/"
   URLenvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/envios/"
   URLactualizar: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/actualizar/"
 
@@ -23,6 +22,15 @@ export class FormularioServiceService {
 
   listaQuestion(data):Observable<any>{
     return this.http.post<any>(this.URLListar+"listarQuestion.php",data);
+  }
+
+  formularioRespondido(data):Observable<any>{
+    return this.http.post<any>(this.URLListar+"verificarStadoFormulario.php",data);
+  }
+
+  //envio de respuestas
+  sendAnswer(data):Observable<any>{
+    return this.http.post<any>(this.URLenvio+"envioRespuestas.php",JSON.stringify(data));
   }
 
 

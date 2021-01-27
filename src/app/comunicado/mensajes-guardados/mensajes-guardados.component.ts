@@ -1,17 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/clases/usuario';
 import { Comunicado } from 'src/app/clases/comunicado';
 import { userCurrent } from 'src/app/clases/user';
+import { Usuario } from 'src/app/clases/usuario';
 import { PeticionService } from 'src/app/service/peticion.service';
 import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
-  selector: 'app-bandeja-salida',
-  templateUrl: './bandeja-salida.component.html',
-  styleUrls: ['./bandeja-salida.component.css']
+  selector: 'app-mensajes-guardados',
+  templateUrl: './mensajes-guardados.component.html',
+  styleUrls: ['./mensajes-guardados.component.css']
 })
-export class BandejaSalidaComponent implements OnInit {
+export class MensajesGuardadosComponent implements OnInit {
 
   @ViewChild('cuerpoMensaje',{static:false}) cuerpoMensaje:ElementRef
 

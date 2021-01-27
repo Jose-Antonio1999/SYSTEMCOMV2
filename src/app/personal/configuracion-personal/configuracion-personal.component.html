@@ -162,7 +162,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-7 inferior">
+      <div class="col-md-12 inferior">
         <div class="conten_personal">
           <!-- <mat-form-field style="width: 50%;" class="example-full-width">
             <mat-label>Buscar docente</mat-label>
@@ -174,8 +174,9 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">&nbsp;&nbsp;&nbsp;<i class="fas fa-camera"></i></th>
-                <th scope="col">Personal
-                </th>
+                <th scope="col">Personal</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Email</th>
                 <th scope="col">Cargo</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Actualizar</th>
@@ -190,6 +191,8 @@
                   {{convetirMinuscula(data.firts_name_staff)}}
                   {{convetirMinuscula(data.last_name_staff)}}
                 </td>
+                <td>{{data.id_card_number_staff}}</td>
+                <td>{{data.email_staff}}</td>
                 <td>{{data.profile_user}}</td>
                 <td>
                   <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
@@ -211,11 +214,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-      <div class="col-md-5 inferior">
-        <div class="contenDatai">
-
         </div>
       </div>
     </div>

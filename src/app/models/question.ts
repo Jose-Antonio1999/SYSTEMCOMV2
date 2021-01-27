@@ -1,7 +1,7 @@
 export class Question {
-  id_questions
-  question
-  id_type_question1
+  id_questions:number;
+  question:string;
+  id_type_question1:number;
   constructor(){
     this.id_questions = this.id_questions
     this.question = this.question

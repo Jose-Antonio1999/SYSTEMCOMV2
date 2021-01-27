@@ -30,11 +30,15 @@
             <div class="card-body">
               <h5 class="card-title">Descripción</h5>
               <p class="card-text">{{data.description}}</p>
-              <button (click)="obtenerPreguntas(data.id_form,i)" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Ir al formulario</button>
+              <div>
+                <button (click)="verificarFomularioRespondido(data.id_form,i)" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Ir al formulario</button>
+              </div>
             </div>
           </div>
         </div>
-
+        <div *ngIf="vistaForm" class="alert alert-info" role="alert">
+          No se encontraron formularios
+        </div>
       </div>
     </div>
   </div>
@@ -43,33 +47,65 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-file"></i> Formulario de tutoría</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div>
           <h4 class="text-center titulo-form">{{tituloFormulario}}</h4>
         </div>
           <form [formGroup]="formularioRespuesta">
+            <div *ngIf="!vistaModal" class="info-data">
+              <div class="alert alert-info" role="alert">
+                <i class="fas fa-exclamation"></i> Este formulario ya no está disponible, ya se respondió
+              </div>
+              <img class="text-center img-info" src="../../../../assets/success.svg" alt="">
+            </div>
             <div class="card mt-2" *ngFor="let data of listaPreguntas; let i=index">
               <div class="card-body">
                 <p class="question">{{data.question}}</p>
-                This is some text within a card body.
-
-                This is some text within a card body.
-                This is some text within a card body.
-                This is some text within a card body.
-                This is some text within a card body.
+                <!--switch para el tipo de respuesta -->
+                <div formArrayName="respuestas">
+                  <div ngSwitch="{{data.id_type_question1}}" [formGroupName]="i">
+                    <div *ngSwitchCase="'1'">
+                    <div class="mb-3">
+                      <input formControlName="respuesta" type="email" class="form-control" placeholder="Respuesta corta">
+                    </div>
+                    </div>
+                    <div *ngSwitchCase="'2'">
+                      <div class="form-floating">
+                        <textarea formControlName="respuesta" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <label for="floatingTextarea2">Respuesta</label>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'3'">
+                      <div class="mb-3">
+                        <input formControlName="respuesta" type="number" class="form-control" placeholder="Cantidad">
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'4'">
+                      <div class="input-group mb-3">
+                        <input formControlName="respuesta" type="file" class="form-control" id="inputGroupFile02">
+                        <label class="input-group-text" for="inputGroupFile02">subir</label>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'5'">
+                      <div class="mb-3">
+                        <input formControlName="respuesta" type="date" class="form-control" placeholder="Fecha">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-sm">Save changes</button>
+        <button *ngIf="vistaModal" (click)="guardarRespuestas()" type="button" class="btn btn-sm" class="btn btn-sm" data-bs-dismiss="modal">Enviar respuestas</button>
+        <button *ngIf="vistaModal"  (click)="cancelar()" type="reset" class="btn btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button *ngIf="!vistaModal"  (click)="cancelar()" type="reset" class="btn btn-sm" data-bs-dismiss="modal">Aceptar</button>
       </div>
     </div>
   </div>

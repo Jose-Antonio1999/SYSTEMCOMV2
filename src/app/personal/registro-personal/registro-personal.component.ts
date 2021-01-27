@@ -122,21 +122,23 @@ export class RegistroPersonalComponent implements OnInit {
   }
 
   verificarEmailBD(){
-    this.peticion.existeEmail(this.crearFormulario.value.correo).subscribe(
-      (res)=>{
-        if (res!="0") {
-          this.crearFormulario.controls.photo.disable()
-          this.crearFormulario.controls.celular.disable()
-          this.peticion.mensaje(res,4500,'center','center')
-        } else {
-          this.crearFormulario.controls.photo.enable()
-          this.crearFormulario.controls.celular.enable()
+    if(!this.crearFormulario.controls['correo'].invalid) {
+      this.peticion.existeEmail(this.crearFormulario.value.correo).subscribe(
+        (res)=>{
+          if (res!="0") {
+            this.crearFormulario.controls.photo.disable()
+            this.crearFormulario.controls.celular.disable()
+            this.peticion.mensaje(res,4500,'center','center')
+          } else {
+            this.crearFormulario.controls.photo.enable()
+            this.crearFormulario.controls.celular.enable()
+          }
+        },
+        (error)=>{
+          console.log(error)
         }
-      },
-      (error)=>{
-        console.log(error)
-      }
-    )
+      )
+    }
   }
 
   listaProfiles() {

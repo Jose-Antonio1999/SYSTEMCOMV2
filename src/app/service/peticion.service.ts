@@ -74,6 +74,9 @@ export class PeticionService {
   listaTipoPregunta():Observable<any>{
     return this.http.get<any>(this.URLListar+"listarTipoPregunta.php");
   }
+  listaComunicado(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"listaComunicado.php",data);
+  }
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
   }

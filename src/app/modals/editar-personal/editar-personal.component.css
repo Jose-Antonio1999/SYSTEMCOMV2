@@ -41,6 +41,8 @@
   background-color:#1B386E;
   color:#FFF;
   margin-right: 5px;
+  margin-top: 5px;
+  height: 35px;
 }
 /*codigo para personalizar el choose file*/
 .letterFile{
