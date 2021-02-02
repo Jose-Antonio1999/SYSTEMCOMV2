@@ -22,21 +22,42 @@
     <div class="contenedorBandeja" style="background:#FFF;">
       <div class="row">
         <div *ngIf="vistaMensaje" style="margin-left:10px; margin-top: 10px" class="alert alert-info" role="alert">
-          <i class="fas fa-folder-open"></i> Lista de comunicados enviados vacios
+          <i class="fas fa-folder-open"></i> Lista de comunicados guardados vacia
         </div>
         <div class="col-md-4" *ngFor="let data of listaComunicados | buscarComunicados:asuntoBusqueda; let i=index">
             <div class="mt-3">
               <div class="card">
                 <div class="headerMessage">
                   <div class="userEnviador">
-                      <i style="margin-top: -10px; font-size: 20px;" class="fas fa-envelope"></i><b>
-                      <p style="margin-top: 10x; margin-left: 4px;">{{data.affair}}</p></b>
+                      <i style="margin-top: -10px; font-size: 20px;" class="fas fa-envelope"></i>
+                      <b>
+                        <div *ngIf="data.affair==''; else title">
+                          <p style="margin-top: 5x; margin-left: 4px; color: #FFF;" class="text-center texto">
+                            Sin asunto
+                          </p>
+                        </div>
+                        <ng-template #title>
+                          <p style="margin-top: 10x; margin-left: 4px; color: #FFF;" class="text-center texto">
+                            {{data.affair}}
+                          </p>
+                        </ng-template>
+                      </b>
                   </div>
                 </div>
                 <div class="card-body">
-                  <h5 class="text-center texto">{{data.type_communique}}</h5>
+                  <div *ngIf="data.type_communique==''; else conasunto">
+                    <p class="text-center texto">
+                      Sin Tipo de comunicado
+                    </p>
+                  </div>
+                  <ng-template #conasunto>
+                    <p class="text-center texto">
+                      {{data.type_communique}}
+                    </p>
+                  </ng-template>
                   <div class="info-message">
-                    <span class="badge bg-success">Fecha</span>
+                    <span (click)="editarComunicado(i)" class="badge bg-success" style="cursor:pointer;"><i class="fas fa-edit"></i> Editar</span> &nbsp;
+                    <span (click)="eliminarComunicados(data.id_communiques,i)" style="cursor:pointer;" class="badge bg-danger"><i class="fas fa-trash-alt"></i> Eliminar</span>
                     <b><p style="margin-top: 18px;"> &nbsp; Fecha: {{data.date}}</p></b>
                   </div>
                 </div>

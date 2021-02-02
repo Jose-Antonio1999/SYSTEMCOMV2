@@ -19,6 +19,10 @@ export class FormularioServiceService {
   listaFormulario(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"obtenerFormulario.php",JSON.stringify(data));
   }
+  listaFormularioDocente(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"listaFormulariosDocente.php",data);
+  }
+
 
   listaQuestion(data):Observable<any>{
     return this.http.post<any>(this.URLListar+"listarQuestion.php",data);
@@ -33,5 +37,14 @@ export class FormularioServiceService {
     return this.http.post<any>(this.URLenvio+"envioRespuestas.php",JSON.stringify(data));
   }
 
+  //update
+  estadoFormualrio(data):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"estadoFormulario.php",JSON.stringify(data));
+  }
+
+  //eliminar formulario
+  eliminarFormulario(data):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"eliminarFormulario.php",data);
+  }
 
 }

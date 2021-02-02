@@ -36,12 +36,21 @@
       </div>
     </div>
 
-    <div class="conten-icon">
+    <div class="conten-icon" (click)="verificarActivo()" [routerLink]="['bandeja-salida']">
       <div class="col-md icon">
         <i class="fas fa-mail-bulk"></i>
       </div>
       <div [@iconLetter]="stateIcon" class="letterICon">
         <p [@animateLetter]='animateLetter'>Bandeja</p>
+      </div>
+    </div>
+
+    <div class="conten-icon" (click)="verificarActivo()" [routerLink]="['mensajes-guardados']">
+      <div class="col-md icon">
+        <i class="fas fa-save"></i>
+      </div>
+      <div [@iconLetter]="stateIcon" class="letterICon">
+        <p [@animateLetter]='animateLetter'>Guardados</p>
       </div>
     </div>
 

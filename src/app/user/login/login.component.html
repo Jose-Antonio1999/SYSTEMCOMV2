@@ -1,7 +1,7 @@
 <!-- As a link -->
-<nav class="navbar navbar" style="position: absolute !important;">
+<!-- <nav class="navbar navbar" style="position: absolute !important;">
     <button type="button" class="btn btn-dark" style="width:80px !important; margin-left: 10px;" [routerLink]="['']"><i class="fas fa-arrow-circle-left fs-5"></i></button>
-</nav>
+</nav> -->
 
 <div class="contenedor" *ngIf="existeData">
 
@@ -12,6 +12,7 @@
 
         <div class="text-center" style="font-size:25px;">
           <!-- <i class="fas fa-user-tie"></i> -->
+          <!-- <button type="button" class="btn btn-dark" style="width:80px !important; margin-left: 10px;" [routerLink]="['']"><i class="fas fa-arrow-circle-left fs-5"></i></button> -->
           <p>Login</p>
         </div>
 
@@ -38,7 +39,8 @@
 
         <div class="form-inline">
           <button type="button" class="btn btn-dark mb-3" (click)="ingresar()" [disabled]="this.Formulario.invalid">Ingresar</button>
-          <p class="ml-5"><a href="#">Olvide mi password</a></p>
+          <p class="ml-5"><a [routerLink]="['/recuperar']">Olvide mi password</a></p>
+          <p class="ml-2"><a [routerLink]="['']"><i class="fas fa-home"></i> Ir página principal</a></p>
         </div>
 
       </form>
@@ -50,14 +52,16 @@
 
 
 <!--muestra de registro-->
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#1c5890" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Ingresando al sistema </p></ngx-spinner>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-newton-cradle" [fullScreen] = "true"><p style="color: white" >{{mensajeCarga}}</p></ngx-spinner>
 
-  <!-- Footer con svg
+  <!-- Footer con svg -->
   <div class="fixed-top" style="height: 150px; overflow: hidden;" >
     <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-      <path d="M-17.21,39.95 C272.85,0.50 543.16,251.14 532.44,68.58 L483.35,-53.78 L0.00,0.00 Z" style="stroke: none; fill: #004EF5;"></path>
+      <path d="M-17.21,39.95 C272.85,0.50 543.16,251.14 532.44,68.58 L483.35,-53.78 L0.00,0.00 Z" style="stroke: none; fill: #2954A2;"></path>
     </svg>
-  </div> -->
+  </div>
 
 
 </div>
+<!-- para que pueda ser un padre de rutas -->
+<router-outlet></router-outlet>

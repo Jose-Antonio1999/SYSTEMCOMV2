@@ -66,6 +66,8 @@ import { InfoTutorComponent } from './Interface-estudiante/tutoria/info-tutor/in
 import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/responer-formulario/responer-formulario.component';
 import { BuscarComunicadosPipe } from './pipes/buscar-comunicados.pipe';
 import { MensajesGuardadosComponent } from './comunicado/mensajes-guardados/mensajes-guardados.component';
+import { MisFormulariosComponent } from './Docente/Formulario/mis-formularios/mis-formularios.component';
+import { RecoveryPasswordComponent } from './user/recovery-password/recovery-password.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +120,9 @@ import { MensajesGuardadosComponent } from './comunicado/mensajes-guardados/mens
     InfoTutorComponent,
     ResponerFormularioComponent,
     BuscarComunicadosPipe,
-    MensajesGuardadosComponent
+    MensajesGuardadosComponent,
+    MisFormulariosComponent,
+    RecoveryPasswordComponent
   ],
   entryComponents:[
     ModalAsignarTutorComponent,

@@ -29,15 +29,15 @@
               <div class="card">
                 <div class="headerMessage">
                   <div class="userEnviador">
-                      <i style="margin-top: -10px; font-size: 20px;" class="fas fa-envelope"></i><b>
-                      <p style="margin-top: 10x; margin-left: 4px;">{{data.affair}}</p></b>
+                      <i style="margin-top: -10px; font-size: 20px;" class="fas fa-envelope"></i>
+                      <p style="margin-top: 10x; margin-left: 4px;">{{data.affair}}</p>
                   </div>
                 </div>
                 <div class="card-body">
-                  <h5 class="text-center texto">{{data.type_communique}}</h5>
+                  <h6 class="text-center texto">{{data.type_communique}}</h6>
                   <div class="info-message">
-                    <span class="badge bg-success">Fecha</span>
-                    <b><p style="margin-top: 18px;"> &nbsp; Fecha: {{data.date}}</p></b>
+                    <span class="badge bg-success">Fecha de envio: </span>
+                    <b><p style="margin-top: 18px;"> &nbsp;{{data.date}}</p></b>
                   </div>
                 </div>
                 <button (click)="verMensaje(i)" class="btn" data-bs-toggle="modal"
@@ -68,9 +68,9 @@
               <img style=" width: 70%; margin: 1.5% auto; text-align: left" src="https://i.postimg.cc/ZKJ9xQH3/belen3.png">
             </div>
             <div style="width:85%; margin: 0 auto; justify-content: center;">
-              <h2 style="display: flex; justify-content: center; align-content: center; margin: 10px;">
+              <h5 style="display: flex; justify-content: center; align-content: center; margin: 10px;">
                 {{asuntoComunicado}}
-              </h2>
+              </h5>
               <div #cuerpoMensaje></div>
             </div>
 

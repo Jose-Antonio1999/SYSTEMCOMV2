@@ -46,7 +46,6 @@
   background-size: cover;
   position: relative;
   display: flex;
-  background-attachment: fixed;
 }
 .ban:before{
   content: "";
@@ -55,6 +54,13 @@
   background-color:black;
   opacity: 0.5;
   position: absolute;
+}
+.carousel-item{
+  background-color:black;
+  opacity: 0.8;
+}
+.carousel-caption{
+  margin-top: -50px !important;
 }
 
 /*ABOUT US*/

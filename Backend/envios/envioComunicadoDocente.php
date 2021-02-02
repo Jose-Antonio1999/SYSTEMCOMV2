@@ -134,11 +134,11 @@ if(isset($data)){
       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
       // Content
-      $asunto = utf8_decode($asunto);
+      $asunto_enviar = utf8_decode($asunto);
       $htmlEnviar = utf8_decode($htmlEnviar);
 
       $mail->isHTML(true);                                  // Set email format to HTML
-      $mail->Subject = $asunto;
+      $mail->Subject = $asunto_enviar;
       $mail->Body    = $htmlEnviar;
       $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
       $mail->send();

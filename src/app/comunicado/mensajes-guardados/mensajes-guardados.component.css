@@ -24,7 +24,8 @@
 .headerMessage{
   display: flex;
   justify-content: space-between;
-  background-color: #969696;
+  background-color: #C3002F;
+  height:50px;
   border-radius: 10px 10px 0px 0px !important;
 }
 .userEnviador{
@@ -61,15 +62,16 @@
 }
 .btn{
   margin: 10px;
-  background: #2B4B85;
-  color: #FFF;
+  background: #FFF;
+  color: #402D4E;
+  border: 1px solid #402D4E;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .btn:hover{
-  background: #FD6700;
+  background: #402D4E;
   color: #FFF;
 }
 .btn .fas {
@@ -110,7 +112,7 @@ table{
 .texto{
   color: #000;
   font-family: 'Patua One';
-  font-size: 30px;
+  font-size: 20px;
 }
 
 @media (max-width:760px){

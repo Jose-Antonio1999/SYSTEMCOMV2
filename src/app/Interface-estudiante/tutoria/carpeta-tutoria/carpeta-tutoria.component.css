@@ -83,3 +83,19 @@
   width: 40%;
   height: 40%;
 }
+.letterFile{
+  background:#1B386E;
+  height:36px;
+  width:164px;
+  z-index: 10;
+  margin-top: -37px;
+  position: absolute;
+  border-radius: 3px 0px 0px 3px;
+}
+.custom-input-file p{
+  color:#FFF;
+  display: flex;
+  padding-top: 6px;
+  justify-content: center;
+  align-content: center;
+}

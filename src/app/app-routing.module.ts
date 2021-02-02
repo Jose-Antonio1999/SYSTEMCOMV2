@@ -34,10 +34,13 @@ import { PanelTutoriaComponent } from './Interface-estudiante/tutoria/panel-tuto
 import { InfoTutorComponent } from './Interface-estudiante/tutoria/info-tutor/info-tutor.component';
 import { ResponerFormularioComponent } from './Interface-estudiante/tutoria/responer-formulario/responer-formulario.component';
 import { MensajesGuardadosComponent } from './comunicado/mensajes-guardados/mensajes-guardados.component';
+import { MisFormulariosComponent } from './Docente/Formulario/mis-formularios/mis-formularios.component';
+import { RecoveryPasswordComponent } from './user/recovery-password/recovery-password.component';
 
 const routes: Routes = [
   {path:"", component:PortalComponent},
   {path: "login", component:LoginComponent},
+  {path:"recuperar",component:RecoveryPasswordComponent},
   {path: "registro-admin", component:RegistroUnicoComponent},
   //Ruta principal
   {path:"Docente",component:PrincipalDocenteComponent,
@@ -47,10 +50,13 @@ const routes: Routes = [
       {path:"lista-apoderados", component: ListaApoderadosDocenteComponent},
       {path:"redactar-comunicado", component: ComunicadoDocenteComponent},
       {path:"ajustes-docente", component:AjustesDocenteComponent},
+      {path:'bandeja-salida', component:BandejaSalidaComponent},
+      {path:'mensajes-guardados', component:MensajesGuardadosComponent},
       {path:"formulario", component:PanelFormularioComponent,
         children:[
           {path:"crear-formulario", component:CrearFormularioComponent},
-          {path:"Lista-respuestas", component:ListaRespuestasComponent}
+          {path:"Lista-respuestas", component:ListaRespuestasComponent},
+          {path: 'mis-formularios', component:MisFormulariosComponent}
         ]
       }
     ]

@@ -128,6 +128,7 @@ export class MenuStudentComponent implements OnInit {
           } else {
             this.verMenu = true
             this.usercurrent = res[0];
+            console.log(this.usercurrent)
           }
         },
         (error)=>{

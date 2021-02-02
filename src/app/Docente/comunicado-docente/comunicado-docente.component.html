@@ -115,7 +115,7 @@
               Enviar <div *ngIf="vistaSpinner" class="spinner-border text-ligth spinner-border-sm" role="status"><span class="sr-only">Loading...</span></div>
             </button>
             <button type="button" class="btn" (click)="cancelarEnvio()">Cancelar</button>
-            <button type="button" class="btn" (click)="bo()"><i class="fas fa-save"></i> Guardar</button>
+            <button type="button" class="btn" (click)="guardarComunicado()"><i class="fas fa-save"></i> Guardar</button>
             <button type="button" class="btn" data-dismiss="modal"
                     (click)="insertarHTML()" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop" *ngIf="this.formulalrioComunicado.valid"
@@ -149,9 +149,9 @@
               <img style=" width: 70%; margin: 1.5% auto; text-align: left" src="https://i.postimg.cc/ZKJ9xQH3/belen3.png">
             </div>
             <div style="width:85%; margin: 0 auto; justify-content: center;">
-              <h2 style="display: flex; justify-content: center; align-content: center; margin: 10px;">
+              <h5 style="display: flex; justify-content: center; align-content: center; margin: 10px;">
                 {{this.formulalrioComunicado.value.asunto}}
-              </h2>
+              </h5>
             </div>
 
             <div style="width:80%; height:auto;

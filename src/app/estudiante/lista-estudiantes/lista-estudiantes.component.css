@@ -40,6 +40,16 @@
   color: #000;
   background: #FFF;
 }
+.btn-actualizar{
+  border: none;
+  background: none;
+  outline: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+  border-radius: 20px;
+  border: 2px solid #000;
+}
 .sg{
   display:flex;
   justify-content:center;

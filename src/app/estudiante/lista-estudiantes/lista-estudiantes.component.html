@@ -13,7 +13,7 @@
               <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
             </mat-form-field>
           </div>
-          <div class="col-md-5 sg">
+          <div class="col-md-3 sg">
             <mat-form-field style="width: 50%;">
               <mat-label>Grado Estudiante </mat-label>
               <mat-select [(ngModel)]="grado" (ngModelChange)="verificarParaListar()">
@@ -32,6 +32,9 @@
               </mat-select>
             </mat-form-field>
 
+          </div>
+          <div class="col-md-2 sg">
+            <button class="btn-actualizar" (click)="actualizarTabla()"><i class="fas fa-undo-alt"></i> actualizar</button>
           </div>
         </div>
         <table class="table">
@@ -56,18 +59,18 @@
               <td>
                 <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
                   <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
-                  class="btn" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
+                  class="btn btn-sm" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
                     {{estadoUser(data.status_student)}}
                   </button>
                   <ng-template #desa>
                     <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
-                    class="btn" style="background:#E81123;">
+                    class="btn btn-sm" style="background:#E81123;">
                       {{estadoUser(data.status_student)}}
                     </button>
                   </ng-template>
                 </p>
               </td>
-              <td><button class="btn btna" (click)="modalEditar(i)"><i class="fas fa-edit"></i> Editar</button></td>
+              <td><button class="btn btna btn-sm" (click)="modalEditar(i)"><i class="fas fa-edit"></i> Editar</button></td>
             </tr>
           </tbody>
         </table>

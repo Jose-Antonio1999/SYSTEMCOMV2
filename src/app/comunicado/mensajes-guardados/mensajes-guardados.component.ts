@@ -55,11 +55,6 @@ export class MensajesGuardadosComponent implements OnInit {
   verMensaje(i:number){
     this.asuntoComunicado = this.listaComunicados[i].affair
     this.cuerpoMensaje.nativeElement.innerHTML = this.listaComunicados[i].body
-    // this.tipo = this.listaMensajes[i].tipo_comunicado
-    // this.asunto = this.listaMensajes[i].asunto
-    // this.contenido = this.listaMensajes[i].contenido
-    // this.fecha = this.listaMensajes[i].fecha
-    // this.fecha = this.recortarFecha()
   }
 
   sesionInciada(){
@@ -90,7 +85,7 @@ export class MensajesGuardadosComponent implements OnInit {
   }
 
   listaComunicadoEnviado(id:any){
-    this.peticion.listaComunicado(id).subscribe(
+    this.peticion.listaComunicadoGuardado(id).subscribe(
       (res)=>{
         this.listaComunicados = res
         if (this.listaComunicados.length==0){
@@ -101,6 +96,29 @@ export class MensajesGuardadosComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  eliminarComunicados(id_comunicado:any,i:number){
+    this.peticion.eliminarComunicado(id_comunicado).subscribe(
+      (res)=>{
+        console.log(res)
+        this.listaComunicados.splice(i,1);
+        if(this.listaComunicados.length==0){
+          this.vistaMensaje = true
+        }
+      },
+      (error)=>{
+        console.log(error)
+      }
+    )
+  }
+
+  editarComunicado(i:number){
+    localStorage.setItem("edit-comunicado",JSON.stringify(this.listaComunicados[i]));
+    if (this.usuarioActivo.profile==10)
+        this.ruta.navigateByUrl('Admin/comunicado')
+    if (this.usuarioActivo.profile==30)
+        this.ruta.navigateByUrl('Docente/redactar-comunicado')
   }
 
 }

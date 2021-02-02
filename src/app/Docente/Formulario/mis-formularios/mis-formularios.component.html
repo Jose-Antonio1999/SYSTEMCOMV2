@@ -1,0 +1,131 @@
+<div class="container-fluid central">
+  <div class="row">
+    <div class="col-md-3">
+      <h4 class="title-list">Mis formularios</h4>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field style="width: 90%;" class="example-full-width">
+        <mat-label>Buscar formulario</mat-label>
+        <input matInput placeholder="Buscar" autocomplete="off" >
+        <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+
+  <div [ngSwitch]="vistaForm">
+    <div *ngSwitchCase="'lista'">
+
+      <div *ngIf="vistaVacia" class="alert alert-warning" role="alert">
+        <i class="fas fa-folder-open"></i> Lista de formularios enviados vacia
+      </div>
+
+      <div class="row contenedorDocentes">
+        <div class="col-md-12 mt-2" *ngFor="let data of Formularios; let i=index">
+          <div class="card">
+            <div class="card-header mt-3">
+            {{areas(data.id_area_tutorship1)}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{data.title}}</h5>
+                <p>{{data.description}}</p>
+                <a class="btn btn-light btn-sm" (click)="editarFormulario(i,'vista')"><i class="fas fa-book me-1"></i>Vista Formulario</a>
+                <!-- Verificar el estado de formulario -->
+                <a *ngIf="data.status==1; else desa" class="btn btn-light btn-sm" (click)="estadoFormulario(data.id_form, data.status,i)" style="color:#154360;">
+                  <i class="fas fa-book me-1"></i>{{vistaEstado(data.status)}}
+                </a>
+                <ng-template #desa>
+                  <a class="btn btn-light btn-sm" (click)="estadoFormulario(data.id_form, data.status,i)" style="color:red;">
+                    <i class="fas fa-book me-1"></i>{{vistaEstado(data.status)}}
+                  </a>
+                </ng-template>
+                <a class="btn btn-light btn-sm" style="color:#000;" (click)="eliminarFormularios(data.id_form,i)"><i class="far fa-trash-alt"></i> Eliminar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="'vista'" style="background: #E7E6E8;">
+      <a class="btn btn-light btn-sm" style="color:#000;" (click)="opcionVista('lista')"><i class="fas fa-exchange-alt"></i> Regresar</a>
+      <div class="conten-formulario">
+        <div class="row">
+          <div class="col-md-12 conten-list-data" >
+
+            <form [formGroup]="formularioCampos">
+              <div class="header-form">
+
+                <mat-form-field class="modelInput">
+                  <mat-label>Aréa de tutoría</mat-label>
+                  <mat-select formControlName="areaTutoria">
+                    <div *ngFor="let data of listArea">
+                      <mat-option value="{{data.id_area_tutorship}}">{{data.name_area}}</mat-option>
+                    </div>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="modelInput">
+                  <input matInput class="title-form" placeholder="Título del formulario" formControlName="titulo">
+                </mat-form-field>
+
+                <mat-form-field class="modelInput">
+                  <textarea matInput placeholder="Descripción..."  formControlName="descripcion" maxlength="390"></textarea>
+                </mat-form-field>
+
+              </div>
+
+              <div class="card mt-2" *ngFor="let data of listaPreguntas; let i=index">
+                <div class="card-body">
+                  <p class="question">{{data.question}}</p>
+                  <!--switch para el tipo de respuesta -->
+                  <div>
+                    <div ngSwitch="{{data.id_type_question1}}">
+                      <div *ngSwitchCase="'1'">
+                      <div class="mb-3">
+                        <input  type="email" class="form-control" placeholder="Respuesta corta">
+                      </div>
+                      </div>
+                      <div *ngSwitchCase="'2'">
+                        <div class="form-floating">
+                          <textarea  class="form-control" placeholder="Leave a comment here" style="height: 100px"></textarea>
+                          <label for="floatingTextarea2">Respuesta</label>
+                        </div>
+                      </div>
+                      <div *ngSwitchCase="'3'">
+                        <div class="mb-3">
+                          <input type="number" class="form-control" placeholder="Cantidad">
+                        </div>
+                      </div>
+                      <div *ngSwitchCase="'4'">
+                        <div class="input-group mb-3">
+                          <input type="file" class="form-control" id="inputGroupFile02">
+                          <label class="input-group-text" for="inputGroupFile02">subir</label>
+                        </div>
+                      </div>
+                      <div *ngSwitchCase="'5'">
+                        <div class="mb-3">
+                          <input type="date" class="form-control" placeholder="Fecha">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-inline mt-3">
+                <button type="button" class="btn btn-primary mb-2" disabled>
+                  Enviar formulario
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

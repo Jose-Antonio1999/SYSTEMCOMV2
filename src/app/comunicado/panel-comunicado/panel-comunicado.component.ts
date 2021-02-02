@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { catchError, retry } from 'rxjs/internal/operators';
 import { StorageService } from 'src/app/service/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Comunicado } from 'src/app/clases/comunicado';
 //interface para guardar el password
 interface savePass {
   passw:String
@@ -73,6 +74,7 @@ export class PanelComunicadoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.completeEdit();
     //modal
     this.formularioHelp = this.formbuilder.group({
       passwo:['']
@@ -89,14 +91,13 @@ export class PanelComunicadoComponent implements OnInit {
       grado:[''],
       seccion:[''],
       emaildestino:[''],
-      asunto:['',Validators.required],
+      asunto:['',[Validators.required]],
       tipo:['',Validators.required],
       cuerpo:['',Validators.required],
       pass:['',Validators.required],
       rutaArchivo:['']
     })
   }
-
   usuarioCurrent() {
     if (localStorage.getItem('current')==null || localStorage.getItem('current')=="") {
       this.ruta.navigateByUrl('login');
@@ -104,6 +105,16 @@ export class PanelComunicadoComponent implements OnInit {
       this.usercurrent = JSON.parse(this.servicestorage.decrypt(localStorage.getItem('current')))
       this.userEmail = this.usercurrent.user
       this.formulalrioComunicado.controls['origen'].setValue(this.userEmail)
+    }
+  }
+  comunicadoEditar:Comunicado
+  completeEdit(){
+    if(localStorage.getItem('edit-comunicado')!=null){
+      this.comunicadoEditar = JSON.parse(localStorage.getItem('edit-comunicado'));
+      this.formulalrioComunicado.controls['cuerpo'].setValue(this.comunicadoEditar.body)
+      this.formulalrioComunicado.controls['asunto'].setValue(this.comunicadoEditar.affair);
+      //depues de rellenar eliminar la data temporal
+      localStorage.removeItem('edit-comunicado')
     }
   }
 
@@ -323,27 +334,18 @@ export class PanelComunicadoComponent implements OnInit {
 
   guardarComunicado(){
      //enviar comunicado
-      console.log(this.formulalrioComunicado.value)
-      // this.formulalrioComunicado.value.rutaArchivo = this.archivoAdjuntadoURL
-      // this.peticion.enviarComunicado(this.formulalrioComunicado.value).subscribe(
-      //   (res)=>{
-      //    //verificar el envio
-      //     if (res==1) {
-      //       this.peticion.mensaje("Mensaje enviado correctamente",4500,'center','center')
-      //       this.vistaSpinner = false
-      //       this.cancelarEnvio()
-      //     } else {
-      //       this.vistaSpinner = false
-      //       this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
-      //     }
-      //     console.log(res)
-      //   },
-      //   (error)=>{
-      //     this.vistaSpinner = false
-      //     this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
-      //     console.log(error)
-      //   }
-      // )
+      this.formulalrioComunicado.value.rutaArchivo = this.archivoAdjuntadoURL
+      this.peticion.guardarMensaje(this.formulalrioComunicado.value).subscribe(
+        (res)=>{
+          this.peticion.mensaje(res,4500,'center','center')
+          this.cancelarEnvio()
+        },
+        (error)=>{
+          // this.vistaSpinner = false
+          // this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
+          console.log(error)
+        }
+      )
   }
 
   esValidoEmail(mail:any) {

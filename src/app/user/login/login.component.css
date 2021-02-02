@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2954A2;
+  background-color: #1B386E;
   /* background-image: url(../../../assets/fondoPrincipal.jpg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -44,14 +44,11 @@ img{
   background-repeat: none;
   background-size:100% 100%;
   width:50%;
-  color:#F4792C;
+  color:#FFF;
   border-radius: 5px;
-  -webkit-box-shadow: 0px 4px 0px -1px rgba(8,50,76,1);
-  -moz-box-shadow: 0px 4px 0px -1px rgba(8,50,76,1);
-  box-shadow: 0px 4px 0px -1px rgba(8,50,76,1);
 }
 form{
-  background:rgb(255,255,255,0.5);
+  background:rgb(255,255,255,0.6);
   width:100% !important;
   height:100% !important ;
   padding: 10px;
@@ -62,10 +59,13 @@ form{
   width:100%;
   color: #000;
 }
+.custom{
+  color: #FFF;
+}
 .head{
   height:8px;
   width:100%;
-  background:#F4792C;
+  background:#2954A2;
   border-radius: 5px 5px 0px 0px;
 }
 .icon{

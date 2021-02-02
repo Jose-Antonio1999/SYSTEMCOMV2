@@ -24,7 +24,8 @@
 .headerMessage{
   display: flex;
   justify-content: space-between;
-  background-color: #969696;
+  background-color: #C70039;
+  color: #000;
   border-radius: 10px 10px 0px 0px !important;
 }
 .userEnviador{
@@ -61,15 +62,16 @@
 }
 .btn{
   margin: 10px;
-  background: #2B4B85;
-  color: #FFF;
+  background: none;
+  border: 1px solid #C70039;
+  color: #C70039;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .btn:hover{
-  background: #FD6700;
+  background: #C70039;
   color: #FFF;
 }
 .btn .fas {

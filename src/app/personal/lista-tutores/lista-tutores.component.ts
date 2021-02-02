@@ -79,6 +79,11 @@ export class ListaTutoresComponent implements OnInit {
     return value;
   }
 
+  actualizarTabla(){
+    this.listatutoresAsignados();
+    this.listaData();
+  }
+
   mostrarImgUser(i:number){
 
     const info = {

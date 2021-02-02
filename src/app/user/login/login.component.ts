@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   Usuario:Usuario
   usuarioActual:userCurrent
   verPass:boolean = false
+  mensajeCarga:String
 
   constructor(
     private formbuilder:FormBuilder,
@@ -51,7 +52,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.mensajeCarga = "Cargando"
+    this.spinner.show()
+    setTimeout(() => {
+      this.spinner.hide()
+    }, 2000);
   }
 
   crearFormulario () {
@@ -81,7 +86,7 @@ export class LoginComponent implements OnInit {
       (res)=>{
 
         this.spinner.show()
-
+        this.mensajeCarga = "Ingresando al sistema"
         setTimeout(() => {
 
           if(res==0 || res =="0"){
@@ -90,7 +95,7 @@ export class LoginComponent implements OnInit {
             console.log(res)
             setTimeout(() => {
               this.aviso = false
-            }, 2000);
+            }, 1500);
 
           } else {
             //normalizar al usuario
@@ -150,8 +155,6 @@ export class LoginComponent implements OnInit {
       //estudiante
       this.ruta.navigateByUrl("Estudiante/bienvenida")
     }
-
-
 
   }
 

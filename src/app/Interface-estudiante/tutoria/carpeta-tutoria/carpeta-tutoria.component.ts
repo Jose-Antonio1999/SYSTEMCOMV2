@@ -11,6 +11,7 @@ import { FormularioServiceService } from 'src/app/service/formulario-service.ser
 import { PeticionService } from 'src/app/service/peticion.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { Question } from 'src/app/models/question';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 interface FormsIdentificador{
   id_form:number
@@ -38,7 +39,8 @@ export class CarpetaTutoriaComponent implements OnInit {
     private peticion:PeticionService,
     public dialog: MatDialog,
     private storage:StorageService,
-    private formbuilder:FormBuilder
+    private formbuilder:FormBuilder,
+    private fireStorage: AngularFireStorage,
     ) {
     //verificar sesion
     this.sesionInciada();
@@ -184,6 +186,54 @@ export class CarpetaTutoriaComponent implements OnInit {
     //reset de formulario y crear un nuevo formulario
     this.formularioRespuesta.reset();
     this.crearformularioRespuesta();
+  }
+
+  porcentajeSubidaFoto:number = 0
+  verCargaPhoto:boolean = false
+  archivoAdjuntadoURL:String = ""
+  barraCarga:boolean = false
+  mensajeFile:String = "Subir archivo"
+
+  idArchivo(i:number){
+    this.barraCarga = false
+    this.mensajeFile = "Subir archivo"
+    this.porcentajeSubidaFoto = 0
+    this.formularioRespuesta.get('respuestas').value[i].respuesta = ''
+    //this.formularioRespuesta.get('respuestas').value[i].respuesta = lista[i].id_questions
+  }
+
+  onFile(event,i:number) {
+
+      this.porcentajeSubidaFoto = 0
+      //el nombre del archivo se guardará con nombre de hora y fecha
+      const fecha = new Date();
+      const timestamp = fecha .getTime();
+      //proceso de guardado
+      const file = event.target.files[0];
+      const ruta = 'formularios/'+timestamp;
+      const ref = this.fireStorage.ref(ruta);
+      const task = ref.put(file);
+
+      //verificamos mientras se sube la foto
+      this.verCargaPhoto = true
+      task.then((tarea)=>{
+        ref.getDownloadURL().subscribe((imgUrl)=>{
+          this.archivoAdjuntadoURL = imgUrl
+          this.verCargaPhoto = false
+          this.barraCarga = false
+          this.mensajeFile = "Subir archivo"
+          this.formularioRespuesta.get('respuestas').value[i].respuesta = this.archivoAdjuntadoURL
+        })
+      },(error)=>{ this.peticion.mensaje(error,3500,'center','center')}
+      )
+      //observale de la subida del archivo en %
+      task.percentageChanges().subscribe((porcentaje)=>{
+        this.barraCarga = true
+        this.porcentajeSubidaFoto = parseInt(porcentaje.toString(),10)
+      },
+      (error)=>{ this.peticion.mensaje(error,3500,'center','center')}
+      )
+
   }
 
 

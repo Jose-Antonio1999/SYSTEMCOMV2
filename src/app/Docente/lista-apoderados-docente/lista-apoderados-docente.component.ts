@@ -41,7 +41,6 @@ export class ListaApoderadosDocenteComponent implements OnInit {
       this.ruta.navigateByUrl('login');
     } else {
       this.dataUser = JSON.parse(this.storage.decrypt(localStorage.getItem("current")))
-
       this.peticion.obtenerTutor(this.dataUser.DNI).subscribe(
         (res)=>{
 

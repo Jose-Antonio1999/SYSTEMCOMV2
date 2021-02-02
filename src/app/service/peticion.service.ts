@@ -6,6 +6,7 @@ import { ConsultaDNI } from '../clases/API'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Staff } from '../clases/staff';
 import { Area } from '../clases/Area';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,10 @@ export class PeticionService {
   URLenvio: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/envios/"
   URLactualizar: String = "http://localhost/SISTEMA-COMUNICADOS-V2/Backend/actualizar/"
 
-  constructor(private http:HttpClient, private snackBar: MatSnackBar) { }
+  constructor(
+    private http:HttpClient,
+    private snackBar: MatSnackBar,
+    private ruta:Router) { }
 
   //funciones de petición registro
   registroUnico(data):Observable<any>{
@@ -38,7 +42,9 @@ export class PeticionService {
   registroTutor(data):Observable<any>{
     return this.http.post<any>(this.URLRegistro+'registrarTutor.php',JSON.stringify(data));
   }
-
+  guardarMensaje(data):Observable<any>{
+    return this.http.post<any>(this.URLRegistro+'guardarMensaje.php',JSON.stringify(data));
+  }
 
 
   //funciones de peción lista
@@ -76,6 +82,9 @@ export class PeticionService {
   }
   listaComunicado(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"listaComunicado.php",data);
+  }
+  listaComunicadoGuardado(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"listaComunicadosGuardados.php",data);
   }
   obtenerPerfilCurrent(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentUser.php",data);
@@ -138,6 +147,9 @@ export class PeticionService {
   enviarFormulario(data:any):Observable<any>{
     return this.http.post<any>(this.URLenvio+"envioFormulario.php",JSON.stringify(data));
   }
+  restablecerPass(data:any):Observable<any>{
+    return this.http.post<any>(this.URLenvio+"recoveryPassword.php",JSON.stringify(data));
+  }
 
   //autocompletado de dato
   APIdni(dni:String):Observable<ConsultaDNI>{
@@ -168,6 +180,11 @@ export class PeticionService {
   }
   AccessStudent(data:any):Observable<any>{
     return this.http.post<any>(this.URLactualizar+"AccessStudent.php",JSON.stringify(data));
+  }
+
+  //eliminar comunicado
+  eliminarComunicado(data:any):Observable<any>{
+    return this.http.post<any>(this.URLactualizar+"eliminarComunicado.php",data);
   }
 
   //funciones extras
@@ -206,4 +223,28 @@ export class PeticionService {
   return resul
   }
 
+  //funcion de redirección
+  redireccionarPagina(data:number) {
+    if (data==10) {
+      //director
+      this.ruta.navigateByUrl("Admin/bienvenida")
+    }
+    if(data==20) {
+      //subdirector
+      this.ruta.navigateByUrl("Admin/bienvenida")
+    }
+    if(data==30) {
+      //docente
+      this.ruta.navigateByUrl("Docente/bienvenida")
+    }
+    if(data==40) {
+      //secretaria
+      this.ruta.navigateByUrl("Admin/bienvenida")
+    }
+    if(data==50) {
+      //estudiante
+      this.ruta.navigateByUrl("Estudiante/bienvenida")
+    }
+
+  }
 }

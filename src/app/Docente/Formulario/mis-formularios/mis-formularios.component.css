@@ -1,0 +1,63 @@
+.contenedorDocentes{
+  height: 470px;
+  width: 102%;
+  overflow: hidden;
+  overflow-y: scroll;
+  z-index: 100;
+}
+.contenedorDocentes::-webkit-scrollbar{
+  height: 7px;
+  width: 10px;
+}
+.contenedorDocentes::-webkit-scrollbar-thumb{
+  background: #CCCCCC;
+  cursor: pointer;
+}
+.central{
+  height: 83%;
+  width: 96% !important;
+  z-index:10;
+  border-radius: 10px;
+  margin-top: 15px;
+  background: #FFF;
+  -webkit-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+  box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+}
+.title-list{
+  margin-top: 23px;
+}
+
+.conten-formulario{
+  margin: 0 auto;
+  width: 80% !important;
+}
+.modelInput{
+  width: 100%;
+}
+.label-titulo{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.header-form{
+  background: #FFF;
+  padding: 10px;
+  border-top: 10px solid #1B386E;
+  border-radius: 10px;
+}
+.conten-list-data{
+  height: 440px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.conten-list-data::-webkit-scrollbar{
+  height: 7px;
+  width: 10px;
+}
+.conten-list-data::-webkit-scrollbar-thumb{
+  background: #CCCCCC;
+  cursor: pointer;
+}
+.title-form{
+  font-size: 28px;
+}

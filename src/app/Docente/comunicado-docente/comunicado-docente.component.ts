@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Comunicado } from 'src/app/clases/comunicado';
 import { Grado } from 'src/app/clases/grado';
 import { Seccion } from 'src/app/clases/seccion';
 import { Usuario } from 'src/app/clases/usuario';
@@ -78,6 +79,7 @@ export class ComunicadoDocenteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.completeEdit();
     //modal
     this.formularioHelp = this.formbuilder.group({
       passwo:['']
@@ -99,7 +101,7 @@ export class ComunicadoDocenteComponent implements OnInit {
       this.grado = data.grado
       this.seccion = data.secion
       this.tipogrado = this.peticion.gradoSegunName(this.grado )
-      console.log(this.servicestorage.decrypt(localStorage.getItem('comunicado')))
+      localStorage.removeItem('comunicado')
     }
   }
 
@@ -140,6 +142,17 @@ export class ComunicadoDocenteComponent implements OnInit {
           console.log(error)
         }
       )
+    }
+  }
+
+  comunicadoEditar:Comunicado
+  completeEdit(){
+    if(localStorage.getItem('edit-comunicado')!=null){
+      this.comunicadoEditar = JSON.parse(localStorage.getItem('edit-comunicado'));
+      this.formulalrioComunicado.controls['cuerpo'].setValue(this.comunicadoEditar.body)
+      this.formulalrioComunicado.controls['asunto'].setValue(this.comunicadoEditar.affair);
+      //depues de rellenar eliminar la data temporal
+      localStorage.removeItem('edit-comunicado')
     }
   }
 
@@ -364,8 +377,20 @@ export class ComunicadoDocenteComponent implements OnInit {
     localStorage.setItem("recordarPass",this.servicestorage.encrypt(JSON.stringify(savep)))
   }
 
-  bo(){
-    localStorage.removeItem("recordarPass")
+  guardarComunicado(){
+    //enviar comunicado
+    this.formulalrioComunicado.value.rutaArchivo = this.archivoAdjuntadoURL
+    this.peticion.guardarMensaje(this.formulalrioComunicado.value).subscribe(
+      (res)=>{
+        this.peticion.mensaje(res,4500,'center','center')
+        this.cancelarEnvio()
+      },
+      (error)=>{
+        // this.vistaSpinner = false
+        // this.peticion.mensaje("Error al enviar mensaje, verifique su password o los emails a enviar",4500,'center','center')
+        console.log(error)
+      }
+    )
   }
 
   esValidoEmail(mail:any) {

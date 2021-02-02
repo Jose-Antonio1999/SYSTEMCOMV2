@@ -154,6 +154,10 @@ export class ListaEstudiantesComponent implements OnInit {
 
   }
 
+  actualizarTabla(){
+    this.verificarParaListar();
+  }
+
 }
 
 

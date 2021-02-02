@@ -20,7 +20,7 @@
             </mat-form-field>
 
             <mat-form-field class="modelInput">
-              <input matInput class="title-form" placeholder="Título del formulario" formControlName="titulo">
+              <input matInput class="title-form" placeholder="Título del formulario" formControlName="titulo" maxlength="145">
             </mat-form-field>
 
             <mat-form-field class="modelInput">
@@ -35,7 +35,7 @@
             <div class="item-one" *ngFor="let data of obtenerPreguntas.controls; let indice = index" [formGroupName]="indice">
               <div class="conte-form-dinamic">
                 <mat-form-field class="input-item">
-                  <input matInput placeholder="Nombre" autocomplete="off" formControlName="pregunta">
+                  <input matInput placeholder="Nombre" autocomplete="off" formControlName="pregunta" maxlength="280">
                 </mat-form-field>
               </div>
               <div class="conte-form-dinamic">
