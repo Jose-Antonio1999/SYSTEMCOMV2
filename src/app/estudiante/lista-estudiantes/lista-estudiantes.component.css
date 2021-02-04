@@ -20,6 +20,7 @@
 }
 .contenData::-webkit-scrollbar-thumb{
   cursor: pointer;
+  background: #E7E6E8;
 }
 .imgUser{
   height: 35px;
@@ -47,7 +48,7 @@
   margin-top: 10px;
   font-size: 15px;
   border-radius: 20px;
-  border: 2px solid #000;
+  border: 1px solid #000;
 }
 .sg{
   display:flex;

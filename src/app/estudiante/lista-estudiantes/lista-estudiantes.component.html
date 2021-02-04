@@ -7,7 +7,7 @@
       <div class="contenData">
         <div class="row">
           <div class="col-md-3 titleList"><h4>Lista de estudiantes #{{numeroAlumnos}}</h4></div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <mat-form-field style="width: 90%;" class="example-full-width">
               <input id="buscador" name="buscador" matInput placeholder="Nombre del estudiante" [(ngModel)]="nombreEstudiante">
               <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
@@ -33,47 +33,53 @@
             </mat-form-field>
 
           </div>
-          <div class="col-md-2 sg">
+          <div class="col-md-3 sg">
             <button class="btn-actualizar" (click)="actualizarTabla()"><i class="fas fa-undo-alt"></i> actualizar</button>
+            <button class="btn-actualizar"
+            [useExistingCss]="true"
+            printSectionId="print-list-student"
+            ngxPrint><i class="fas fa-print" title="Imprimir formularios"></i> Imprimir</button>
           </div>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col"><i class="fas fa-camera"></i></th>
-              <th scope="col">DNI estudiante</th>
-              <th scope="col">Estudiantes</th>
-              <th scope="col">Email estudiante</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Editar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of listaStudent | buscarEstudiante:nombreEstudiante; let i=index">
-              <th scope="row">{{i+1}}</th>
-              <td><img class="imgUser" src="{{data.path_photo_students}}" alt="" srcset=""></td>
-              <td>{{data.DNI_student}}</td>
-              <td>{{convetirMinuscula(data.name_student)}} {{convetirMinuscula(data.firts_name_student)}} {{convetirMinuscula(data.last_name_student)}}</td>
-              <td>{{data.email_student}}</td>
-              <td>
-                <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
-                  <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
-                  class="btn btn-sm" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
-                    {{estadoUser(data.status_student)}}
-                  </button>
-                  <ng-template #desa>
+        <div class="table-responsive" id="print-list-student">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"><i class="fas fa-camera"></i></th>
+                <th scope="col">DNI estudiante</th>
+                <th scope="col">Estudiantes</th>
+                <th scope="col">Email estudiante</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of listaStudent | buscarEstudiante:nombreEstudiante; let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td><img class="imgUser" src="{{data.path_photo_students}}" alt="" srcset=""></td>
+                <td>{{data.DNI_student}}</td>
+                <td>{{convetirMinuscula(data.name_student)}} {{convetirMinuscula(data.firts_name_student)}} {{convetirMinuscula(data.last_name_student)}}</td>
+                <td>{{data.email_student}}</td>
+                <td>
+                  <p style="cursor: pointer;" alt="Click para habilitar o desabilitar personal" class="link-success">
                     <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
-                    class="btn btn-sm" style="background:#E81123;">
+                    class="btn btn-sm" *ngIf="data.status_student==1; else desa" style="background:#1B386E;">
                       {{estadoUser(data.status_student)}}
                     </button>
-                  </ng-template>
-                </p>
-              </td>
-              <td><button class="btn btna btn-sm" (click)="modalEditar(i)"><i class="fas fa-edit"></i> Editar</button></td>
-            </tr>
-          </tbody>
-        </table>
+                    <ng-template #desa>
+                      <button (click)="estadoStudent(data.DNI_student,data.email_student,i,data.status_student)"
+                      class="btn btn-sm" style="background:#E81123;">
+                        {{estadoUser(data.status_student)}}
+                      </button>
+                    </ng-template>
+                  </p>
+                </td>
+                <td><button class="btn btna btn-sm" (click)="modalEditar(i)"><i class="fas fa-edit"></i> Editar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <div *ngIf="ultimo==-1" class="alert alert-info" role="alert">
           Nose encontraron alumnos en el aula para ese grado y sección
         </div>

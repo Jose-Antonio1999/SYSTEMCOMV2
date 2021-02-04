@@ -6,7 +6,7 @@
   margin: 0 auto;
   margin-top: 60px;
   margin-right: 32px;
-  background-color: #FFF;
+  background-color: #ffffff;
   border-radius: 5px;
   -webkit-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
@@ -49,4 +49,11 @@ thead tr th {
   top: 0;
   z-index: 10;
   background-color: #FFF;
+}
+.print-father{
+  background: none;
+  border: 1px solid #174D6C;
+  border-radius: 20px;
+  margin-right: 3px;
+  outline: none;
 }
