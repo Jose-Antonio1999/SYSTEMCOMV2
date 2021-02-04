@@ -24,7 +24,7 @@
 .headerMessage{
   display: flex;
   justify-content: space-between;
-  background-color: #C70039;
+  background-color: #00897B;
   color: #000;
   border-radius: 10px 10px 0px 0px !important;
 }
@@ -63,15 +63,15 @@
 .btn{
   margin: 10px;
   background: none;
-  border: 1px solid #C70039;
-  color: #C70039;
+  border: 1px solid #00897B;
+  color: #00897B;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .btn:hover{
-  background: #C70039;
+  background: #00897B;
   color: #FFF;
 }
 .btn .fas {
@@ -106,6 +106,9 @@ table{
   -moz-border-radius:10px;
   -webkit-border-radius: 10px;
 }
+.badge{
+  background: #323EBE !important;
+}
 .modal-lg {
   max-width: 50% !important;
 }
@@ -113,6 +116,11 @@ table{
   color: #000;
   font-family: 'Patua One';
   font-size: 30px;
+}
+.print-comunicado{
+  border: none;
+  background: none;
+  font-size: 16px;
 }
 
 @media (max-width:760px){

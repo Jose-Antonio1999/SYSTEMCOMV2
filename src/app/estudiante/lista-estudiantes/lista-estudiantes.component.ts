@@ -22,6 +22,7 @@ export class ListaEstudiantesComponent implements OnInit {
   ultimo:number = -1
   nombreEstudiante:string
   estadoStatus:number = 0;
+  numeroAlumnos:number = 0
   //data por defecto para listar por grado y seccion
   data = {'grado':1, 'seccion':1}
 
@@ -41,6 +42,7 @@ export class ListaEstudiantesComponent implements OnInit {
     this.peticion.listaStudent(data).subscribe(
       (res)=>{
         this.listaStudent = res as any
+        this.numeroAlumnos = this.listaStudent.length
         if (Object.keys(res).length==0) {
           this.ultimo = -1
         } else {

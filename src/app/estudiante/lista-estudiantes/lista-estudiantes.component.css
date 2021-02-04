@@ -19,7 +19,6 @@
   width: 10px;
 }
 .contenData::-webkit-scrollbar-thumb{
-  background: #CCCCCC;
   cursor: pointer;
 }
 .imgUser{
@@ -54,6 +53,9 @@
   display:flex;
   justify-content:center;
   align-items:center;
+}
+.titleList{
+  margin-top: 20px;
 }
 thead tr th {
   position: sticky;

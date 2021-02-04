@@ -47,10 +47,10 @@
                 <td><img class="img-student" [src]="data.path_photo_students" alt=""></td>
                 <td>{{this.convetirMinuscula(data.name_student)}} {{this.convetirMinuscula(data.firts_name_student)}}</td>
                 <td>{{data.DNI_parent}}</td>
-                <td>{{this.convetirMinuscula(data.name_parent)}} {{this.convetirMinuscula(data.firts_name_parent)}} {{this.convetirMinuscula(data.last_name_parent)}}</td>
+                <td>{{this.convetirMinuscula(data.name_parent)}} {{this.convetirMinuscula(data.firts_name_parent)}}</td>
                 <td>{{data.email_parent}}</td>
                 <td>{{data.phone_number_parent}}</td>
-                <td><button (click)="comunicadoEspecifico(data.email_parent)" class="btn" [routerLink]="['../redactar-comunicado']"><i class="fas fa-pen-square"></i> comunicado</button></td>
+                <td><button (click)="comunicadoEspecifico(data.email_parent)" class="btn btn-sm" [routerLink]="['../redactar-comunicado']"><i class="fas fa-pen-square"></i> comunicado</button></td>
               </tr>
             </tbody>
           </table>

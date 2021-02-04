@@ -7,7 +7,7 @@ $dni = file_get_contents("php://input");
 
 if(isset($dni)) {
   //verificar si existe su dni
-  $sql_consulta_staff = "SELECT id_card_number_staff FROM STAFFS WHERE id_card_number_staff = '$dni' ";
+  $sql_consulta_staff = "SELECT DNI FROM users WHERE DNI = '$dni' ";
 
   $query_consuta_user = mysqli_query($conexion,$sql_consulta_staff);
 

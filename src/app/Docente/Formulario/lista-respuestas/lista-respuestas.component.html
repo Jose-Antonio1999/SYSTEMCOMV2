@@ -1,67 +1,104 @@
 <div class="container-fluid central">
   <div class="row">
-    <div class="col-md-3">
-      <h4 class="title-list">Lista de respuestas</h4>
+    <div class="col-md-7">
+      <h4 class="title-list">Vista de respuestas</h4>
     </div>
-    <div class="col-md-4">
-      <mat-form-field style="width: 90%;" class="example-full-width">
+    <!-- <div class="col-md-4">
+      <!-- <mat-form-field style="width: 90%;" class="example-full-width">
         <mat-label>Buscar formulario</mat-label>
         <input matInput placeholder="Buscar" autocomplete="off" >
         <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
       </mat-form-field>
-    </div>
+    </div> -->
     <div class="col-md-2">
 
     </div>
-    <div class="col-md-2">
-
+    <div class="col-md-2 conten-print">
     </div>
   </div>
 
-  <div class="row contenedorDocentes">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header mt-3">
-        Académico
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Día del Logro</h5>
-            <a class="btn btn-light"><i class="fas fa-book me-1"></i>Go somewhere</a>
-        </div>
-    </div>
+  <div [ngSwitch]="vistaForm">
+    <div *ngSwitchCase="'lista'">
 
-    <div class="card mt-3">
-        <div class="card-header">
-            Académico
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a class="btn btn-light"><i class="fas fa-book me-1"></i>Go somewhere</a>
-        </div>
-    </div>
+      <div *ngIf="vistaVacia" class="alert alert-warning" role="alert">
+        <i class="fas fa-folder-open"></i> Lista de formularios enviados vacia
+      </div>
 
-    <div class="card">
-        <div class="card-header mt-3">
-            Vocacional
+      <div class="row contenedorDocentes">
+        <div class="col-md-12 mt-2" *ngFor="let data of Formularios; let i=index">
+          <div class="card">
+            <div class="card-header header-vista">
+            {{areas(data.id_area_tutorship1)}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{data.title}}</h5>
+                <p>{{data.description}}</p>
+                <a class="btn btn-light btn-sm" (click)="mandarRespuestas(i,data.id_form,'vista')"><i class="fas fa-book me-1"></i>Ver respuestas</a>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a class="btn btn-light"><i class="fas fa-book me-1"></i>Go somewhere</a>
-        </div>
+      </div>
     </div>
+    <div *ngSwitchCase="'vista'">
+      <a class="btn btn-light btn-sm" style="color:#000;" (click)="opcionVista('lista')"><i class="fas fa-exchange-alt"></i> Regresar</a>
+      <div class="conten-formulario">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row conten-list-data"  style="padding: 10px;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col-md-2">#</th>
+                    <th scope="col-md-2">Nombres</th>
+                    <th scope="col-md-5">Vista</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-    <div class="card">
-        <div class="card-header mt-3">
-            Vocacional
+                  <tr *ngFor="let data of listaData; let i=index">
+                    <td scope="row">{{i+1}}</td>
+                    <td>{{convetirMinuscula(data.name_student)}}
+                          {{convetirMinuscula(data.firts_name_student)}}
+                          {{convetirMinuscula(data.last_name_student)}}
+                        </td>
+                    <td><button (click)="verRespuestaAlumno(i)" class="btn btn-info btn-sm">Respuesta</button></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="title-form">
+              <p><i class="fas fa-list-alt"></i> {{this.datoForm}}</p>
+              <button class="print-pdf" [printTitle]="datoForm" [useExistingCss]="true" printSectionId="preguntas" ngxPrint><i class="fas fa-print"></i></button>
+            </div>
+            <div class="contenAnswer" id="preguntas">
+              <div *ngIf="!vistaLista && !vistaListasuccess" class="alert alert-info m-2" role="alert">
+                <b><i class="fas fa-check-circle"></i> Vista de respuestas</b>
+              </div>
+              <div *ngIf="vistaLista" class="alert alert-danger m-2" role="alert">
+                <b><i class="fas fa-exclamation-triangle"></i> {{convetirMinuscula(this.estudiante)}} </b> no respondió el formulario
+              </div>
+              <div *ngIf="vistaListasuccess" class="alert alert-info m-2" role="alert">
+                <i class="fas fa-check-circle"></i> Respuesta de: <b class="text-center"> {{convetirMinuscula(this.estudiante)}} </b>
+              </div>
+              <div>
+                <div class="card m-2" *ngFor="let data of listaPreguntas">
+                  <div class="card-header header-answer">
+                    <b>{{data.question}}</b>
+                  </div>
+                  <div class="card-body">
+                    <p *ngIf="verificarURL(data.answer)==false" class="card-text">{{data.answer}}</p>
+                    <p *ngIf="verificarURL(data.answer)==true" class="card-text"> <a href="{{data.answer}}" target="_blank">Ver archivo</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a class="btn btn-light"><i class="fas fa-book me-1"></i>Go somewhere</a>
-        </div>
-    </div>
+      </div>
     </div>
   </div>
 </div>
+

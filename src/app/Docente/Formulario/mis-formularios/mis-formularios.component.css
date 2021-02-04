@@ -61,3 +61,24 @@
 .title-form{
   font-size: 28px;
 }
+.hearder-vista{
+  border-top: 5px solid #174D6C !important;
+  color: #000;
+}
+.btn{
+  background: none;
+  border: 1px solid #174D6C;
+  border-radius: 20px;
+  margin-right: 3px;
+}
+.conten-print{
+  display: flex;
+  justify-content: flex-end;
+}
+.print-list-form{
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 25px;
+  outline: none;
+}

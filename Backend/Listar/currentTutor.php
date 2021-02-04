@@ -4,7 +4,7 @@ require_once("../conexion/conexion.php");
 //obtenemos la data de registro
 $dni = file_get_contents("php://input");
 
-$sql_consulta_photo = "SELECT id_staff, id_card_number_staff, email_staff, id_teacher_tutor, grade, section
+$sql_consulta_photo = "SELECT id_staff, id_card_number_staff,name_staff,firts_name_staff, email_staff,last_name_staff, id_teacher_tutor, grade, section
                               FROM staffs INNER JOIN teacher_tutor ON staffs.id_staff = teacher_tutor.id_staff2
                               LEFT JOIN grades on grades.id_grade  = teacher_tutor.id_grade1
                               LEFT JOIN section ON section.id_section = teacher_tutor.id_section2
@@ -18,6 +18,9 @@ $i = 0;
 while ($data = mysqli_fetch_array($ejecucion_conuslta)) {
     $lista[$i]['id_staff'] = $data['id_staff'];
     $lista[$i]['id_card_number_staff'] = $data['id_card_number_staff'];
+    $lista[$i]['name_staff'] = $data['name_staff'];
+    $lista[$i]['firts_name_staff'] = $data['firts_name_staff'];
+    $lista[$i]['last_name_staff'] = $data['last_name_staff'];
     $lista[$i]['email_staff'] = $data['email_staff'];
     $lista[$i]['id_teacher_tutor'] = $data['id_teacher_tutor'];
     $lista[$i]['grade'] = $data['grade'];

@@ -1,1 +1,24 @@
-<p>info-tutor works!</p>
+
+<div class="conten-general">
+  <div class="content-img">
+  </div>
+  <div *ngIf="vista" class="info-user-staff">
+    <div class="data-info-user">
+      <div class="name-user">
+        <h5><b>Tutor: {{convetirMinuscula(DataTutor.name_staff)}} {{convetirMinuscula(DataTutor.firts_name_staff)}}</b></h5>
+      </div>
+      <div>
+        <div>
+          <div class="other-data">
+            <h5><b><i class="fas fa-chalkboard-teacher"></i></b> Docente Beleniano</h5>
+            <h5><b><i class="fas fa-envelope"></i></b> {{DataTutor.email_staff}}</h5>
+            <h5><b><i class="fas fa-mobile"></i></b> {{DataTutor.phone_number_staff}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="conten-img-user">
+      <img class="img-user" [src]="DataTutor.path_photo_staffs" alt="" srcset="">
+    </div>
+  </div>
+</div>

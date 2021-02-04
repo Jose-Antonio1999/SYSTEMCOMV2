@@ -12,6 +12,7 @@ export class ListaPadresComponent implements OnInit {
   dniPadre:String;
   listaStudent = Array<Student>()
   data = {'grado':null, 'seccion':null}
+  numeroPadres:number = 0
   constructor(
     private peticion:PeticionService
   ) {
@@ -25,6 +26,7 @@ export class ListaPadresComponent implements OnInit {
     this.peticion.listaStudent(data).subscribe(
       (res)=>{
         this.listaStudent = res as any
+        this.numeroPadres = this.listaStudent.length
         if (Object.keys(res).length==0) {
           this.ultimo = -1
         } else {

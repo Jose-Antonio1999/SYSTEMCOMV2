@@ -34,7 +34,7 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <h6 class="text-center texto">{{data.type_communique}}</h6>
+                  <h6 class="text-center texto" style="font-size:23px;">{{data.type_communique}}</h6>
                   <div class="info-message">
                     <span class="badge bg-success">Fecha de envio: </span>
                     <b><p style="margin-top: 18px;"> &nbsp;{{data.date}}</p></b>
@@ -57,10 +57,15 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Vista previa</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Vista previa
+          <button class="print-comunicado"
+          [useExistingCss]="true"
+          printSectionId="comunicado"
+          ngxPrint><i class="fas fa-print" title="Imprimir formularios"></i> Imprimir</button>
+        </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div style="height: auto">
+      <div style="height: auto" id="comunicado">
         <div class="comunicado" style="margin: 0 auto; height:auto; margin-top: 10px;">
 
           <div style="width:85%; margin: 0 auto; margin-bottom: 5px; height:5px; background:#1B386E"></div>

@@ -14,6 +14,7 @@ import { VistaImagenUserComponent } from 'src/app/modals/vista-imagen-user/vista
 export class ListaTutoresComponent implements OnInit {
   listadocentesTutores: Array<Tutor>
   listadocentesTutoresAsig: Array<Tutor>
+  totaldocentes:number = 0;
   constructor(
     public dialog: MatDialog,
     private peticion:PeticionService
@@ -29,6 +30,7 @@ export class ListaTutoresComponent implements OnInit {
     this.peticion.listaStafftutores().subscribe(
       (res)=>{
         this.listadocentesTutores = res as any
+        this.totaldocentes = this.totaldocentes + this.listadocentesTutores.length
       },
       (error)=>{
         console.log(error)
@@ -40,6 +42,7 @@ export class ListaTutoresComponent implements OnInit {
     this.peticion.listaTutoresAsignados().subscribe(
       (res)=>{
         this.listadocentesTutoresAsig = res as any
+        this.totaldocentes = this.totaldocentes  + this.listadocentesTutoresAsig.length
       },
       (error)=>{
         console.log(error)

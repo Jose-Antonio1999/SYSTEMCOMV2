@@ -109,10 +109,20 @@ export class RegistroPersonalComponent implements OnInit {
       (res)=>{
         if (res!="0") {
           this.crearFormulario.controls.photo.disable()
+          this.crearFormulario.controls.nombre.disable()
+          this.crearFormulario.controls.apellidoP.disable()
+          this.crearFormulario.controls.apellidoM.disable()
+          this.crearFormulario.controls.correo.disable()
+          this.crearFormulario.controls.celular.disable()
           this.peticion.mensaje(res,4500,'center','center')
         } else {
-          this.crearFormulario.controls.photo.enable()
           this.APIRENIEC();
+          this.crearFormulario.controls.photo.enable()
+          this.crearFormulario.controls.nombre.enable()
+          this.crearFormulario.controls.apellidoP.enable()
+          this.crearFormulario.controls.apellidoM.enable()
+          this.crearFormulario.controls.correo.enable()
+          this.crearFormulario.controls.celular.enable()
         }
       },
       (error)=>{
@@ -126,10 +136,12 @@ export class RegistroPersonalComponent implements OnInit {
       this.peticion.existeEmail(this.crearFormulario.value.correo).subscribe(
         (res)=>{
           if (res!="0") {
-            this.crearFormulario.controls.photo.disable()
+            //desabilitar campos
             this.crearFormulario.controls.celular.disable()
+            this.crearFormulario.controls.photo.disable()
             this.peticion.mensaje(res,4500,'center','center')
           } else {
+            //habilitar campos
             this.crearFormulario.controls.photo.enable()
             this.crearFormulario.controls.celular.enable()
           }

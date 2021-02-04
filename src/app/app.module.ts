@@ -68,6 +68,7 @@ import { BuscarComunicadosPipe } from './pipes/buscar-comunicados.pipe';
 import { MensajesGuardadosComponent } from './comunicado/mensajes-guardados/mensajes-guardados.component';
 import { MisFormulariosComponent } from './Docente/Formulario/mis-formularios/mis-formularios.component';
 import { RecoveryPasswordComponent } from './user/recovery-password/recovery-password.component';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -142,7 +143,8 @@ import { RecoveryPasswordComponent } from './user/recovery-password/recovery-pas
     NgxSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
     FormsModule,
-    NgxWigModule
+    NgxWigModule,
+    NgxPrintModule
   ],
 
   providers: [],

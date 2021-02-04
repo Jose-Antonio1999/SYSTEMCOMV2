@@ -2,7 +2,7 @@
 <div class="container-fluid central">
   <div class="row">
     <div class="col-md-3">
-      <h4 class="title-list">Lista de Docentes</h4>
+      <h4 class="title-list">Lista de Personal #{{numeroPersonal}}</h4>
     </div>
     <div class="col-md-4">
       <mat-form-field style="width: 90%;" class="example-full-width">
@@ -12,7 +12,6 @@
       </mat-form-field>
     </div>
     <div class="col-md-2">
-
     </div>
     <div class="col-md-2">
 
@@ -21,7 +20,7 @@
 
   <div class="row contenedorDocentes">
     <div class="col-md-4" *ngFor="let data of listaPersonal | buscarPersonal:nombrePersonal; let i=index">
-      <div class="card">
+      <div class="card" style="background: #E7E6E8; margin-top: 5px;">
         <div class="card-body">
           <div class="text-center center-img">
             <img class="img-user" [src]="data.path_photo_staffs" alt="" srcset="">

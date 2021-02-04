@@ -1,6 +1,7 @@
 .conten-formulario{
   margin: 0 auto;
-  width: 80% !important;
+  margin-top: -10px;
+  width: 90% !important;
 }
 .modelInput{
   width: 100%;
@@ -46,7 +47,7 @@
   margin-left: 93%;
 }
 .conten-list-data{
-  height: 85vh;
+  height: 86vh;
   overflow: hidden;
   overflow-y: scroll;
 }

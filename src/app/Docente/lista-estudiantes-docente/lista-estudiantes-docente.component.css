@@ -45,6 +45,9 @@
   background: #CCCCCC;
   cursor: pointer;
 }
+.card{
+  background: #E7E6E8;
+}
 .conten-data{
   background-color: #FFF;
   width: 98%;

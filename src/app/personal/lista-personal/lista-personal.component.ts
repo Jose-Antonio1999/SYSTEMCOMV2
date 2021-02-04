@@ -33,7 +33,7 @@ export class ListaPersonalComponent implements OnInit {
   estadoToltip:string = "stateOne"
   asignar:string = "no"
   nombrePersonal:string
-
+  numeroPersonal:number = 0
   constructor(
     private peticion: PeticionService
   ) {
@@ -47,6 +47,7 @@ export class ListaPersonalComponent implements OnInit {
     this.peticion.listaStaff().subscribe(
       (res)=>{
         this.listaPersonal = res as any
+        this.numeroPersonal = this.listaPersonal.length
       },
       (error)=>{
         console.log(error);

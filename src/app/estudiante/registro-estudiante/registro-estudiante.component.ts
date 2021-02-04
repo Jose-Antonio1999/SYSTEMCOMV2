@@ -245,10 +245,21 @@ export class RegistroEstudianteComponent implements OnInit {
           if (res!="0") {
             this.crearFormulario.controls.photo.disable()
             this.crearFormulario.controls.dni_apoderado.disable()
+            this.crearFormulario.controls.nombre_apoderado.disable()
+            this.crearFormulario.controls.apellidoP_apoderado.disable()
+            this.crearFormulario.controls.apellidoM_apoderado.disable()
+            this.crearFormulario.controls.correo_apoderado.disable()
+            this.crearFormulario.controls.celular_apoderado.disable()
             this.peticion.mensaje(res,4500,'center','center')
           } else {
             this.crearFormulario.controls.photo.enable()
             this.crearFormulario.controls.dni_apoderado.enable()
+            this.crearFormulario.controls.dni_apoderado.enable()
+            this.crearFormulario.controls.nombre_apoderado.enable()
+            this.crearFormulario.controls.apellidoP_apoderado.enable()
+            this.crearFormulario.controls.apellidoM_apoderado.enable()
+            this.crearFormulario.controls.correo_apoderado.enable()
+            this.crearFormulario.controls.celular_apoderado.enable()
           }
         },
         (error)=>{
@@ -258,6 +269,45 @@ export class RegistroEstudianteComponent implements OnInit {
 
     }
 
+  }
+
+  verificarDNIDB(){
+    if (this.crearFormulario.value.dni_estudiante.length==8) {
+      this.peticion.existeDNI(this.crearFormulario.value.dni_estudiante).subscribe(
+        (res)=>{
+          if (res!="0") {
+            this.crearFormulario.controls.nombre_estudiante.disable()
+            this.crearFormulario.controls.apellidoP_estudiante.disable()
+            this.crearFormulario.controls.apellidoM_estudiante.disable()
+            this.crearFormulario.controls.photo.disable()
+            this.crearFormulario.controls.correo_estudiante.disable()
+            this.crearFormulario.controls.dni_apoderado.disable()
+            this.crearFormulario.controls.nombre_apoderado.disable()
+            this.crearFormulario.controls.apellidoP_apoderado.disable()
+            this.crearFormulario.controls.apellidoM_apoderado.disable()
+            this.crearFormulario.controls.correo_apoderado.disable()
+            this.crearFormulario.controls.celular_apoderado.disable()
+            this.peticion.mensaje(res,4500,'center','center')
+          } else {
+            this.APIRENIECAlumno()
+            this.crearFormulario.controls.nombre_estudiante.enable()
+            this.crearFormulario.controls.apellidoP_estudiante.enable()
+            this.crearFormulario.controls.apellidoM_estudiante.enable()
+            this.crearFormulario.controls.photo.enable()
+            this.crearFormulario.controls.correo_estudiante.enable()
+            this.crearFormulario.controls.dni_apoderado.enable()
+            this.crearFormulario.controls.nombre_apoderado.enable()
+            this.crearFormulario.controls.apellidoP_apoderado.enable()
+            this.crearFormulario.controls.apellidoM_apoderado.enable()
+            this.crearFormulario.controls.correo_apoderado.enable()
+            this.crearFormulario.controls.celular_apoderado.enable()
+          }
+        },
+        (error)=>{
+          console.log(error)
+        }
+      )
+    }
   }
 
 

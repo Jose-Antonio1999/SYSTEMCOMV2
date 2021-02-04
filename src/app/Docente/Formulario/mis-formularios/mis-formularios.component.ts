@@ -25,6 +25,7 @@ export class MisFormulariosComponent implements OnInit {
   listArea: Array<Area> = new Array<Area>();
   cargaEnvio:boolean = false;
   listaTipo: Array<TipoPregunta> = new Array<TipoPregunta>();
+  datatutor:String = ""
   constructor(
     private formbuilder:FormBuilder,
     private peticion:PeticionService,
@@ -54,6 +55,8 @@ export class MisFormulariosComponent implements OnInit {
           } else {
             this.usercurrent = res[0];
             this.id_docente_tutor = this.usercurrent.id_teacher_tutor
+            //guardar data para imprimir
+            this.datatutor = "Tutor(a): "+this.usercurrent.name_staff+" "+this.usercurrent.firts_name_staff+" "+this.usercurrent.last_name_staff
             //lsitar formularios
             this.listaFormularios();
           }

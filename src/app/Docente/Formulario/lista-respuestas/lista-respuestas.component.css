@@ -1,5 +1,5 @@
 .contenedorDocentes{
-  height: 83%;
+  height: 470px;
   width: 102%;
   overflow: hidden;
   overflow-y: scroll;
@@ -10,7 +10,6 @@
   width: 10px;
 }
 .contenedorDocentes::-webkit-scrollbar-thumb{
-  background: #CCCCCC;
   cursor: pointer;
 }
 .central{
@@ -26,4 +25,99 @@
 }
 .title-list{
   margin-top: 23px;
+}
+
+.conten-formulario{
+  margin: 0 auto;
+  width: 100% !important;
+}
+.modelInput{
+  width: 100%;
+}
+.label-titulo{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.header-form{
+  background: #FFF;
+  padding: 10px;
+  border-top: 10px solid #1B386E;
+  border-radius: 10px;
+}
+.conten-list-data{
+  height: 440px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.conten-list-data::-webkit-scrollbar{
+  height: 7px;
+  width: 10px;
+}
+.conten-list-data::-webkit-scrollbar-thumb{
+  cursor: pointer;
+  background: #E7E6E8;
+}
+.title-form{
+  font-size: 28px;
+}
+.contenAnswer{
+  height: 440px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.contenAnswer::-webkit-scrollbar{
+  height: 7px;
+  width: 10px;
+}
+.contenAnswer::-webkit-scrollbar-thumb{
+  cursor: pointer;
+  background: #E7E6E8;
+}
+thead tr th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #FFF;
+  border-bottom: 1px solid #FFF;
+}
+.header-answer{
+  border-top: 4px solid #174D6C !important;
+  color: #000;
+}
+.header-vista{
+  border-top: 5px solid #5DBA76 !important;
+  color: #000;
+}
+.title-form{
+  font-family: 'Lexend Mega', sans-serif;
+  font-size: 18px;
+  display:flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: -45px;
+  justify-content: space-between;
+}
+.btn{
+  background: none;
+  border: 1px solid #5DBA76;
+  border-radius: 20px;
+  margin-right: 3px;
+}
+.print-pdf{
+  margin-right: 10px;
+  margin-top: -5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.conten-print{
+  display: flex;
+  justify-content: flex-end;
+}
+.print-list-form{
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  outline: none;
 }

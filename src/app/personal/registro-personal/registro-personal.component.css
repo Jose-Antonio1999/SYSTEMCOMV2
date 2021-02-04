@@ -95,3 +95,13 @@
 .inputOption{
   width: 50%;
 }
+.formulario{
+  background: #FFF;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+  box-shadow: 0px 7px 22px -8px rgba(0,0,0,0.75);
+}

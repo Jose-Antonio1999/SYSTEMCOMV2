@@ -3,7 +3,7 @@
     <div class="col-md-3">
       <h4 class="title-list">Mis formularios</h4>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 .conten-print">
       <mat-form-field style="width: 90%;" class="example-full-width">
         <mat-label>Buscar formulario</mat-label>
         <input matInput placeholder="Buscar" autocomplete="off" >
@@ -14,7 +14,13 @@
 
     </div>
     <div class="col-md-2">
-
+      <div class="col-md-2 conten-print">
+        <button class="print-list-form"
+        [printTitle]="this.datatutor"
+        [useExistingCss]="true"
+        printSectionId="list-enviados"
+        ngxPrint><i class="fas fa-print" title="Imprimir formularios"></i></button>
+      </div>
     </div>
   </div>
 
@@ -25,22 +31,22 @@
         <i class="fas fa-folder-open"></i> Lista de formularios enviados vacia
       </div>
 
-      <div class="row contenedorDocentes">
+      <div class="row contenedorDocentes" id="list-enviados">
         <div class="col-md-12 mt-2" *ngFor="let data of Formularios; let i=index">
           <div class="card">
-            <div class="card-header mt-3">
-            {{areas(data.id_area_tutorship1)}}
+            <div class="card-header hearder-vista">
+              <b>{{areas(data.id_area_tutorship1)}}</b>
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{data.title}}</h5>
                 <p>{{data.description}}</p>
-                <a class="btn btn-light btn-sm" (click)="editarFormulario(i,'vista')"><i class="fas fa-book me-1"></i>Vista Formulario</a>
+                <a class="btn btn-sm" (click)="editarFormulario(i,'vista')"><i class="fas fa-book me-1"></i>Vista Formulario</a>
                 <!-- Verificar el estado de formulario -->
-                <a *ngIf="data.status==1; else desa" class="btn btn-light btn-sm" (click)="estadoFormulario(data.id_form, data.status,i)" style="color:#154360;">
+                <a *ngIf="data.status==1; else desa" class="btn btn-sm" (click)="estadoFormulario(data.id_form, data.status,i)" style="color:#154360;">
                   <i class="fas fa-book me-1"></i>{{vistaEstado(data.status)}}
                 </a>
                 <ng-template #desa>
-                  <a class="btn btn-light btn-sm" (click)="estadoFormulario(data.id_form, data.status,i)" style="color:red;">
+                  <a class="btn btn-sm" (click)="estadoFormulario(data.id_form, data.status,i)" style="color:red;">
                     <i class="fas fa-book me-1"></i>{{vistaEstado(data.status)}}
                   </a>
                 </ng-template>

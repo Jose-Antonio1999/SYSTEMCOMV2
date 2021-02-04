@@ -24,7 +24,7 @@
 .headerMessage{
   display: flex;
   justify-content: space-between;
-  background-color: #C3002F;
+  background-color: #323EBE;
   height:50px;
   border-radius: 10px 10px 0px 0px !important;
 }
@@ -63,15 +63,15 @@
 .btn{
   margin: 10px;
   background: #FFF;
-  color: #402D4E;
-  border: 1px solid #402D4E;
+  color: #323EBE;
+  border: 1px solid #323EBE;
   border-radius: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .btn:hover{
-  background: #402D4E;
+  background: #323EBE;
   color: #FFF;
 }
 .btn .fas {

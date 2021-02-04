@@ -32,7 +32,7 @@
         <mat-form-field class="modelInput">
           <span matPrefix><i class="fas fa-address-card"></i> &nbsp;</span>
           <mat-label>Dni estudiante</mat-label>
-          <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8" (ngModelChange)="verificarAlumnoBD()">
+          <input  matInput autocomplete="off" formControlName="dni_estudiante" maxlength="8" (ngModelChange)="verificarDNIDB()">
         </mat-form-field>
         <div style="margin-top: -13px; color: red;" *ngIf="crearFormulario.controls['dni_estudiante'].dirty && crearFormulario.controls['dni_estudiante'].invalid">
           <div *ngIf="crearFormulario.controls['dni_estudiante'].errors.pattern">

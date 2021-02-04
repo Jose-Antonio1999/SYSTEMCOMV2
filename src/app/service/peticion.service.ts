@@ -95,9 +95,16 @@ export class PeticionService {
   obtenerTutor(data:any):Observable<any>{
     return this.http.post<any>(this.URLListar+"currentTutor.php",data);
   }
+  obtenerRespuesta(data:any):Observable<any>{
+    return this.http.post<any>(this.URLListar+"listaRespuestas.php",data);
+  }
   numeroEmailsDocentesGeneral():Observable<any>{
     return this.http.get<any>(this.URLListar+"emailDocentesGeneral.php");
   }
+  datosTutor(data:any):Observable<Staff>{
+    return this.http.post<Staff>(this.URLListar+"infotutor.php",JSON.stringify(data));
+  }
+
 
   //funcion de verificacion de usurios
   existeAdmin(){
